@@ -1,0 +1,91 @@
+% BFO 2020 Axiomatization, generated 2019/12/05
+% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
+
+% Section: Domain Range
+
+set(prolog_style_variables)
+
+% proper-occurrent-part-of has domain occurrent and range occurrent
+all a all b  ((properOccurrentPartOf(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("proper-occurrent-part-of-domain-range") .
+
+% participates-in is time indexed and has domain: independent-continuant but not spatial-region or specifically-dependent-continuant or generically-dependent-continuant  and range: process
+all a all b all t  ((participatesIn(a,b,t)) -> (((((((instanceOf(a,independentContinuant,t)) & (-(instanceOf(a,spatialRegion,t))))) | (instanceOf(a,specificallyDependentContinuant,t)) | (instanceOf(a,genericallyDependentContinuant,t)))) & (instanceOf(b,process,t)) & (instanceOf(t,temporalRegion,t))))) # label("participates-in-domain-range") .
+
+% occurs-in has domain process or process-boundary  and range material-entity or site 
+all a all b  ((occursIn(a,b)) -> (((exists t  (((instanceOf(a,process,t)) | (instanceOf(a,processBoundary,t))))) & (exists t  (((instanceOf(b,materialEntity,t)) | (instanceOf(b,site,t)))))))) # label("occurs-in-domain-range") .
+
+% concretizes is time indexed and has domain: specifically-dependent-continuant or process  and range: generically-dependent-continuant
+all a all b all t  ((concretizes(a,b,t)) -> (((((instanceOf(a,specificallyDependentContinuant,t)) | (instanceOf(a,process,t)))) & (instanceOf(b,genericallyDependentContinuant,t)) & (instanceOf(t,temporalRegion,t))))) # label("concretizes-domain-range") .
+
+% inheres-in has domain specifically-dependent-continuant and range independent-continuant but not spatial-region
+all a all b  ((inheresIn(a,b)) -> (((exists t  (instanceOf(a,specificallyDependentContinuant,t))) & (exists t  (((instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,spatialRegion,t))))))))) # label("inheres-in-domain-range") .
+
+% Relata of exists-at are particulars.
+all i all t  ((existsAt(i,t)) -> (((particular(i)) & (particular(t)) & (instanceOf(t,temporalRegion,t))))) # label("exists-at-domain-range") .
+
+% spatially-projects-onto is time indexed and has domain: spatiotemporal-region and range: spatial-region
+all a all b all t  ((spatiallyProjectsOnto(a,b,t)) -> (((instanceOf(a,spatiotemporalRegion,t)) & (instanceOf(b,spatialRegion,t)) & (instanceOf(t,temporalRegion,t))))) # label("spatially-projects-onto-domain-range") .
+
+% continuant-part-of is time indexed and has domain: continuant and range: continuant
+all a all b all t  ((continuantPartOf(a,b,t)) -> (((instanceOf(a,continuant,t)) & (instanceOf(b,continuant,t)) & (instanceOf(t,temporalRegion,t))))) # label("continuant-part-of-domain-range") .
+
+% member-part-of is time indexed and has domain: object and range: object-aggregate
+all a all b all t  ((memberPartOf(a,b,t)) -> (((instanceOf(a,object,t)) & (instanceOf(b,objectAggregate,t)) & (instanceOf(t,temporalRegion,t))))) # label("member-part-of-domain-range") .
+
+% specifically-depends-on has domain specifically-dependent-continuant and range specifically-dependent-continuant or independent-continuant but not spatial-region 
+all a all b  ((specificallyDependsOn(a,b)) -> (((exists t  (instanceOf(a,specificallyDependentContinuant,t))) & (exists t  (((instanceOf(b,specificallyDependentContinuant,t)) | (((instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,spatialRegion,t))))))))))) # label("specifically-depends-on-domain-range") .
+
+% has-material-basis is time indexed and has domain: disposition and range: material-entity
+all a all b all t  ((hasMaterialBasis(a,b,t)) -> (((instanceOf(a,disposition,t)) & (instanceOf(b,materialEntity,t)) & (instanceOf(t,temporalRegion,t))))) # label("has-material-basis-domain-range") .
+
+% proper-continuant-part-of is time indexed and has domain: continuant and range: continuant
+all a all b all t  ((properContinuantPartOf(a,b,t)) -> (((instanceOf(a,continuant,t)) & (instanceOf(b,continuant,t)) & (instanceOf(t,temporalRegion,t))))) # label("proper-continuant-part-of-domain-range") .
+
+% realizes has domain process and range realizable-entity
+all a all b  ((realizes(a,b)) -> (((exists t  (instanceOf(a,process,t))) & (exists t  (instanceOf(b,realizableEntity,t)))))) # label("realizes-domain-range") .
+
+% temporal-part-of has domain occurrent and range occurrent
+all a all b  ((temporalPartOf(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("temporal-part-of-domain-range") .
+
+% occupies-spatial-region is time indexed and has domain: independent-continuant but not spatial-region and range: spatial-region
+all a all b all t  ((occupiesSpatialRegion(a,b,t)) -> (((((instanceOf(a,independentContinuant,t)) & (-(instanceOf(a,spatialRegion,t))))) & (instanceOf(b,spatialRegion,t)) & (instanceOf(t,temporalRegion,t))))) # label("occupies-spatial-region-domain-range") .
+
+% occupies-temporal-region has domain process or process-boundary  and range temporal-region
+all a all b  ((occupiesTemporalRegion(a,b)) -> (((exists t  (((instanceOf(a,process,t)) | (instanceOf(a,processBoundary,t))))) & (exists t  (instanceOf(b,temporalRegion,t)))))) # label("occupies-temporal-region-domain-range") .
+
+% has-last-instant has domain temporal-region and range temporal-instant
+all a all b  ((hasLastInstant(a,b)) -> (((exists t  (instanceOf(a,temporalRegion,t))) & (exists t  (instanceOf(b,temporalInstant,t)))))) # label("has-last-instant-domain-range") .
+
+% occupies-spatiotemporal-region has domain process or process-boundary  and range spatiotemporal-region
+all a all b  ((occupiesSpatiotemporalRegion(a,b)) -> (((exists t  (((instanceOf(a,process,t)) | (instanceOf(a,processBoundary,t))))) & (exists t  (instanceOf(b,spatiotemporalRegion,t)))))) # label("occupies-spatiotemporal-region-domain-range") .
+
+% precedes has domain occurrent and range occurrent
+all a all b  ((precedes(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("precedes-domain-range") .
+
+% occurrent-part-of has domain occurrent and range occurrent
+all a all b  ((occurrentPartOf(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("occurrent-part-of-domain-range") .
+
+% temporally-projects-onto has domain spatiotemporal-region and range temporal-region
+all a all b  ((temporallyProjectsOnto(a,b)) -> (((exists t  (instanceOf(a,spatiotemporalRegion,t))) & (exists t  (instanceOf(b,temporalRegion,t)))))) # label("temporally-projects-onto-domain-range") .
+
+% Relata of instance-of are particular, universal, temporal-region.
+all i all u all t  ((instanceOf(i,u,t)) -> (((particular(i)) & (universal(u)) & (instanceOf(t,temporalRegion,t))))) # label("instance-of-domain-range") .
+
+% generically-depends-on is time indexed and has domain: generically-dependent-continuant and range: independent-continuant but not spatial-region
+all a all b all t  ((genericallyDependsOn(a,b,t)) -> (((instanceOf(a,genericallyDependentContinuant,t)) & (((instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,spatialRegion,t))))) & (instanceOf(t,temporalRegion,t))))) # label("generically-depends-on-domain-range") .
+
+% located-in is time indexed and has domain: independent-continuant but not spatial-region and range: independent-continuant but not spatial-region
+all a all b all t  ((locatedIn(a,b,t)) -> (((((instanceOf(a,independentContinuant,t)) & (-(instanceOf(a,spatialRegion,t))))) & (((instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,spatialRegion,t))))) & (instanceOf(t,temporalRegion,t))))) # label("located-in-domain-range") .
+
+% history-of has domain history and range material-entity
+all a all b  ((historyOf(a,b)) -> (((exists t  (instanceOf(a,history,t))) & (exists t  (instanceOf(b,materialEntity,t)))))) # label("history-of-domain-range") .
+
+% proper-temporal-part-of has domain occurrent and range occurrent
+all a all b  ((properTemporalPartOf(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("proper-temporal-part-of-domain-range") .
+
+% has-first-instant has domain temporal-region and range temporal-instant
+all a all b  ((hasFirstInstant(a,b)) -> (((exists t  (instanceOf(a,temporalRegion,t))) & (exists t  (instanceOf(b,temporalInstant,t)))))) # label("has-first-instant-domain-range") .
+
+
+
