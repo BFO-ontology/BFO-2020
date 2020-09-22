@@ -42,3 +42,37 @@ The comment does not appear in the OWL version.
 Discovered 2020-09-22, by Werner Ceusters
 
 ================================================================
+
+Errata #2
+
+The axiom for specific-dependent participation is missing a clause
+
+(cl:comment 'label:participation-of-specific-dependent-continuant')
+(cl:comment 'At every time a specific dependent s participates in a process p there''s a part of that time, during which there''s an independent-continuant that s s-depends on, and that participates in p at that time')
+(forall (sdc p t)
+ (if
+  (and (instance-of sdc specifically-dependent-continuant t)
+   (participates-in sdc p t))
+  (exists (tp ic)
+   (and (instance-of tp temporal-region tp)
+    (instance-of ic independent-continuant tp)
+    (not (instance-of ic spatial-region tp))
+    (specifically-depends-on sdc ic) (participates-in ic p tp)))))
+
+It should read
+
+(forall (sdc p t)
+ (if
+  (and (instance-of sdc specifically-dependent-continuant t)
+   (participates-in sdc p t))
+  (exists (tp ic)
+   (and (instance-of tp temporal-region tp)
+--->    (temporal-part-of tp t)
+    (instance-of ic independent-continuant tp)
+    (not (instance-of ic spatial-region tp))
+    (specifically-depends-on sdc ic) (participates-in ic p tp)))))
+
+Discovered 2020-09-22, by Werner Ceusters
+
+================================================================
+
