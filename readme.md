@@ -1,8 +1,6 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>bfo_index</title>
     <meta name="author" content="rudnicki">
     <meta name="generator" content="BlueGriffon wysiwyg editor">
     <link rel="stylesheet" href="bfo_2020.css">
