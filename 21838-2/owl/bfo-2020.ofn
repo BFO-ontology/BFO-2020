@@ -9,7 +9,7 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/bfo.owl>
-<http://purl.obolibrary.org/obo/bfo/2020/bfo.owl>
+<http://purl.obolibrary.org/obo/bfo/iso/2020/bfo.owl>
 Annotation(dc:contributor "Alan Ruttenberg")
 Annotation(dc:contributor "Albert Goldfain")
 Annotation(dc:contributor "Barry Smith")

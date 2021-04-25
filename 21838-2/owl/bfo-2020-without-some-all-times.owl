@@ -20,7 +20,7 @@
     <dc:contributor>Thomas Bittner</dc:contributor>
     <dc:contributor>Robert Rovetto</dc:contributor>
     <dc:contributor>Werner Ceusters</dc:contributor>
-    <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/bfo/2020/bfo.owl"/>
+    <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/bfo/iso/2020/bfo-without-somm-all-times.owl"/>
     <dc:contributor>Randall Dipert</dc:contributor>
     <dc:contributor>David Osumi-Sutherland</dc:contributor>
     <rdfs:label>BFO 2020</rdfs:label>
