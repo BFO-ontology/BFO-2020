@@ -1,58 +1,59 @@
-% BFO 2020 Axiomatization, generated 2019/12/05
+% BFO 2020 Axiomatization, generated 2021/11/12
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
 % Section: Order
 
 set(prolog_style_variables)
 
+% precedes and preceded-by are inverse relations
+all a all b  ((precedes(a,b)) <-> (precededBy(b,a))) # label("precedes-inverse-of-preceded-by") .
+
 % precedes is antisymmetric
 all a all b  ((precedes(a,b)) -> (-(precedes(b,a)))) # label("precedes-antisymmetric") .
-
-% A first instant is either part of an extended region or precedes it
-all l all i  ((((instanceOf(l,temporalInstant,l)) & (instanceOf(i,temporalRegion,i)) & (-(instanceOf(i,temporalInstant,i))) & (hasLastInstant(i,l)))) -> ((-(temporalPartOf(l,i))) <-> (precedes(i,l)))) # label("either-last-instant-part-or-preceded-by") .
 
 % precedes is transitive
 all a all b all c  ((((precedes(a,b)) & (precedes(b,c)))) -> (precedes(a,c))) # label("precedes-transitive") .
 
-% If two temporal intervals do not overlap then one of them precedes the other
-all t1 all t2  ((((instanceOf(t1,temporalInterval,t1)) & (instanceOf(t2,temporalInterval,t2)) & (-(exists part  (((temporalPartOf(part,t1)) & (temporalPartOf(part,t2)))))))) -> (((precedes(t1,t2)) | (precedes(t2,t1))))) # label("temporal-intervals-dont-overlap-implies-one-precedes-the-other") .
-
-% temporal instants are totally ordered
-all t1 all t2  ((((instanceOf(t1,temporalInstant,t1)) & (instanceOf(t2,temporalInstant,t2)))) -> (((precedes(t1,t2)) | (precedes(t2,t1)) | ((t1) = (t2))))) # label("temporal-instants-connex-related") .
-
-% if one occurrent precedes another then they do not overlap temporally
-all p all q  ((((precedes(p,q)) | (precedes(q,p)))) -> (-(exists overlap  (((temporalPartOf(overlap,p)) & (temporalPartOf(overlap,q))))))) # label("precedes-doesnt-overlap") .
-
 % If the last instant of a temporal region precedes the first instant of another, then the first region precedes the second
 all i1 all i2 all l1 all f2  ((((hasLastInstant(i1,l1)) & (hasFirstInstant(i2,f2)) & (precedes(l1,f2)))) -> (precedes(i1,i2))) # label("regions-precede-if-last-first-before-first-second") .
-
-% precedes and preceded-by are inverse relations
-all a all b  ((precedes(a,b)) <-> (precededBy(b,a))) # label("precedes-inverse-of-preceded-by") .
-
-% If two processes that occupy temporal intervals do not overlap, one of them precedes the other
-all o1 all o2 all t1 all t2  ((((occupiesTemporalRegion(o1,t1)) & (occupiesTemporalRegion(o2,t2)) & (instanceOf(t1,temporalInterval,t1)) & (instanceOf(t2,temporalInterval,t2)) & (-(exists part  (((temporalPartOf(part,t1)) & (temporalPartOf(part,t2)))))))) -> (((precedes(o1,o2)) | (precedes(o2,o1))))) # label("process-temporal-regions-on-temporal-intervals-dont-overlap-implies-one-precedes-the-other") .
-
-% If you are part of something that precedes something else, you also precede it
-all o1 all o2 all o1p all o2p  ((((occurrentPartOf(o1p,o1)) & (occurrentPartOf(o2p,o2)) & (precedes(o1,o2)))) -> (precedes(o1p,o2p))) # label("part-of-something-that-precedes-precedes") .
-
-% If one temporal region precedes another then the first last time point precedes the second first time point
-all t1 all t2 all l1 all f2  ((((precedes(t1,t2)) & (hasLastInstant(t1,l1)) & (hasFirstInstant(t2,f2)) & (-((l1) = (f2))))) -> (precedes(l1,f2))) # label("regions-precede-mean-endpoints-precede-unless-they-coincide") .
-
-% If you temporally occupy part of something that precedes something else, you also precede it
-all o1 all o2  ((exists t1 exists t2  (((((occupiesTemporalRegion(o1,t1)) | (temporallyProjectsOnto(o1,t1)) | ((t1) = (o1)))) & (((occupiesTemporalRegion(o2,t2)) | (temporallyProjectsOnto(o2,t2)) | ((t2) = (o2)))) & (precedes(t1,t2))))) <-> (precedes(o1,o2))) # label("occurrents-precedes-iff-temporal-precedes") .
-
-% First instant of a temporal region that is not an instant precedes last instant
-all t all ft all lt  ((((-(instanceOf(t,temporalInstant,t))) & (hasFirstInstant(t,ft)) & (hasLastInstant(t,lt)))) -> (precedes(ft,lt))) # label("first-time-point-precedes-last-time-point-except-for-instants") .
 
 % precedes has domain occurrent and range occurrent
 all a all b  ((precedes(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("precedes-domain-range") .
 
-% If the last instant of a temporal region precedes the first instant of another, the first region precedes the second
+% If you are part of something that precedes something else, you also precede it
+all o1 all o2 all o1p all o2p  ((((occurrentPartOf(o1p,o1)) & (occurrentPartOf(o2p,o2)) & (precedes(o1,o2)))) -> (precedes(o1p,o2p))) # label("part-of-something-that-precedes-precedes") .
+
+% First instant of a temporal region that is not an instant precedes last instant
+all t all ft all lt  ((((-(instanceOf(t,temporalInstant,t))) & (hasFirstInstant(t,ft)) & (hasLastInstant(t,lt)))) -> (precedes(ft,lt))) # label("first-time-point-precedes-last-time-point-except-for-instants") .
+
+% If one temporal region precedes another then the first last time point precedes the second first time point
+all t1 all t2 all l1 all f2  ((((precedes(t1,t2)) & (hasLastInstant(t1,l1)) & (hasFirstInstant(t2,f2)) & (-((l1) = (f2))))) -> (precedes(l1,f2))) # label("regions-precede-mean-endpoints-precede-unless-they-coincide") .
+
+% if one occurrent precedes another then they do not overlap temporally
+all p all q  ((((precedes(p,q)) | (precedes(q,p)))) -> (-(exists overlap  (((temporalPartOf(overlap,p)) & (temporalPartOf(overlap,q))))))) # label("precedes-doesnt-overlap") .
+
+% temporal instants are totally ordered
+all t1 all t2  ((((instanceOf(t1,temporalInstant,t1)) & (instanceOf(t2,temporalInstant,t2)))) -> (((precedes(t1,t2)) | (precedes(t2,t1)) | ((t1) = (t2))))) # label("temporal-instants-connex-related") .
+
+% If the last instant of a temporal region is the first instant of another, the first region precedes the second
 all i1 all i2 all l1 all f2  ((((-(instanceOf(i1,temporalInstant,i1))) & (-(instanceOf(i2,temporalInstant,i2))) & (hasLastInstant(i1,l1)) & (hasFirstInstant(i2,f2)) & ((l1) = (f2)))) -> (precedes(i1,i2))) # label("regions-precede-if-they-meet") .
 
 % A first instant is either part of an extended region or precedes it
+all l all i  ((((instanceOf(l,temporalInstant,l)) & (instanceOf(i,temporalRegion,i)) & (-(instanceOf(i,temporalInstant,i))) & (hasLastInstant(i,l)))) -> ((-(temporalPartOf(l,i))) <-> (precedes(i,l)))) # label("either-last-instant-part-or-preceded-by") .
+
+% A first instant is either part of an extended region or precedes it
 all f all i  ((((instanceOf(f,temporalInstant,f)) & (instanceOf(i,temporalRegion,i)) & (-(instanceOf(i,temporalInstant,i))) & (hasFirstInstant(i,f)))) -> ((-(temporalPartOf(f,i))) <-> (precedes(f,i)))) # label("either-first-instant-part-or-precedes") .
+
+% If two temporal intervals do not overlap then one of them precedes the other
+all t1 all t2  ((((instanceOf(t1,temporalInterval,t1)) & (instanceOf(t2,temporalInterval,t2)) & (-(exists part  (((temporalPartOf(part,t1)) & (temporalPartOf(part,t2)))))))) -> (((precedes(t1,t2)) | (precedes(t2,t1))))) # label("temporal-intervals-dont-overlap-implies-one-precedes-the-other") .
+
+% If you temporally occupy part of something that precedes something else, you also precede it
+all o1 all o2  ((exists t1 exists t2  (((((occupiesTemporalRegion(o1,t1)) | (temporallyProjectsOnto(o1,t1)) | ((t1) = (o1)))) & (((occupiesTemporalRegion(o2,t2)) | (temporallyProjectsOnto(o2,t2)) | ((t2) = (o2)))) & (precedes(t1,t2))))) <-> (precedes(o1,o2))) # label("occurrents-precedes-iff-temporal-precedes") .
+
+% If two processes that occupy temporal intervals do not overlap, one of them precedes the other
+all o1 all o2 all t1 all t2  ((((occupiesTemporalRegion(o1,t1)) & (occupiesTemporalRegion(o2,t2)) & (instanceOf(t1,temporalInterval,t1)) & (instanceOf(t2,temporalInterval,t2)) & (-(exists part  (((temporalPartOf(part,t1)) & (temporalPartOf(part,t2)))))))) -> (((precedes(o1,o2)) | (precedes(o2,o1))))) # label("process-temporal-regions-on-temporal-intervals-dont-overlap-implies-one-precedes-the-other") .
 
 
 

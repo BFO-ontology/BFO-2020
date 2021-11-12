@@ -1,0 +1,71 @@
+Recall that the temporal scope of an at-all-times relation is the
+existence of the subject.  If we wanted an inverse, the subject becomes
+the object and and to match the temporal scope it is the existence of
+subject=now object that qualifies the relation.
+
+Example:
+
+First imagine that we don't have the temporal qualification 
+
+(forall (p q)
+   (iff (participates-in-at-all-times p q)
+     (forall (t) (participates-in p q t))))
+
+We would form the inverse by swapping p and q on the rhs
+of the iff
+
+(forall (p q)
+   (iff (has-participant-at-all-times p q)
+     (forall (t) (participates-in q p t))))
+
+Then rewrite participates-in to has-participant, swapping the arguments since
+(has-participant p q t) =def (participates-in q p t)
+
+(forall (p q)
+   (iff (has-participant-at-all-times p q)
+     (forall (t) (has-participant p q t))))
+
+To see the difference between reverse and inverse, we'll
+create the inverse as we did above
+
+Initially:
+
+(forall (p q)
+   (iff (participates-in-at-all-times p q)
+    (and (exists (t) (and (participates-in p q t) (exists-at p t)))
+     (forall (t) (if (exists-at p t) (participates-in p q t)))))))
+
+Swap p and q on the rhs
+
+(forall (p q)
+  (iff (has-participant-at-all-times(inverse) p q)
+    (and (exists (t) (and (participates-in q p t) (exists-at q t)))
+      (forall (t) (if (exists-at q t) (participates-in q p t)))))))
+
+Now do the participates-in = has-participant swap 
+ 
+(forall (p q)                                               |
+  (iff (has-participant-at-all-times(inverse) p q)           v
+   (and (exists (t) (and (has-participant p q t) (exists-at q t)))
+    (forall (t) (if (exists-at q t) (has-participant p q t)))))))
+                               ^
+                               |
+
+If you compare has-participant-at-all-times to has-participant-at-all-times(inverse)
+where the arrow points, it's p in the former and q in the latter.
+
+We *could* defined the inverses as well but then we would land up with
+two more relations.
+
+1. subject-quantified participates-in-at-all-times	
+2. object-quantified has-participant-at-all-times (inverse of 1) *
+3. subject-quantified has-participant-at-all-times (reverse of 1)
+4. object-quantified participates-in-at-all-times (inverse of 3) *
+
+It was decided this would be even more confusing. So, in OWL, if you
+want the inverse of participates-in-at-all-times, which is unnamed, 
+use the expression InverseOf(participates-in-at-all-times).
+
+Note that the same asymmetry existed in the original class-based
+definitions the relations as described in the paper "Relations in
+Biomedical Ontologies"

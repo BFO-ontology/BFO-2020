@@ -1,37 +1,38 @@
-% BFO 2020 Axiomatization, generated 2019/12/05
+% BFO 2020 Axiomatization, generated 2021/11/12
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
 % Section: Generic Dependence
 
 set(prolog_style_variables)
 
-% A generically dependent continuant is at all times at which it exists concretized by something
-all t all g  ((instanceOf(g,genericallyDependentContinuant,t)) -> (exists s exists tp  (((temporalPartOf(tp,t)) & (concretizes(s,g,tp)))))) # label("g-depends-concretized-at-least-once") .
-
-% concretizes is dissective on third argument, a temporal region
-all p all q all r all s  ((((concretizes(p,q,r)) & (temporalPartOf(s,r)))) -> (concretizes(p,q,s))) # label("concretizes-dissective-on-third-argument-temporal") .
-
-% concretizes is time indexed and has domain: specifically-dependent-continuant or process  and range: generically-dependent-continuant
-all a all b all t  ((concretizes(a,b,t)) -> (((((instanceOf(a,specificallyDependentContinuant,t)) | (instanceOf(a,process,t)))) & (instanceOf(b,genericallyDependentContinuant,t)) & (instanceOf(t,temporalRegion,t))))) # label("concretizes-domain-range") .
-
-% a g-dependent continuant b g-depends on an independent continuant c at t means: there inheres in c at t an s-dependent continuant which concretizes b at t
-all g all c all t  ((genericallyDependsOn(g,c,t)) -> (exists s exists tp  (((temporalPartOf(tp,t)) & (inheresIn(s,c)) & (concretizes(s,g,tp)))))) # label("g-depends-on-means-theres-a-sdc-that-concretizes-it") .
-
-% If a generically dependent continuant participates in a process p then, if it is concretized as a process, that process is part of p, fand if concretized as an sdc then the bearer of that sdc participates in the process
-all gdc all p all t  ((((instanceOf(gdc,genericallyDependentContinuant,t)) & (participatesIn(gdc,p,t)))) -> (exists tp exists b  (((temporalPartOf(tp,t)) & (concretizes(b,gdc,tp)) & (((((instanceOf(b,specificallyDependentContinuant,tp)) & (exists ic  (((specificallyDependsOn(b,ic)) & (participatesIn(ic,p,tp))))))) | (((occurrentPartOf(b,p)) & (existsAt(b,tp)))))))))) # label("participation-of-generically-dependent-continuant") .
+% concretizes and is-concretized-by are inverse relations
+all t all a all b  ((concretizes(a,b,t)) <-> (isConcretizedBy(b,a,t))) # label("concretizes-inverse-of-is-concretized-by") .
 
 % generically-depends-on and is-carrier-of are inverse relations
 all t all a all b  ((genericallyDependsOn(a,b,t)) <-> (isCarrierOf(b,a,t))) # label("generically-depends-on-inverse-of-is-carrier-of") .
 
-% concretizes and is-concretized-by are inverse relations
-all t all a all b  ((concretizes(a,b,t)) <-> (isConcretizedBy(b,a,t))) # label("concretizes-inverse-of-is-concretized-by") .
+% concretizes is dissective on third argument, a temporal region
+all p all q all r all s  ((((concretizes(p,q,r)) & (temporalPartOf(s,r)))) -> (concretizes(p,q,s))) # label("concretizes-dissective-on-third-argument-temporal") .
+
+% A generically dependent continuant is at all times at which it exists concretized by something
+all t all g  ((instanceOf(g,genericallyDependentContinuant,t)) -> (exists s exists tp  (((temporalPartOf(tp,t)) & (concretizes(s,g,tp)))))) # label("g-depends-concretized-at-least-once") .
+
+% a g-dependent continuant b g-depends on an independent continuant c at t means: there inheres in c at t an s-dependent continuant which concretizes b at t
+all g all c all t  ((genericallyDependsOn(g,c,t)) -> (exists s exists tp  (((temporalPartOf(tp,t)) & (inheresIn(s,c)) & (concretizes(s,g,tp)))))) # label("g-depends-on-means-theres-a-sdc-that-concretizes-it") .
+
+% concretizes is time indexed and has domain: specifically-dependent-continuant or process  and range: generically-dependent-continuant
+all a all b all t  ((concretizes(a,b,t)) -> (((((instanceOf(a,specificallyDependentContinuant,t)) | (instanceOf(a,process,t)))) & (instanceOf(b,genericallyDependentContinuant,t)) & (instanceOf(t,temporalRegion,t))))) # label("concretizes-domain-range") .
 
 % generically-depends-on is time indexed and has domain: generically-dependent-continuant and range: independent-continuant but not spatial-region
 all a all b all t  ((genericallyDependsOn(a,b,t)) -> (((instanceOf(a,genericallyDependentContinuant,t)) & (((instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,spatialRegion,t))))) & (instanceOf(t,temporalRegion,t))))) # label("generically-depends-on-domain-range") .
 
 % If a specifically-dependent-continuant concretizes a gdc then the gdc generically-depends-on the bearer of the sdc
 all g all b all sdc  ((((exists t  (instanceOf(g,genericallyDependentContinuant,t))) & (exists t  (instanceOf(sdc,specificallyDependentContinuant,t))) & (exists t  (instanceOf(b,independentContinuant,t))))) -> (all t  ((((concretizes(sdc,g,t)) & (inheresIn(sdc,b)))) -> (genericallyDependsOn(g,b,t))))) # label("sdc-concretizes-means-bearer-generically-depends") .
+
+% If a generically dependent continuant participates in a process p then, if it is concretized as a process, that process is part of p, fand if concretized as an sdc then the bearer of that sdc participates in the process
+all gdc all p all t  ((((instanceOf(gdc,genericallyDependentContinuant,t)) & (participatesIn(gdc,p,t)))) -> (exists tp exists b  (((temporalPartOf(tp,t)) & (concretizes(b,gdc,tp)) & (((((instanceOf(b,specificallyDependentContinuant,tp)) & (exists ic  (((specificallyDependsOn(b,ic)) & (participatesIn(ic,p,tp))))))) | (((occurrentPartOf(b,p)) & (existsAt(b,tp)))))))))) # label("participation-of-generically-dependent-continuant") .
 
 
 

@@ -1,16 +1,41 @@
-% BFO 2020 Axiomatization, generated 2019/12/05
+% BFO 2020 Axiomatization, generated 2021/11/12
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
 % Section: Occurrent Mereology
 
 set(prolog_style_variables)
 
+% occurrent-part-of and has-occurrent-part are inverse relations
+all a all b  ((occurrentPartOf(a,b)) <-> (hasOccurrentPart(b,a))) # label("occurrent-part-of-inverse-of-has-occurrent-part") .
+
 % proper-occurrent-part-of and has-proper-occurrent-part are inverse relations
 all a all b  ((properOccurrentPartOf(a,b)) <-> (hasProperOccurrentPart(b,a))) # label("proper-occurrent-part-of-inverse-of-has-proper-occurrent-part") .
 
+% occurrent-part-of is reflexive
+all a  ((exists t  (instanceOf(a,occurrent,t))) -> (occurrentPartOf(a,a))) # label("occurrent-part-of-is-reflexive-on-occurrent") .
+
+% occurrent-part-of is antisymmetric
+all a all b  ((((occurrentPartOf(a,b)) & (occurrentPartOf(b,a)))) -> ((a) = (b))) # label("occurrent-part-of-is-antisymmetric") .
+
 % A proper occurrent part of b means a is an occurrent part of b and a is not the same as b
 all x all y  ((properOccurrentPartOf(x,y)) <-> (((occurrentPartOf(x,y)) & (-((x) = (y)))))) # label("definition-of-proper-occurrent-part-of") .
+
+% occurrent-part-of is transitive
+all a all b all c  ((((occurrentPartOf(a,b)) & (occurrentPartOf(b,c)))) -> (occurrentPartOf(a,c))) # label("occurrent-part-of-transitive") .
+
+% If one occurrent is part of another, then the temporal region on which the former projects is a part of the temporal region on which the latter projects
+all o1 all o2  ((occurrentPartOf(o1,o2)) -> (all t  ((existsAt(o1,t)) -> (existsAt(o2,t))))) # label("occurrent-part-of-whole-lasts-longer") .
+
+% occurrent-part-of has domain occurrent and range occurrent
+all a all b  ((occurrentPartOf(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("occurrent-part-of-domain-range") .
+
+% If a occurrent-part-of b then if a is an instance of process then b is an instance of process
+all p all q  ((occurrentPartOf(p,q)) -> ((exists t  (instanceOf(p,process,t))) -> (exists t  (instanceOf(q,process,t))))) # label("occurrent-part-of.process->process") .
+
+% proper-temporal-part-of has domain occurrent and range occurrent
+all a all b  ((properTemporalPartOf(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("proper-temporal-part-of-domain-range") .
 
 % proper-occurrent-part-of has domain occurrent and range occurrent
 all a all b  ((properOccurrentPartOf(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("proper-occurrent-part-of-domain-range") .
@@ -18,65 +43,38 @@ all a all b  ((properOccurrentPartOf(a,b)) -> (((exists t  (instanceOf(a,occurre
 % every process has a process boundary
 all p  ((exists t  (instanceOf(p,process,t))) -> (exists pb exists t  (((instanceOf(pb,processBoundary,t)) & (occurrentPartOf(pb,p)))))) # label("every-process-has-a-process-boundary") .
 
-% At least one process boundary needs to be at the first or last instant of the process it bounds
-all p  ((exists tp  (instanceOf(p,process,tp))) -> (exists pb exists tb exists tp  (((occupiesTemporalRegion(p,tp)) & (occurrentPartOf(pb,p)) & (occupiesTemporalRegion(pb,tb)) & (instanceOf(pb,processBoundary,tb)) & (exists ltp exists ftp  (((hasFirstInstant(tp,ftp)) & (hasLastInstant(tp,ltp)) & ((((tb) = (ftp)) | ((tb) = (ltp))))))))))) # label("process-bounds-at-first-or-last-instant") .
-
-% definition of temporal part for temporal regions
-all b all c  ((((exists t  (instanceOf(b,temporalRegion,t))) & (exists t  (instanceOf(c,temporalRegion,t))))) -> ((temporalPartOf(b,c)) <-> (occurrentPartOf(b,c)))) # label("definition-of-temporal-part-for-temporal-regions") .
-
-% occurrent-part-of is transitive
-all a all b all c  ((((occurrentPartOf(a,b)) & (occurrentPartOf(b,c)))) -> (occurrentPartOf(a,c))) # label("occurrent-part-of-transitive") .
-
-% If a occurrent-part-of b then if a is an instance of process-boundary then b is an instance of process or process-boundary 
-all p all q  ((occurrentPartOf(p,q)) -> ((exists t  (instanceOf(p,processBoundary,t))) -> (exists t  (((instanceOf(q,process,t)) | (instanceOf(q,processBoundary,t))))))) # label("occurrent-part-of.process-boundary->or-process-process-boundary") .
-
-% If one occurrent is part of another, then the temporal region on which the former projects is a part of the temporal region on which the latter projects
-all o1 all o2  ((occurrentPartOf(o1,o2)) -> (all t  ((existsAt(o1,t)) -> (existsAt(o2,t))))) # label("occurrent-part-of-whole-lasts-longer") .
-
-% b is a temporal part of  process or process boundary c if b is occurrent-part-of c and b's spatiotemporal region is temporal-part-of c's spatiotemporal region
-all b all c  ((((exists t  (((instanceOf(b,process,t)) | (instanceOf(c,processBoundary,t))))) & (exists t  (((instanceOf(b,process,t)) | (instanceOf(c,processBoundary,t))))))) -> ((temporalPartOf(b,c)) <-> (exists bs exists cs  (((occurrentPartOf(b,c)) & (occupiesSpatiotemporalRegion(b,bs)) & (occupiesSpatiotemporalRegion(c,cs)) & (temporalPartOf(bs,cs))))))) # label("definition-of-temporal-part-processes") .
-
-% If a occurrent-part-of b then if a is an instance of process then b is an instance of process
-all p all q  ((occurrentPartOf(p,q)) -> ((exists t  (instanceOf(p,process,t))) -> (exists t  (instanceOf(q,process,t))))) # label("occurrent-part-of.process->process") .
-
-% a process boundary is any temporal part of a process that has no proper temporal parts.
-all pb  ((exists t  (instanceOf(pb,processBoundary,t))) <-> (((exists p  (((temporalPartOf(pb,p)) & (exists t  (instanceOf(p,process,t)))))) & (exists t  (((occupiesTemporalRegion(pb,t)) & (instanceOf(t,temporalInstant,t)))))))) # label("process-boundary-definition") .
-
-% If a has-occurrent-part b then if a is an instance of process then b is an instance of process or process-boundary 
-all p all q  ((hasOccurrentPart(p,q)) -> ((exists t  (instanceOf(p,process,t))) -> (exists t  (((instanceOf(q,process,t)) | (instanceOf(q,processBoundary,t))))))) # label("has-occurrent-part.process->or-process-process-boundary") .
-
-% Two spatiotemporal regions are parts when they are temporal parts and their spatial projects are always parts
-all st1 all st2  ((((exists t  (instanceOf(st1,spatiotemporalRegion,t))) & (exists t  (instanceOf(st2,spatiotemporalRegion,t))))) -> ((occurrentPartOf(st1,st2)) <-> (((exists t1 exists t2  (((temporallyProjectsOnto(st1,t1)) & (temporallyProjectsOnto(st2,t2)) & (temporalPartOf(t1,t2))))) & (all t  ((existsAt(st1,t)) -> (exists s1 exists s2 exists tp  (((temporalPartOf(tp,t)) & (spatiallyProjectsOnto(st1,s1,tp)) & (spatiallyProjectsOnto(st2,s2,tp)) & (continuantPartOf(s1,s2,tp))))))))))) # label("spatiotemporal-occurrent-part-of-definition") .
-
-% occurrent-part-of is antisymmetric
-all a all b  ((((occurrentPartOf(a,b)) & (occurrentPartOf(b,a)))) -> ((a) = (b))) # label("occurrent-part-of-is-antisymmetric") .
-
-% occurrent-part-of and has-occurrent-part are inverse relations
-all a all b  ((occurrentPartOf(a,b)) <-> (hasOccurrentPart(b,a))) # label("occurrent-part-of-inverse-of-has-occurrent-part") .
-
-% b temporal part c (both spatiotemporal regions) iff b temporal projection is part of c's temporal projection, and for all parts of b's existence, if it spatially-projects-onto s at that time, then so does c
-all b all c  ((((exists t  (instanceOf(b,spatiotemporalRegion,t))) & (exists t  (instanceOf(c,spatiotemporalRegion,t))))) -> ((temporalPartOf(b,c)) <-> (exists tb exists tc  (((temporallyProjectsOnto(b,tb)) & (temporallyProjectsOnto(c,tc)) & (((occurrentPartOf(tb,tc)) & (all tp  ((((occurrentPartOf(tp,tb)) & (exists s  (spatiallyProjectsOnto(b,s,tp))))) -> (exists s  (((spatiallyProjectsOnto(b,s,tp)) & (spatiallyProjectsOnto(c,s,tp)))))))))))))) # label("definition-of-temporal-part-spatiotemporal-regions") .
-
 % If a occurrent-part-of b then if a is an instance of temporal-region then b is an instance of temporal-region, and vice-versa
 all p all q  ((occurrentPartOf(p,q)) -> ((exists t  (instanceOf(p,temporalRegion,t))) <-> (exists t  (instanceOf(q,temporalRegion,t))))) # label("occurrent-part-of.temporal-region<->temporal-region") .
 
 % If a has-occurrent-part b then if a is an instance of process-boundary then b is an instance of process-boundary
 all p all q  ((hasOccurrentPart(p,q)) -> ((exists t  (instanceOf(p,processBoundary,t))) -> (exists t  (instanceOf(q,processBoundary,t))))) # label("has-occurrent-part.process-boundary->process-boundary") .
 
-% occurrent-part-of has a unique product
-all x all y  ((exists t  (((instanceOf(x,occurrent,t)) & (instanceOf(y,occurrent,t)) & (instanceOf(t,temporalRegion,t))))) -> ((exists w  (((occurrentPartOf(w,x)) & (occurrentPartOf(w,y))))) -> (exists z  (all w  ((occurrentPartOf(w,z)) <-> (((occurrentPartOf(w,x)) & (occurrentPartOf(w,y))))))))) # label("occurrent-part-of-has-a-unique-product") .
-
-% occurrent-part-of has domain occurrent and range occurrent
-all a all b  ((occurrentPartOf(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("occurrent-part-of-domain-range") .
-
 % If a occurrent-part-of b then if a is an instance of spatiotemporal-region then b is an instance of spatiotemporal-region, and vice-versa
 all p all q  ((occurrentPartOf(p,q)) -> ((exists t  (instanceOf(p,spatiotemporalRegion,t))) <-> (exists t  (instanceOf(q,spatiotemporalRegion,t))))) # label("occurrent-part-of.spatiotemporal-region<->spatiotemporal-region") .
 
-% occurrent-part-of is reflexive
-all a  ((exists t  (instanceOf(a,occurrent,t))) -> (occurrentPartOf(a,a))) # label("occurrent-part-of-is-reflexive-on-occurrent") .
+% definition of temporal part for temporal regions
+all b all c  ((((exists t  (instanceOf(b,temporalRegion,t))) & (exists t  (instanceOf(c,temporalRegion,t))))) -> ((temporalPartOf(b,c)) <-> (occurrentPartOf(b,c)))) # label("definition-of-temporal-part-for-temporal-regions") .
 
-% proper-temporal-part-of has domain occurrent and range occurrent
-all a all b  ((properTemporalPartOf(a,b)) -> (((exists t  (instanceOf(a,occurrent,t))) & (exists t  (instanceOf(b,occurrent,t)))))) # label("proper-temporal-part-of-domain-range") .
+% If a has-occurrent-part b then if a is an instance of process then b is an instance of process or process-boundary 
+all p all q  ((hasOccurrentPart(p,q)) -> ((exists t  (instanceOf(p,process,t))) -> (exists t  (((instanceOf(q,process,t)) | (instanceOf(q,processBoundary,t))))))) # label("has-occurrent-part.process->or-process-process-boundary") .
+
+% If a occurrent-part-of b then if a is an instance of process-boundary then b is an instance of process or process-boundary 
+all p all q  ((occurrentPartOf(p,q)) -> ((exists t  (instanceOf(p,processBoundary,t))) -> (exists t  (((instanceOf(q,process,t)) | (instanceOf(q,processBoundary,t))))))) # label("occurrent-part-of.process-boundary->or-process-process-boundary") .
+
+% a process boundary is any temporal part of a process that has no proper temporal parts.
+all pb  ((exists t  (instanceOf(pb,processBoundary,t))) <-> (((exists p  (((temporalPartOf(pb,p)) & (exists t  (instanceOf(p,process,t)))))) & (exists t  (((occupiesTemporalRegion(pb,t)) & (instanceOf(t,temporalInstant,t)))))))) # label("process-boundary-definition") .
+
+% occurrent-part-of has a unique product
+all x all y  ((exists t  (((instanceOf(x,occurrent,t)) & (instanceOf(y,occurrent,t)) & (instanceOf(t,temporalRegion,t))))) -> ((exists w  (((occurrentPartOf(w,x)) & (occurrentPartOf(w,y))))) -> (exists z  (all w  ((occurrentPartOf(w,z)) <-> (((occurrentPartOf(w,x)) & (occurrentPartOf(w,y))))))))) # label("occurrent-part-of-has-a-unique-product") .
+
+% At least one process boundary needs to be at the first or last instant of the process it bounds
+all p  ((exists tp  (instanceOf(p,process,tp))) -> (exists pb exists tb exists tp  (((occupiesTemporalRegion(p,tp)) & (occurrentPartOf(pb,p)) & (occupiesTemporalRegion(pb,tb)) & (instanceOf(pb,processBoundary,tb)) & (exists ltp exists ftp  (((hasFirstInstant(tp,ftp)) & (hasLastInstant(tp,ltp)) & ((((tb) = (ftp)) | ((tb) = (ltp))))))))))) # label("process-bounds-at-first-or-last-instant") .
+
+% b temporal part c (both spatiotemporal regions) iff b temporal projection is part of c's temporal projection, and for all parts of b's existence, if it spatially-projects-onto s at that time, then so does c
+all b all c  ((((exists t  (instanceOf(b,spatiotemporalRegion,t))) & (exists t  (instanceOf(c,spatiotemporalRegion,t))))) -> ((temporalPartOf(b,c)) <-> (exists tb exists tc  (((temporallyProjectsOnto(b,tb)) & (temporallyProjectsOnto(c,tc)) & (((occurrentPartOf(tb,tc)) & (all tp  ((((occurrentPartOf(tp,tb)) & (exists s  (spatiallyProjectsOnto(b,s,tp))))) -> (exists s  (((spatiallyProjectsOnto(b,s,tp)) & (spatiallyProjectsOnto(c,s,tp)))))))))))))) # label("definition-of-temporal-part-spatiotemporal-regions") .
+
+% Two spatiotemporal regions are parts when they are temporal parts and their spatial projects are always parts
+all st1 all st2  ((((exists t  (instanceOf(st1,spatiotemporalRegion,t))) & (exists t  (instanceOf(st2,spatiotemporalRegion,t))))) -> ((occurrentPartOf(st1,st2)) <-> (((exists t1 exists t2  (((temporallyProjectsOnto(st1,t1)) & (temporallyProjectsOnto(st2,t2)) & (temporalPartOf(t1,t2))))) & (all t  ((existsAt(st1,t)) -> (exists s1 exists s2 exists tp  (((temporalPartOf(tp,t)) & (spatiallyProjectsOnto(st1,s1,tp)) & (spatiallyProjectsOnto(st2,s2,tp)) & (continuantPartOf(s1,s2,tp))))))))))) # label("spatiotemporal-occurrent-part-of-definition") .
 
 
 

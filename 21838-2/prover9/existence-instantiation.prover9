@@ -1,5 +1,6 @@
-% BFO 2020 Axiomatization, generated 2019/12/05
+% BFO 2020 Axiomatization, generated 2021/11/12
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
 % Section: Existence Instantiation
@@ -9,29 +10,29 @@ set(prolog_style_variables)
 % Particulars exist at some time
 all p  ((particular(p)) -> (exists t  (existsAt(p,t)))) # label("if-you-are-a-particular-you-exist-at-some-time") .
 
-% if m is a material entity, then there is some one-dimensional temporal region during which m exists
-all m  ((exists t  (instanceOf(m,materialEntity,t))) -> (exists t  (((instanceOf(t,oneDimensionalTemporalRegion,t)) & (existsAt(m,t)))))) # label("material-entities-exist-at-one-dimensional-temporal-regions") .
-
-% Relata of exists-at are particulars.
-all i all t  ((existsAt(i,t)) -> (((particular(i)) & (particular(t)) & (instanceOf(t,temporalRegion,t))))) # label("exists-at-domain-range") .
-
-% instance-of is dissective on third argument, a temporal region
-all p all q all r all s  ((((instanceOf(p,q,r)) & (temporalPartOf(s,r)))) -> (instanceOf(p,q,s))) # label("instance-of-dissective-on-third-argument-temporal") .
-
-% There is always something that exists
-all t  ((instanceOf(t,temporalRegion,t)) -> (exists u exists i  (((-((i) = (t))) & (universal(u)) & (particular(i)) & (instanceOf(i,u,t)))))) # label("something-always-exists") .
+% Every universal is instantiated at least once
+all u  ((universal(u)) -> (exists p exists t  (instanceOf(p,u,t)))) # label("every-universal-is-instantiated-at-some-time") .
 
 % exists-at is dissective on first argumentwhen it is a continuant
 all p all q all r  ((((existsAt(p,q)) & (continuantPartOf(r,p,q)))) -> (existsAt(r,q))) # label("exists-at-dissective-on-first-argument-continuant") .
 
-% If you exist you instatiate a universal and vice-versa
-all a all t  ((exists u  (((universal(u)) & (instanceOf(a,u,t)) & (instanceOf(t,temporalRegion,t))))) <-> (((particular(a)) & (instanceOf(t,temporalRegion,t)) & (existsAt(a,t))))) # label("instantiation-existence") .
+% instance-of is dissective on third argument, a temporal region
+all p all q all r all s  ((((instanceOf(p,q,r)) & (temporalPartOf(s,r)))) -> (instanceOf(p,q,s))) # label("instance-of-dissective-on-third-argument-temporal") .
+
+% Relata of exists-at are particulars.
+all i all t  ((existsAt(i,t)) -> (((particular(i)) & (particular(t)) & (instanceOf(t,temporalRegion,t))))) # label("exists-at-domain-range") .
 
 % Relata of instance-of are particular, universal, temporal-region.
 all i all u all t  ((instanceOf(i,u,t)) -> (((particular(i)) & (universal(u)) & (instanceOf(t,temporalRegion,t))))) # label("instance-of-domain-range") .
 
-% Every universal is instantiated at least once
-all u  ((universal(u)) -> (exists p exists t  (instanceOf(p,u,t)))) # label("every-universal-is-instantiated-at-some-time") .
+% There is always something that exists
+all t  ((instanceOf(t,temporalRegion,t)) -> (exists u exists i  (((-((i) = (t))) & (universal(u)) & (particular(i)) & (instanceOf(i,u,t)))))) # label("something-always-exists") .
+
+% if m is a material entity, then there is some one-dimensional temporal region during which m exists
+all m  ((exists t  (instanceOf(m,materialEntity,t))) -> (exists t  (((instanceOf(t,oneDimensionalTemporalRegion,t)) & (existsAt(m,t)))))) # label("material-entities-exist-at-one-dimensional-temporal-regions") .
+
+% If you exist you instatiate a universal and vice-versa
+all a all t  ((exists u  (((universal(u)) & (instanceOf(a,u,t)) & (instanceOf(t,temporalRegion,t))))) <-> (((particular(a)) & (instanceOf(t,temporalRegion,t)) & (existsAt(a,t))))) # label("instantiation-existence") .
 
 
 

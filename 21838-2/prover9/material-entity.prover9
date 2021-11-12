@@ -1,43 +1,44 @@
-% BFO 2020 Axiomatization, generated 2019/12/05
+% BFO 2020 Axiomatization, generated 2021/11/12
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
 % Section: Material Entity
 
 set(prolog_style_variables)
 
-% i is an immaterial entity = Def. i is an independent continuant that has no material entities as parts.
-all i all t  ((instanceOf(i,immaterialEntity,t)) <-> (((instanceOf(i,independentContinuant,t)) & (-(exists m  (((instanceOf(m,materialEntity,t)) & (continuantPartOf(m,i,t))))))))) # label("immaterial-entity-definition") .
+% member-part-of and has-member-part are inverse relations
+all t all a all b  ((memberPartOf(a,b,t)) <-> (hasMemberPart(b,a,t))) # label("member-part-of-inverse-of-has-member-part") .
 
 % member-part-of is dissective on third argument, a temporal region
 all p all q all r all s  ((((memberPartOf(p,q,r)) & (temporalPartOf(s,r)))) -> (memberPartOf(p,q,s))) # label("member-part-of-dissective-on-third-argument-temporal") .
 
-% If a material entity has a proper part, then at least one of its proper parts is not a material entity
-all m all t  ((((instanceOf(m,materialEntity,t)) & (exists mp  (((continuantPartOf(mp,m,t)) & (-((mp) = (m)))))))) -> (exists mp  (((-((mp) = (m))) & (continuantPartOf(mp,m,t)) & (-(instanceOf(mp,immaterialEntity,t))))))) # label("material-entity-has-at-least-one-non-immaterial-entity-as-proper-part") .
-
-% Any continuant that doesn't s-depend or g-depend on something is an independant continuant
-all c1  ((exists t  (instanceOf(c1,independentContinuant,t))) <-> (((exists t  (instanceOf(c1,continuant,t))) & (-(exists c2 exists t  (((specificallyDependsOn(c1,c2)) | (genericallyDependsOn(c1,c2,t))))))))) # label("definition-of-independent-continuant") .
-
-% A fiat object part =def a proper part of an object
-all f all t  ((instanceOf(f,fiatObjectPart,t)) <-> (exists o  (((instanceOf(o,object,t)) & (properContinuantPartOf(f,o,t)) & (-(instanceOf(f,immaterialEntity,t))))))) # label("fiat-object-part-part-of-object") .
-
-% An object aggregate has more than one member at at least one time
-all ag  ((exists t  (instanceOf(ag,objectAggregate,t))) -> (exists o1 exists o2 exists t  (((-((o1) = (o2))) & (instanceOf(o1,object,t)) & (memberPartOf(o1,ag,t)) & (instanceOf(o2,object,t)) & (memberPartOf(o2,ag,t)))))) # label("an-object-aggregate-has-at-least-2-members-at-some-time") .
+% An object aggregate always has at least one member
+all ag all t  ((instanceOf(ag,objectAggregate,t)) -> (exists o1  (((instanceOf(o1,object,t)) & (memberPartOf(o1,ag,t)))))) # label("an-object-aggregate-always-has-members") .
 
 % member-part-of is time indexed and has domain: object and range: object-aggregate
 all a all b all t  ((memberPartOf(a,b,t)) -> (((instanceOf(a,object,t)) & (instanceOf(b,objectAggregate,t)) & (instanceOf(t,temporalRegion,t))))) # label("member-part-of-domain-range") .
 
-% member-part-of and has-member-part are inverse relations
-all t all a all b  ((memberPartOf(a,b,t)) <-> (hasMemberPart(b,a,t))) # label("member-part-of-inverse-of-has-member-part") .
+% A fiat object part =def a proper part of an object
+all f all t  ((instanceOf(f,fiatObjectPart,t)) <-> (exists o  (((instanceOf(o,object,t)) & (properContinuantPartOf(f,o,t)) & (-(instanceOf(f,immaterialEntity,t))))))) # label("fiat-object-part-part-of-object") .
 
-% An object aggregate always has at least one member
-all ag all t  ((instanceOf(ag,objectAggregate,t)) -> (exists o1  (((instanceOf(o1,object,t)) & (memberPartOf(o1,ag,t)))))) # label("an-object-aggregate-always-has-members") .
+% i is an immaterial entity = Def. i is an independent continuant that has no material entities as parts.
+all i all t  ((instanceOf(i,immaterialEntity,t)) <-> (((instanceOf(i,independentContinuant,t)) & (-(exists m  (((instanceOf(m,materialEntity,t)) & (continuantPartOf(m,i,t))))))))) # label("immaterial-entity-definition") .
 
-% An object aggregate has member parts only disjoint objects
-all b all c all t  ((memberPartOf(b,c,t)) <-> (((instanceOf(b,object,t)) & (instanceOf(c,objectAggregate,t)) & (properContinuantPartOf(b,c,t)) & (all d  ((memberPartOf(d,c,t)) -> ((((b) = (d)) | (-(exists z  (((continuantPartOf(z,b,t)) & (continuantPartOf(z,d,t))))))))))))) # label("any-member-of-aggregate-is-disjoint-from-the-rest") .
+% Any continuant that doesn't s-depend or g-depend on something is an independant continuant
+all c1  ((exists t  (instanceOf(c1,independentContinuant,t))) <-> (((exists t  (instanceOf(c1,continuant,t))) & (-(exists c2 exists t  (((specificallyDependsOn(c1,c2)) | (genericallyDependsOn(c1,c2,t))))))))) # label("definition-of-independent-continuant") .
+
+% An object aggregate has more than one member at at least one time
+all ag  ((exists t  (instanceOf(ag,objectAggregate,t))) -> (exists o1 exists o2 exists t  (((-((o1) = (o2))) & (instanceOf(o1,object,t)) & (memberPartOf(o1,ag,t)) & (instanceOf(o2,object,t)) & (memberPartOf(o2,ag,t)))))) # label("an-object-aggregate-has-at-least-2-members-at-some-time") .
 
 % all parts of an aggregate overlap some member
 all t all b all x  ((((properContinuantPartOf(x,b,t)) & (instanceOf(b,objectAggregate,t)))) -> (exists o  (((memberPartOf(o,b,t)) & (exists z  (((continuantPartOf(z,x,t)) & (continuantPartOf(z,o,t))))))))) # label("all-parts-of-an-aggregate-overlap-some-member") .
+
+% If a material entity has a proper part, then at least one of its proper parts is not an immaterial entity
+all m all t  ((((instanceOf(m,materialEntity,t)) & (exists mp  (((continuantPartOf(mp,m,t)) & (-((mp) = (m)))))))) -> (exists mp  (((-((mp) = (m))) & (continuantPartOf(mp,m,t)) & (-(instanceOf(mp,immaterialEntity,t))))))) # label("material-entity-has-at-least-one-non-immaterial-entity-as-proper-part") .
+
+% An object aggregate has member parts only disjoint objects
+all b all c all t  ((memberPartOf(b,c,t)) <-> (((instanceOf(b,object,t)) & (instanceOf(c,objectAggregate,t)) & (properContinuantPartOf(b,c,t)) & (all d  ((memberPartOf(d,c,t)) -> ((((b) = (d)) | (-(exists z  (((continuantPartOf(z,b,t)) & (continuantPartOf(z,d,t))))))))))))) # label("any-member-of-aggregate-is-disjoint-from-the-rest") .
 
 
 
