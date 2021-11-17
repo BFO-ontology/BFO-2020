@@ -1,0 +1,4 @@
+*.cl linguist-language=Common Logic
+*.prover9 linguist-language=Prover 9
+*.ofn linguist-language=OWL
+
