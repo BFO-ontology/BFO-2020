@@ -16,7 +16,7 @@
     <dc:contributor>Jie Zheng</dc:contributor>
     <dc:contributor>Mathias Brochhausen</dc:contributor>
     <dc:contributor>Mauricio Almeida</dc:contributor>
-    <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/bfo/2020/bfo-no-temporalized-relations.owl"/>
+    <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/bfo/2020/notime/bfo.owl"/>
     <dc:contributor>Larry Hunter</dc:contributor>
     <dc:contributor>Stefan Schulz</dc:contributor>
     <dc:contributor>Thomas Bittner</dc:contributor>
