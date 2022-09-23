@@ -1,5 +1,5 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2021/11/12
+BFO 2020 Axiomatization, generated 2022/09/23
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg@gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
@@ -22,7 +22,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
     (forall (p q r) (if (and (history-of p q) (history-of r q)) (= p r))))
 
 
-  (cl:comment "every history is of a material entity [vvy-1]"
+  (cl:comment "every history is the history of something [vvy-1]"
     (forall (h)
      (if (exists (t) (instance-of h history t))
       (exists (m) (history-of h m)))))

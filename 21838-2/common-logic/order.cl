@@ -1,5 +1,5 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2021/11/12
+BFO 2020 Axiomatization, generated 2022/09/23
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg@gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
@@ -88,7 +88,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (precedes i1 i2))))
 
 
-  (cl:comment "A first instant is either part of an extended region or precedes it [acg-1]"
+  (cl:comment "A last instant is either part of an extended region or is preceded by it [acg-1]"
     (forall (l i)
      (if
       (and (instance-of l temporal-instant l)

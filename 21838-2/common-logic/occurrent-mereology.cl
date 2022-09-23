@@ -1,5 +1,5 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2021/11/12
+BFO 2020 Axiomatization, generated 2022/09/23
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg@gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
@@ -8,7 +8,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
 
   (cl:ttl https://basic-formal-ontology.org/2020/formulas/clif/occurrent-mereology.cl
 
-   (cl:outdiscourse continuant-part-of spatially-projects-onto temporally-projects-onto has-last-instant has-first-instant occupies-temporal-region temporal-part-of proper-temporal-part-of exists-at instance-of has-proper-occurrent-part proper-occurrent-part-of has-occurrent-part occurrent-part-of)
+   (cl:outdiscourse continuant-part-of spatially-projects-onto temporally-projects-onto occupies-spatiotemporal-region has-last-instant has-first-instant occupies-temporal-region temporal-part-of proper-temporal-part-of exists-at instance-of has-proper-occurrent-part proper-occurrent-part-of has-occurrent-part occurrent-part-of)
 
   (cl:comment "occurrent-part-of and has-occurrent-part are inverse relations [yvi-1]"
     (forall (a b) (iff (occurrent-part-of a b) (has-occurrent-part b a))))
@@ -168,23 +168,23 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
          (and (has-first-instant tp ftp) (has-last-instant tp ltp)
           (or (= tb ftp) (= tb ltp)))))))))
 
-
   (cl:comment "b temporal part c (both spatiotemporal regions) iff b temporal projection is part of c's temporal projection, and for all parts of b's existence, if it spatially-projects-onto s at that time, then so does c [eom-1]"
     (forall (b c)
      (if
       (and (exists (t) (instance-of b spatiotemporal-region t))
        (exists (t) (instance-of c spatiotemporal-region t)))
       (iff (temporal-part-of b c)
-       (exists (tb tc) (temporally-projects-onto b tb)
-        (temporally-projects-onto c tc)
-        (and (occurrent-part-of tb tc)
-         (forall (tp)
-          (if
-           (and (occurrent-part-of tp tb)
-            (exists (s) (spatially-projects-onto b s tp)))
-           (exists (s)
-            (and (spatially-projects-onto b s tp)
-             (spatially-projects-onto c s tp)))))))))))
+       (exists (?tb ?tc)
+        (and (temporally-projects-onto b tb)
+             (temporally-projects-onto c tc)
+             (and (occurrent-part-of tb tc)
+              (forall (tp)
+               (if
+                (and (occurrent-part-of tp tb)
+                 (exists (s) (spatially-projects-onto b s tp)))
+                (exists (s)
+                 (and (spatially-projects-onto b s tp)
+                  (spatially-projects-onto c s tp))))))))))))
 
 
   (cl:comment "Two spatiotemporal regions are parts when they are temporal parts and their spatial projects are always parts [txf-1]"
