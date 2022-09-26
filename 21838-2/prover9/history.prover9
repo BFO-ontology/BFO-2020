@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2021/11/12
+% BFO 2020 Axiomatization, generated 2022/09/26
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -16,7 +16,7 @@ all p all q all r  ((((historyOf(p,q)) & (historyOf(p,r)))) -> ((q) = (r))) # la
 % history-of is functional on first argument
 all p all q all r  ((((historyOf(p,q)) & (historyOf(r,q)))) -> ((p) = (r))) # label("history-of-functional-on-first-argument") .
 
-% every history is of a material entity
+% every history is the history of something
 all h  ((exists t  (instanceOf(h,history,t))) -> (exists m  (historyOf(h,m)))) # label("history-is-of-material-entity") .
 
 % every material-entity has a history

@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2021/11/12
+% BFO 2020 Axiomatization, generated 2022/09/26
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -109,7 +109,7 @@ all p all q  ((hasTemporalPart(p,q)) -> ((exists t  (instanceOf(p,zeroDimensiona
 % If the last instant of a temporal region is the first instant of another, the first region precedes the second
 all i1 all i2 all l1 all f2  ((((-(instanceOf(i1,temporalInstant,i1))) & (-(instanceOf(i2,temporalInstant,i2))) & (hasLastInstant(i1,l1)) & (hasFirstInstant(i2,f2)) & ((l1) = (f2)))) -> (precedes(i1,i2))) # label("regions-precede-if-they-meet") .
 
-% A first instant is either part of an extended region or precedes it
+% A last instant is either part of an extended region or is preceded by it
 all l all i  ((((instanceOf(l,temporalInstant,l)) & (instanceOf(i,temporalRegion,i)) & (-(instanceOf(i,temporalInstant,i))) & (hasLastInstant(i,l)))) -> ((-(temporalPartOf(l,i))) <-> (precedes(i,l)))) # label("either-last-instant-part-or-preceded-by") .
 
 % A first instant is either part of an extended region or precedes it
