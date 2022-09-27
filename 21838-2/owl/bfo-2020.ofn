@@ -350,6 +350,7 @@ AnnotationAssertion(skos:example obo:BFO_0000118 "As for has occurrent part."@en
 AnnotationAssertion(skos:prefLabel obo:BFO_0000118 "has proper occurrent part"@en)
 SubObjectPropertyOf(obo:BFO_0000118 obo:BFO_0000117)
 InverseObjectProperties(obo:BFO_0000118 obo:BFO_0000138)
+TransitiveObjectProperty(obo:BFO_0000118)
 ObjectPropertyDomain(obo:BFO_0000118 obo:BFO_0000003)
 ObjectPropertyRange(obo:BFO_0000118 obo:BFO_0000003)
 
@@ -439,6 +440,7 @@ AnnotationAssertion(skos:definition obo:BFO_0000138 "b proper occurrent part of 
 AnnotationAssertion(skos:example obo:BFO_0000138 "As for occurrent part of."@en)
 AnnotationAssertion(skos:prefLabel obo:BFO_0000138 "proper occurrent part of"@en)
 SubObjectPropertyOf(obo:BFO_0000138 obo:BFO_0000132)
+TransitiveObjectProperty(obo:BFO_0000138)
 ObjectPropertyDomain(obo:BFO_0000138 obo:BFO_0000003)
 ObjectPropertyRange(obo:BFO_0000138 obo:BFO_0000003)
 
