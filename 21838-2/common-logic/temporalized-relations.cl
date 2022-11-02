@@ -1,5 +1,5 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2021/11/12
+BFO 2020 Axiomatization, generated 2022/11/01
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg@gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
@@ -226,7 +226,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (forall (t) (if (exists-at p t) (continuant-part-of p q t)))))))
 
 
-  (cl:comment "has-material-basis at all times [eeg-1]"
+  (cl:comment "has-material-basis at all times [qdl-1]"
     (forall (p q)
      (iff (has-material-basis-at-all-times p q)
       (and (exists (t) (and (has-material-basis p q t) (exists-at p t)))

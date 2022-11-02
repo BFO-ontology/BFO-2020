@@ -1,5 +1,5 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2022/09/23
+BFO 2020 Axiomatization, generated 2022/11/01
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg@gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
@@ -350,15 +350,14 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (instance-of y temporal-region y))
       (if
        (exists (o) (and (temporal-part-of o x) (temporal-part-of o y)))
-       (exists (?z)
+       (exists (z)
         (and (instance-of z temporal-region z)
-             (forall (w)
-              (if
-               (and (instance-of w temporal-region w)
-                (instance-of z temporal-region z))
-               (iff (temporal-part-of w z)
-                (and (temporal-part-of w x)
-                 (temporal-part-of w y)))))))))))
+         (forall (w)
+          (if
+           (and (instance-of w temporal-region w)
+            (instance-of z temporal-region z))
+           (iff (temporal-part-of w z)
+            (and (temporal-part-of w x) (temporal-part-of w y)))))))))))
 
 
   (cl:comment "An interval has no gaps [nui-1]"
