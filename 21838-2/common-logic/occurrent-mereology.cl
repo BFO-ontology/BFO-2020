@@ -1,5 +1,5 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2022/09/26
+BFO 2020 Axiomatization, generated 2022/11/01
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg@gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
@@ -175,17 +175,16 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (and (exists (t) (instance-of b spatiotemporal-region t))
        (exists (t) (instance-of c spatiotemporal-region t)))
       (iff (temporal-part-of b c)
-       (exists (?tb ?tc)
+       (exists (tb tc)
         (and (temporally-projects-onto b tb)
-             (temporally-projects-onto c tc)
-             (and (occurrent-part-of tb tc)
-              (forall (tp)
-               (if
-                (and (occurrent-part-of tp tb)
-                 (exists (s) (spatially-projects-onto b s tp)))
-                (exists (s)
-                 (and (spatially-projects-onto b s tp)
-                  (spatially-projects-onto c s tp))))))))))))
+         (temporally-projects-onto c tc) (occurrent-part-of tb tc)
+         (forall (tp)
+          (if
+           (and (occurrent-part-of tp tb)
+            (exists (s) (spatially-projects-onto b s tp)))
+           (exists (s)
+            (and (spatially-projects-onto b s tp)
+             (spatially-projects-onto c s tp)))))))))))
 
 
   (cl:comment "Two spatiotemporal regions are parts when they are temporal parts and their spatial projects are always parts [txf-1]"
