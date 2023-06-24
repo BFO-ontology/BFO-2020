@@ -41,6 +41,12 @@ graph LR
     AF(Zero-Dimensional<br> Temporal Region) --> AG(Temporal<br> Instant)
     AI(One-Dimensional<br> Temporal Region) --> AH(Temporal<br> Interval)
   ```
+## Directory Structure
+  ```
+ontology - Directory containing implementations of BFO in serializations of OWL and Common Logic.
+contributions -
+temporal extensions - 
+  ```
 
 ## Documentation
 For further documentation concerning this repository, see the [BFO Documentation Page](https://basic-formal-ontology.org/bfo-2020.html). \
