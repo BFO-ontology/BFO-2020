@@ -42,10 +42,8 @@ graph LR
     AI(One-Dimensional<br> Temporal Region) --> AH(Temporal<br> Interval)
   ```
 ## Directory Structure
-  ```
-implementations - Contains implementations of BFO in OWL, Common Logic, and syntax readable by Prover9/Mace4. 
-temporal extensions - Contains R&D projects extending BFO to stronger representations of time. 
-  ```
+* implementations - Contains implementations of BFO in OWL, Common Logic, and syntax readable by Prover9/Mace4. 
+* temporal extensions - Contains R&D projects extending BFO to stronger representations of time. 
 
 ## Documentation
 For further documentation concerning this repository, see the [BFO Documentation Page](https://basic-formal-ontology.org/bfo-2020.html). \
