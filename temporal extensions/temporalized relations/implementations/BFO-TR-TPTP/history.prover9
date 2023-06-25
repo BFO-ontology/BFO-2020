@@ -1,0 +1,35 @@
+% BFO 2020 Axiomatization, generated 2022/09/26
+% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
+% This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
+
+% Section: History
+
+set(prolog_style_variables)
+
+% history-of and has-history are inverse relations
+all a all b  ((historyOf(a,b)) <-> (hasHistory(b,a))) # label("history-of-inverse-of-has-history") .
+
+% history-of is functional on second argument
+all p all q all r  ((((historyOf(p,q)) & (historyOf(p,r)))) -> ((q) = (r))) # label("history-of-functional-on-second-argument") .
+
+% history-of is functional on first argument
+all p all q all r  ((((historyOf(p,q)) & (historyOf(r,q)))) -> ((p) = (r))) # label("history-of-functional-on-first-argument") .
+
+% every history is the history of something
+all h  ((exists t  (instanceOf(h,history,t))) -> (exists m  (historyOf(h,m)))) # label("history-is-of-material-entity") .
+
+% every material-entity has a history
+all m  ((exists t  (instanceOf(m,materialEntity,t))) -> (exists h  (historyOf(h,m)))) # label("history-of-material-entity-exists") .
+
+% a material entity participates in its history
+all h all m  ((historyOf(h,m)) -> (all t  ((existsAt(m,t)) -> (participatesIn(m,h,t))))) # label("history-of-participates-in-history") .
+
+% material entity and its history exist at exactly the same times
+all m all h  ((historyOf(h,m)) -> (all t  ((instanceOf(m,materialEntity,t)) <-> (instanceOf(h,history,t))))) # label("history-contemporaneous-with-material-entity") .
+
+% history-of has domain history and range material-entity
+all a all b  ((historyOf(a,b)) -> (((exists t  (instanceOf(a,history,t))) & (exists t  (instanceOf(b,materialEntity,t)))))) # label("history-of-domain-range") .
+
+
+

@@ -1,0 +1,104 @@
+% BFO 2020 Axiomatization, generated 2021/11/12
+% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
+% This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
+
+% Section: Continuant Mereology
+
+set(prolog_style_variables)
+
+% continuant-part-of and has-continuant-part are inverse relations
+all t all a all b  ((continuantPartOf(a,b,t)) <-> (hasContinuantPart(b,a,t))) # label("continuant-part-of-inverse-of-has-continuant-part") .
+
+% continuant-part-of is reflexive at a time
+all a all t  ((instanceOf(a,independentContinuant,t)) -> (continuantPartOf(a,a,t))) # label("continuant-part-of-is-reflexive-on-independent-continuant-at-a-time") .
+
+% proper-continuant-part-of and has-proper-continuant-part are inverse relations
+all t all a all b  ((properContinuantPartOf(a,b,t)) <-> (hasProperContinuantPart(b,a,t))) # label("proper-continuant-part-of-inverse-of-has-proper-continuant-part") .
+
+% exists-at is dissective on first argumentwhen it is a continuant
+all p all q all r  ((((existsAt(p,q)) & (continuantPartOf(r,p,q)))) -> (existsAt(r,q))) # label("exists-at-dissective-on-first-argument-continuant") .
+
+% A fiat point has no parts other than itself
+all fp all t all p  ((((instanceOf(fp,fiatPoint,t)) & (continuantPartOf(p,fp,t)))) -> ((p) = (fp))) # label("fiat-point-is-an-atom") .
+
+% continuant-part-of is dissective on third argument, a temporal region
+all p all q all r all s  ((((continuantPartOf(p,q,r)) & (temporalPartOf(s,r)))) -> (continuantPartOf(p,q,s))) # label("continuant-part-of-dissective-on-third-argument-temporal") .
+
+% If a has-continuant-part b then if a is an instance of fiat-point then b is an instance of fiat-point
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,fiatPoint,t)))) -> (instanceOf(q,fiatPoint,t))) # label("has-continuant-part.fiat-point->fiat-point") .
+
+% x proper continuant part of y means x is a continuant part of y but y is not continuant part of x
+all x all y all t  ((properContinuantPartOf(x,y,t)) <-> (((continuantPartOf(x,y,t)) & (-(continuantPartOf(y,x,t)))))) # label("definition-of-proper-continuant-part-of") .
+
+% proper-continuant-part-of is dissective on third argument, a temporal region
+all p all q all r all s  ((((properContinuantPartOf(p,q,r)) & (temporalPartOf(s,r)))) -> (properContinuantPartOf(p,q,s))) # label("proper-continuant-part-of-dissective-on-third-argument-temporal") .
+
+% If a continuant-part-of b then if a is an instance of material-entity then b is an instance of material-entity
+all p all q all t  ((((continuantPartOf(p,q,t)) & (instanceOf(p,materialEntity,t)))) -> (instanceOf(q,materialEntity,t))) # label("continuant-part-of.material-entity->material-entity") .
+
+% If a continuant-part-of b then if a is an instance of spatial-region then b is an instance of spatial-region, and vice-versa
+all p all q all t  ((continuantPartOf(p,q,t)) -> ((instanceOf(p,spatialRegion,t)) <-> (((instanceOf(q,spatialRegion,t)))))) # label("continuant-part-of.spatial-region<->spatial-region") .
+
+% If a has-continuant-part b then if a is an instance of fiat-surface then b is an instance of continuant-fiat-boundary
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,fiatSurface,t)))) -> (instanceOf(q,continuantFiatBoundary,t))) # label("has-continuant-part.fiat-surface->continuant-fiat-boundary") .
+
+% If a has-continuant-part b then if a is an instance of three-dimensional-spatial-region then b is an instance of spatial-region
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,threeDimensionalSpatialRegion,t)))) -> (instanceOf(q,spatialRegion,t))) # label("has-continuant-part.three-dimensional-spatial-region->spatial-region") .
+
+% If a has-continuant-part b then if a is an instance of continuant-fiat-boundary then b is an instance of continuant-fiat-boundary
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,continuantFiatBoundary,t)))) -> (instanceOf(q,continuantFiatBoundary,t))) # label("has-continuant-part.continuant-fiat-boundary->continuant-fiat-boundary") .
+
+% If a continuant-part-of b then if a is an instance of site then b is an instance of site or material-entity 
+all p all q all t  ((((continuantPartOf(p,q,t)) & (instanceOf(p,site,t)))) -> (((instanceOf(q,site,t)) | (instanceOf(q,materialEntity,t))))) # label("continuant-part-of.site->or-site-material-entity") .
+
+% If a continuant-part-of b then if a is an instance of independent-continuant then b is an instance of independent-continuant, and vice-versa
+all p all q all t  ((continuantPartOf(p,q,t)) -> ((instanceOf(p,independentContinuant,t)) <-> (((instanceOf(q,independentContinuant,t)))))) # label("continuant-part-of.independent-continuant<->independent-continuant") .
+
+% continuant-part-of is transitive at a time
+all a all b all c all t all t2  ((((continuantPartOf(a,b,t)) & (continuantPartOf(b,c,t2)) & (temporalPartOf(t,t2)))) -> (continuantPartOf(a,c,t))) # label("continuant-part-of-transitive-at-a-time") .
+
+% continuant-part-of is time indexed and has domain: continuant and range: continuant
+all a all b all t  ((continuantPartOf(a,b,t)) -> (((instanceOf(a,continuant,t)) & (instanceOf(b,continuant,t)) & (instanceOf(t,temporalRegion,t))))) # label("continuant-part-of-domain-range") .
+
+% If a has-continuant-part b then if a is an instance of fiat-line then b is an instance of fiat-line or fiat-point 
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,fiatLine,t)))) -> (((instanceOf(q,fiatLine,t)) | (instanceOf(q,fiatPoint,t))))) # label("has-continuant-part.fiat-line->or-fiat-line-fiat-point") .
+
+% If a has-continuant-part b then if a is an instance of site then b is an instance of site or continuant-fiat-boundary 
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,site,t)))) -> (((instanceOf(q,site,t)) | (instanceOf(q,continuantFiatBoundary,t))))) # label("has-continuant-part.site->or-site-continuant-fiat-boundary") .
+
+% proper-continuant-part-of is time indexed and has domain: continuant and range: continuant
+all a all b all t  ((properContinuantPartOf(a,b,t)) -> (((instanceOf(a,continuant,t)) & (instanceOf(b,continuant,t)) & (instanceOf(t,temporalRegion,t))))) # label("proper-continuant-part-of-domain-range") .
+
+% If a has-continuant-part b then if a is an instance of zero-dimensional-spatial-region then b is an instance of zero-dimensional-spatial-region
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,zeroDimensionalSpatialRegion,t)))) -> (instanceOf(q,zeroDimensionalSpatialRegion,t))) # label("has-continuant-part.zero-dimensional-spatial-region->zero-dimensional-spatial-region") .
+
+% proper-continuant-part-of is transitive at a time
+all a all b all c all t all t2  ((((properContinuantPartOf(a,b,t)) & (properContinuantPartOf(b,c,t2)) & (temporalPartOf(t,t2)))) -> (properContinuantPartOf(a,c,t))) # label("proper-continuant-part-of-transitive-at-a-time") .
+
+% If a has-continuant-part b then if a is an instance of material-entity then b is an instance of site or continuant-fiat-boundary or material-entity 
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,materialEntity,t)))) -> (((instanceOf(q,site,t)) | (instanceOf(q,continuantFiatBoundary,t)) | (instanceOf(q,materialEntity,t))))) # label("has-continuant-part.material-entity->or-site-continuant-fiat-boundary-material-entity") .
+
+% If a has-continuant-part b then if a is an instance of one-dimensional-spatial-region then b is an instance of one-dimensional-spatial-region or zero-dimensional-spatial-region 
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,oneDimensionalSpatialRegion,t)))) -> (((instanceOf(q,oneDimensionalSpatialRegion,t)) | (instanceOf(q,zeroDimensionalSpatialRegion,t))))) # label("has-continuant-part.one-dimensional-spatial-region->or-one-dimensional-spatial-region-zero-dimensional-spatial-region") .
+
+% If at all times that two object-aggreates exist each is part of the other, then they are identical
+all a all b  ((((exists t  (((instanceOf(a,objectAggregate,t)) & (continuantPartOf(a,b,t)) & (continuantPartOf(b,a,t))))) & (all t  ((continuantPartOf(a,b,t)) <-> (continuantPartOf(b,a,t)))))) -> ((a) = (b))) # label("continuant-part-of-is-extent-antisymmetric-for-object-aggregates") .
+
+% If a material entity has a proper part, then at least one of its proper parts is not an immaterial entity
+all m all t  ((((instanceOf(m,materialEntity,t)) & (exists mp  (((continuantPartOf(mp,m,t)) & (-((mp) = (m)))))))) -> (exists mp  (((-((mp) = (m))) & (continuantPartOf(mp,m,t)) & (-(instanceOf(mp,immaterialEntity,t))))))) # label("material-entity-has-at-least-one-non-immaterial-entity-as-proper-part") .
+
+% If a has-continuant-part b then if a is an instance of two-dimensional-spatial-region then b is an instance of two-dimensional-spatial-region or one-dimensional-spatial-region or zero-dimensional-spatial-region 
+all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,twoDimensionalSpatialRegion,t)))) -> (((instanceOf(q,twoDimensionalSpatialRegion,t)) | (instanceOf(q,oneDimensionalSpatialRegion,t)) | (instanceOf(q,zeroDimensionalSpatialRegion,t))))) # label("has-continuant-part.two-dimensional-spatial-region->or-two-dimensional-spatial-region-one-dimensional-spatial-region-zero-dimensional-spatial-region") .
+
+% If at any time that two non-object aggreates exist each is part of the other, then they are identical
+all a all b  ((exists t  (((instanceOf(a,independentContinuant,t)) & (-(instanceOf(a,objectAggregate,t))) & (instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,objectAggregate,t))) & (continuantPartOf(a,b,t)) & (continuantPartOf(b,a,t))))) -> ((a) = (b))) # label("continuant-part-of-is-antisymmetric-except-for-object-aggregates") .
+
+% continuant-part-of has weak supplementation
+all t all x all y  ((((instanceOf(x,continuant,t)) & (instanceOf(y,continuant,t)) & (instanceOf(t,temporalRegion,t)))) -> ((((continuantPartOf(x,y,t)) & (-((x) = (y))))) -> (exists z  (((instanceOf(z,continuant,t)) & (continuantPartOf(z,y,t)) & (-((z) = (y))) & (-(exists overlap  (((instanceOf(overlap,continuant,t)) & (continuantPartOf(overlap,x,t)) & (continuantPartOf(overlap,z,t))))))))))) # label("continuant-part-of-has-weak-supplementation-at-a-time") .
+
+% continuant-part-of has a unique product at a time
+all x all y all t  ((((instanceOf(x,continuant,t)) & (instanceOf(y,continuant,t)) & (instanceOf(t,temporalRegion,t)))) -> ((exists overlap  (((instanceOf(overlap,continuant,t)) & (continuantPartOf(overlap,x,t)) & (continuantPartOf(overlap,y,t))))) -> (exists overlap  (((instanceOf(overlap,continuant,t)) & (all w  ((instanceOf(w,continuant,t)) -> ((continuantPartOf(w,overlap,t)) <-> (((continuantPartOf(w,x,t)) & (continuantPartOf(w,y,t)))))))))))) # label("continuant-part-of-has-a-unique-product-at-a-time") .
+
+
+
