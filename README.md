@@ -1,7 +1,7 @@
 # Basic Formal Ontology
 This repository maintains the Basic Formal Ontology (BFO) artifact conformant to the requirements specified in [ISO/IEC 21838‑1](https://www.iso.org/standard/71954.html) for top-level ontologies. BFO contains classes and relations representing content common to all areas of scientific investigation, e.g. object, process, etc. and is used as a top-level architecture by numerous ontologies in the Open Biomedical and Biomedical Ontologies (OBO) Foundry, the Industrial Ontologies Foundry (IOF), and the Common Core Ontologies suite. Ontologies conformant to BFO promote interoperability, standardization, and reuse among domain-level ontologies. 
 
-The most current version is the BFO OWL file is the one in the master branch, "ontology" directory that is labeled "bfo-core.owl".
+The most current version is the "bfo-core.owl" file located "owl" directory within the "implementations" directory.
 
 ## Basic Formal Ontology Hierarchy
 ```mermaid
@@ -43,9 +43,8 @@ graph LR
   ```
 ## Directory Structure
   ```
-ontology - Directory containing implementations of BFO in serializations of OWL and Common Logic.
-contributions -
-temporal extensions - 
+implementations - Contains implementations of BFO in OWL, Common Logic, and syntax readable by Prover9/Mace4. 
+temporal extensions - Contains R&D projects extending BFO to stronger representations of time. 
   ```
 
 ## Documentation
