@@ -12,9 +12,7 @@ encouraged. All contributions should be verified to be consistent with BFO-FOL. 
 
 ## Files
 
-**allen-relation-definitions.cl**
-
-These are definitions for the Allen interval algebra in BFO-FOL terms.
+**allen-relation-definitions.cl** - Definitions for the Allen interval algebra in BFO-FOL terms.
 
 
 
