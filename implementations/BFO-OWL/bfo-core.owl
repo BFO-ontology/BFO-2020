@@ -205,7 +205,14 @@
     <!-- http://purl.obolibrary.org/obo/BFO_0000108 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000108">
-        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000002"/>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000003"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
         <rdfs:range rdf:resource="http://purl.obolibrary.org/obo/BFO_0000008"/>
         <dc:identifier>118-BFO</dc:identifier>
         <rdfs:label xml:lang="en">exists at</rdfs:label>
