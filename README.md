@@ -24,6 +24,7 @@ graph LR
     Q(Continuant Fiat<br> Boundary):::BFO --> R(Fiat<br> Point):::BFO
     Q(Continuant Fiat<br> Boundary) --> S(Fiat<br> Surface):::BFO
     Q(Continuant Fiat<br> Boundary) --> T(Fiat<br> Line):::BFO
+    P(Spatial<br> Region):::BFO --> VD(Zero-Dimensional<br> Spatial Region):::BFO
     P(Spatial<br> Region):::BFO --> U(One-Dimensional<br> Spatial Region):::BFO
     P(Spatial<br> Region):::BFO --> V(Two-Dimensional<br> Spatial Region):::BFO
     P(Spatial<br> Region):::BFO --> W(Three-Dimensional<br> Spatial Region):::BFO
