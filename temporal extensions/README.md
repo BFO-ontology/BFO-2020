@@ -18,25 +18,37 @@ BFO is a top-level, domain-neutral ontology, designed to consist of terminologic
 > 2. Not all scientific domains require a robust characterization of time, e.g. the domain of mathematics has no obvious need for time. 
 > 3. Given community goals, even if users need some characterization of time, they do not always need a robust characterization of time, e.g. [Open Biological and Biomedical Ontology Foundry](https://obofoundry.org/) users have, for many years, employed a formally weak representation of time with great success.
     
-This last point is worth belaboring. Deploying a BFO-based, robust, formalization of time can be costly, involving re-educating users, updating existing ontologies, perhaps even rewriting portios of codebases, etc. OBO users have not often had a need for such rigor, and so do not have a need to bear such costs. A charitable reading of early [criticisms](https://github.com/cmungall/trel-crit/raw/master/trc.pdf) of the Temporalized Relations strategy - which provides a rather robust formalization of time in BFO - makes just this point.  
+This last point is worth belaboring. Deploying a BFO-based, robust, formalization of time can be costly, involving re-educating users, updating existing ontologies, perhaps even rewriting portions of codebases, etc. OBO users have not often had a need for such rigor, and so do not have a need to bear such costs. A charitable reading of early [criticisms](https://github.com/cmungall/trel-crit/raw/master/trc.pdf) of the Temporalized Relations strategy - which provides a rather robust formalization of time in BFO - makes just this point.  
 
 On the other hand, there are reasons that speak in favor of providing formal guidance for modeling time in BFO:
 
 > 4. Other foundry efforts, such as the [Industrial Ontology Foundry](https://www.industrialontologies.org/) which uses BFO as its top-level architecture, anticipate the need for a rigorous formalization of time.
 > 5. [Recent work](https://pubmed.ncbi.nlm.nih.gov/36534832/) demonstrating the importance of rigorous axiomatization of ontologies used to supplement machine learning pipelines with minimal datasets, suggests rigorous BFO formalizations of time ontologies may be useful in such contexts. 
 
-What these observations suggest is that while there are strong motivations for BFO providing - perhaps significant - guidance to users who require a robust formalization of time, imposing any specific formalization of time - such as the A - F proposals - on all users would be in some cases unnecessarily onerous. To satisfy needs of the community then, the BFO development team encourages a strategy of developing and deploying Temporal Profiles which will provide users options for representing time in their domains.
+What these observations suggest is that while there are strong motivations for BFO providing - perhaps significant - guidance to users who require a robust formalization of time, imposing any specific formalization of time on all users would be in some cases unnecessarily onerous. To satisfy needs of the community then, the BFO development team encourages a strategy of developing and deploying Temporal Extensions which will provide users options for representing time in their domains.
+
+When evaluating the need for an ontologically robust characterization of time, we recommend users identify specific motivating use cases for their target domain, perhaps codified as competency questions. As a starting point, we recommend developers users reflect on the design patterns and use cases concerning time and change found in the article [Basic Formal Ontology: Case Studies](https://philpapers.org/archive/OTTBBF.pdf). There the authors present seven design patterns based on the FOL implementation of BFO. 
 
 ## Temporal Extension Artifacts
-Temporal Extension Artifacts are artifacts designed to represent extensions of the OWL formalization of BFO that impose axiom constraints concerning time and change. Temporal Extension Artifacts should be represented in some serialization of RDF, e.g. ttl, owl. 
+Temporal Extension Artifacts are artifacts designed to represent extensions of the OWL formalization of BFO - located in the "bfo-core.owl" file - that impose axiom constraints concerning time and change. Temporal Extension Artifacts should be represented in some serialization of RDF, e.g. ttl, owl. 
 
-With respect to BFO, the scope of Temporal Extensions should include treatment of classes and relationships such as: 
+With respect to BFO, the scope of Temporal Extensions should include treatment of classes: 
 
 * Temporal Region and subclasses 
-* Spatiotemporal Region 
-* Object properties relating to time, whether explicit or implicit 
+* Spatiotemporal Region
 
-Motivating use cases often vary based on domain and user community. We recommend developers use, as a starting point, design patterns and use cases concerning time and change found in the article [Basic Formal Ontology: Case Studies](https://philpapers.org/archive/OTTBBF.pdf). There the authors present seven design patterns based on the FOL implementation of BFO. 
+And relations reflecting the following relations and their inverses (where applicable):
+  
+* continuant part of
+* proper continuant part of
+* participates in
+* concretizes
+* located in
+* member part of
+* generically depends on
+* material bases of
+* occupies spatial region
+* spatially projects onto
 
 ## Temporal Extension Integration
-Putting aside the varying relative maturity levels of each Temporal Extension, there is a further pressing question concerning interoperability. BFO is a top-level ontology designed to provide a common hierarchy across all scientific research; interoperability is its motivation. With this in mind, it is thus incumbent on developers to demonstrate not only that their preferred formalization of time conforms to BFO, but also that interpretations, formal mappings, or provable containments exists across strategies. This is, admittedly, a great deal of work, but it is a consequence of sustaining interoperability, a goal our community prizes. 
+BFO is a top-level ontology designed to provide a common hierarchy across all scientific research; interoperability is its motivation. It is thus incumbent on developers to demonstrate not only that their preferred formalization of time conforms to BFO, but also that interpretations, formal mappings, or provable containments exists across temporal extensions. This is, admittedly, considerable work, but it is a consequence of sustaining interoperability, which our community prizes. 
