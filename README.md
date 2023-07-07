@@ -46,7 +46,7 @@ graph LR
 
   ```
 ## Directory Structure
-* implementations - Contains implementations of BFO in OWL, Common Logic, and syntax readable by Prover9/Mace4. 
+* implementations - Contains implementations of BFO in OWL, Common Logic, and syntax readable by [Prover9/Mace4](https://www.cs.unm.edu/~mccune/mace4/). 
 * temporal extensions - Contains R&D projects extending BFO to stronger representations of time. 
 
 ## Documentation
