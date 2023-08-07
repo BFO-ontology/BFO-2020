@@ -809,6 +809,7 @@
         </rdfs:subClassOf>
         <dc:identifier>083-BFO</dc:identifier>
         <rdfs:label xml:lang="en">process</rdfs:label>
+        <skos:altLabel xml:lang="en">event</skos:altLabel>
         <skos:definition xml:lang="en">(Elucidation) A process p is an occurrent that has some temporal proper part and for some time t, p has some material entity as participant at t</skos:definition>
         <skos:example xml:lang="en">An act of selling, the life of an organism, a process of sleeping, a process of cell-division, a beating of the heart, a process of meiosis, the taxiing of an aircraft, the programming of a computer</skos:example>
         <skos:prefLabel xml:lang="en">process</skos:prefLabel>
