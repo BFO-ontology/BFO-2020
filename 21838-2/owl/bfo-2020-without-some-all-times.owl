@@ -358,7 +358,7 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000145">
     <dc:identifier>057-BFO</dc:identifier>
     <skos:example xml:lang="en">A marriage bond, an instance of love, an obligation between one person and another.</skos:example>
-    <skos:definition xml:lang="en">b is a relational quality =Def b is a quality and there exists c and d such that b and c are not identical, &amp; b s-depends on c &amp; b s-depends on d</skos:definition>
+    <skos:definition xml:lang="en">b is a relational quality =Def b is a quality and there exists c and d such that c and d are not identical, &amp; b s-depends on c &amp; b s-depends on d</skos:definition>
     <rdfs:label xml:lang="en">relational quality</rdfs:label>
     <skos:prefLabel xml:lang="en">relational quality</skos:prefLabel>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
