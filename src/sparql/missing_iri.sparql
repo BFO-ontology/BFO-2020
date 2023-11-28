@@ -1,0 +1,16 @@
+# Title: 
+#    Ontologies Shall Have an IRI
+# Constraint Description: 
+#    Each instance of owl:Ontology shall have a valid IRI. 
+# Severity:
+#     Warning
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT DISTINCT ?resource
+WHERE
+{
+    ?resource a owl:Ontology .
+    
+    FILTER(!isIri(?resource))
+}

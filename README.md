@@ -3,6 +3,44 @@ This repository maintains the Basic Formal Ontology (BFO) artifact conformant to
 
 The most current version is the "bfo-core.owl" file located "owl" directory within the "implementations" directory.
 
+## Versioning and Release Chart
+```mermaid
+gantt
+    title BFO Releases
+    dateFormat  YYYY-MM-DD
+    todayMarker 2023-11-25
+
+    section  
+
+    Research           :a1, 2023-11-25, 7d
+    Resolving Issues   :a2, after a1, 14d
+    Implementation     :a3, after a2, 30d
+    Testing            :a4, after a3, 21d
+    Review             :a5, after a4, 14d
+    Documentation      :a6, after a5, 14d
+
+    section  
+
+    Alpha Release      :a7, 2024-01-25, 1d
+    Beta Release       :a8, after a5, 1d
+    Final Release      :a9, after a6, 1d
+```
+
+## Directory Structure
+* implementations - Contains implementations of BFO in OWL, Common Logic, and syntax readable by [Prover9/Mace4](https://www.cs.unm.edu/~mccune/mace4/). 
+* temporal extensions - Contains R&D projects extending BFO to stronger representations of time. 
+
+## Documentation
+For further documentation concerning this repository, see the [BFO Documentation Page](https://basic-formal-ontology.org/bfo-2020.html). \
+For further information about building ontologies using BFO artifacts and strategies, see [Building Ontologies with Basic Formal Ontology](https://mitpress.mit.edu/9780262527811/building-ontologies-with-basic-formal-ontology/). \
+For example BFO design patterns, see the article [Basic Formal Ontology: Case Studies](https://philpapers.org/archive/OTTBBF.pdf). \
+For information about upcoming and past BFO events, see [NCOR](https://ncorwiki.buffalo.edu/index.php/Main_Page). 
+
+## Development Team
+* [Barry Smith](https://www.buffalo.edu/cas/philosophy/faculty/faculty_directory/smith-b.html), SUNY Distinguished Professor of Philosophy and Julian Park Chair, University at Buffalo, Department of Philosophy
+* [Alan Ruttenberg](https://dental.buffalo.edu/faculty/home.html?ubit=alanrutt), Director of Clinical and Translational Data Exchange, University at Buffalo
+* [John Beverley](https://www.buffalo.edu/cas/philosophy/faculty/faculty_directory/john-beverley.html), Assistant Professor, University at Buffalo
+
 ## Basic Formal Ontology Hierarchy
 ```mermaid
 graph LR
@@ -45,17 +83,3 @@ graph LR
     classDef BFO fill:#F5AD27,color:#060606
 
   ```
-## Directory Structure
-* implementations - Contains implementations of BFO in OWL, Common Logic, and syntax readable by [Prover9/Mace4](https://www.cs.unm.edu/~mccune/mace4/). 
-* temporal extensions - Contains R&D projects extending BFO to stronger representations of time. 
-
-## Documentation
-For further documentation concerning this repository, see the [BFO Documentation Page](https://basic-formal-ontology.org/bfo-2020.html). \
-For further information about building ontologies using BFO artifacts and strategies, see [Building Ontologies with Basic Formal Ontology](https://mitpress.mit.edu/9780262527811/building-ontologies-with-basic-formal-ontology/). \
-For example BFO design patterns, see the article [Basic Formal Ontology: Case Studies](https://philpapers.org/archive/OTTBBF.pdf). \
-For information about upcoming and past BFO events, see [NCOR](https://ncorwiki.buffalo.edu/index.php/Main_Page). 
-
-## Development Team
-* [Barry Smith](https://www.buffalo.edu/cas/philosophy/faculty/faculty_directory/smith-b.html), SUNY Distinguished Professor of Philosophy and Julian Park Chair, University at Buffalo, Department of Philosophy
-* [Alan Ruttenberg](https://dental.buffalo.edu/faculty/home.html?ubit=alanrutt), Director of Clinical and Translational Data Exchange, University at Buffalo
-* [John Beverley](https://www.buffalo.edu/cas/philosophy/faculty/faculty_directory/john-beverley.html), Assistant Professor, University at Buffalo

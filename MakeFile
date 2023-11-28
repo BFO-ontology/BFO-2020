@@ -1,4 +1,4 @@
-#### Basic Ontology Pipeline
+#### Basic Formal Ontology Pipeline
 # Adapted from https://github.com/tmprd/ontology-pipeline/blob/master/Makefile by Tim Prudhomme <tmprdh@gmail.com>
 # Contact - John Beverley <johnbeve@buffalo.edu>
 
@@ -16,7 +16,7 @@ config.DEV_IRI			:= $(config.ONTOLOGY-IRI)/dev
 config.MODULES_IRI		:= $(config.DEV_IRI)/modules
 
 # Local project directories
-config.SOURCE_DIR		:= src/ontology
+config.SOURCE_DIR		:= src/owl
 config.TEMP_DIR			:= build/artifacts
 config.RELEASE_DIR		:= /
 config.REPORTS_DIR		:= $(config.TEMP_DIR)
