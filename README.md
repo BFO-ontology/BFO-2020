@@ -18,10 +18,6 @@ gantt
     Review             :a3, after a2, 5d
     Documentation      :a4, after a3, 7d
 
-    section Releases
-    Alpha Release      :a5, after a2, 1d
-    Beta Release       :a6, after a3, 1d
-    Final Release      :a7, after a4, 1d
 ```
 
 ## Directory Structure
