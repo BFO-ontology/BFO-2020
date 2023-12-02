@@ -4,26 +4,24 @@ This repository maintains the Basic Formal Ontology (BFO) artifact conformant to
 The most current version is the "bfo-core.owl" file located "owl" directory within the "implementations" directory.
 
 ## Versioning and Release Chart
+
 ```mermaid
+%%{init: {'theme':'forest'}}%%
 gantt
     title BFO Releases
     dateFormat  YYYY-MM-DD
-    todayMarker 2023-11-25
+    todayMarker 2023-12-01
 
-    section  
+    section Schedule
+    Resolving Issues   :a1, 2023-12-01, 7d
+    Implementation     :a2, after a1, 5d
+    Review             :a3, after a2, 5d
+    Documentation      :a4, after a3, 7d
 
-    Research           :a1, 2023-11-25, 7d
-    Resolving Issues   :a2, after a1, 14d
-    Implementation     :a3, after a2, 30d
-    Testing            :a4, after a3, 21d
-    Review             :a5, after a4, 14d
-    Documentation      :a6, after a5, 14d
-
-    section  
-
-    Alpha Release      :a7, 2024-01-25, 1d
-    Beta Release       :a8, after a5, 1d
-    Final Release      :a9, after a6, 1d
+    section Releases
+    Alpha Release      :a5, after a2, 1d
+    Beta Release       :a6, after a3, 1d
+    Final Release      :a7, after a4, 1d
 ```
 
 ## Directory Structure
