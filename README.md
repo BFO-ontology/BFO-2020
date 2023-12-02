@@ -5,20 +5,7 @@ The most current version is the "bfo-core.owl" file located "owl" directory with
 
 ## Versioning and Release Chart
 
-```mermaid
-%%{init: {'theme':'forest'}}%%
-gantt
-    title BFO Releases
-    dateFormat  YYYY-MM-DD
-    todayMarker 2023-12-01
-
-    section Schedule
-    Resolving Issues   :a1, 2023-12-01, 7d
-    Implementation     :a2, after a1, 5d
-    Review             :a3, after a2, 5d
-    Documentation      :a4, after a3, 7d
-
-```
+![BFO Releases](documentation/images/bfo-release-gantt.png)
 
 ## Directory Structure
 * implementations - Contains implementations of BFO in OWL, Common Logic, and syntax readable by [Prover9/Mace4](https://www.cs.unm.edu/~mccune/mace4/). 
