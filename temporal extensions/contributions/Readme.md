@@ -12,7 +12,7 @@ encouraged. All contributions should be verified to be consistent with one of th
 
 ## Directory Structure
 
-**allen-relation-definitions.cl** - Contains definitions intended to represent the [Allen Interval Algebra](https://en.wikipedia.org/wiki/Allen%27s_interval_algebra) as an extension of the CLIF implementation of BFO. 
+* allen-relation-definitions.cl - Contains definitions intended to represent the [Allen Interval Algebra](https://en.wikipedia.org/wiki/Allen%27s_interval_algebra) as an extension of the CLIF implementation of BFO. 
 
 
 
