@@ -2,12 +2,6 @@ name: Build, Test, Draft Release
 on:
   push:
     branches: [ master ]
-  workflow_dispatch:
-    inputs:
-      includeDocs:
-        description: 'Include Release Documentation'
-        required: true
-        default: 'false'
 
 permissions:
   contents: write
@@ -34,23 +28,6 @@ jobs:
           #key: ${{ env-cache-key}}-${{ hashFiles('**/package-lock.json') }}
           key: ${{ runner.os }}-${{ env.cache-key }}
 
-      - name: Generate and Upload Documentation
-        if: ${{ github.event.inputs.includeDocs == 'true' }}
-        run: |
-          # Command to generate documentation
-          generate-docs > documentation.md
-
-      - name: Upload Documentation to Release
-        if: ${{ github.event.inputs.includeDocs == 'true' }}
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.draft_release.outputs.upload_url }}
-          asset_path: ./documentation.md
-          asset_name: Documentation.md
-          asset_content_type: text/markdown
-          
       # Run the main steps here
       - name: Build and test ontology release
         id: build_release
