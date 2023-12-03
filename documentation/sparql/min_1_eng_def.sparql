@@ -11,7 +11,7 @@ PREFIX cco: <http://www.ontologyrepository.com/CommonCoreOntologies/>
 
 SELECT DISTINCT ?resource ?label
 WHERE {
-VALUES ?type {owl:Class rdfs:Class rdfs:DatatypeProperty owl:DatatypeProperty owl:AnnotationProperty owl:ObjectProperty}
+VALUES ?type {owl:Class owl:ObjectProperty}
     ?resource a ?type .
     OPTIONAL {
         ?resource cco:definition ?englishDefinition .
