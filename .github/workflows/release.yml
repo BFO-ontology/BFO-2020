@@ -32,7 +32,7 @@ jobs:
       - name: Build and test ontology release
         id: build_release
         run: |
-          make all
+          make -d all
           echo "RELEASE_FILE_PATH=$(make output-release-filepath)" >> $GITHUB_OUTPUT
           echo "RELEASE_NAME=$(make output-release-name)" >> $GITHUB_OUTPUT
       
