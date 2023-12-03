@@ -2,11 +2,7 @@
 # Adapted from https://github.com/tmprd/ontology-pipeline/blob/master/Makefile by Tim Prudhomme <tmprdh@gmail.com>
 # Contact - John Beverley <johnbeve@buffalo.edu>
 
-# WARN: This file contains significant whitespace, i.e. tabs!
-# Ensure that your text editor shows you those characters.
-
 # ----------------------------------------
-#### Configuration / details about our project
 # Project essentials
 config.ONTOLOGY_FILE	:= src/ontology/bfo-core.owl
 config.ONTOLOGY_PREFIX	:= BFO
@@ -20,7 +16,7 @@ config.SOURCE_DIR		:= src/owl
 config.TEMP_DIR			:= build/artifacts
 config.RELEASE_DIR		:= /
 config.REPORTS_DIR		:= $(config.TEMP_DIR)
-config.QUERIES_DIR		:= $(config.SOURCE_DIR)/sparql
+config.QUERIES_DIR		:= documentation/sparql
 config.LIBRARY_DIR		:= build/lib
 
 # Settings
@@ -45,7 +41,6 @@ RELEASE_REPORT_FILE = $(config.REPORTS_DIR)/$(config.ONTOLOGY_PREFIX)-release-re
 # Generic directories to create if needed
 REQUIRED_DIRS = $(config.TEMP_DIR) $(config.LIBRARY_DIR) $(config.SOURCE_DIR) $(config.QUERIES_DIR) $(config.REPORTS_DIR)
 
-
 # ----------------------------------------
 #### Targets / main "goals" of this Makefile
 .PHONY: all
@@ -61,7 +56,6 @@ report-edit:									REPORT_FILE_INPUT = $(EDITOR_REPORT_FILE)
 report-release:									REPORT_FILE_INPUT = $(RELEASE_REPORT_FILE)
 
 # Map to reusable targets (this is a disjunction mapped to a conjunction: either target maps to all of these targets)
-
 reason-edit reason-release: reason 
 test-edit test-release: verify
 report-edit report-release: report
@@ -75,15 +69,11 @@ output-release-filepath:
 output-release-name:
 	@echo $(config.RELEASE_NAME)
 
-
 # ----------------------------------------
-#### Setup / configure Make to use with our project
 # Make configuration --- Ignore this section unless curious
 # <http://clarkgrubb.com/makefile-style-guide#toc2>
 MAKEFLAGS += --warn-undefined-variables
 SHELL := bash # need bash to use `pipefail`
-# `-e` causes exit if a command fails. `-u` causes exit for undefined variables. `-c` passes Make script to bash
-# `pipefail` causes a chain of piped commands to fail if any of its commands fail
 .SHELLFLAGS := -eu -o pipefail -c
 .DEFAULT_GOAL := all # default target running Make without arguments
 .DELETE_ON_ERROR: # delete target if recipe fails
@@ -108,10 +98,6 @@ clean:
 	rm -rf $(config.TEMP_DIR)
 	rm -rf $(RELEASE_BUILD_FILE)
 
-
-# ----------------------------------------
-#### Build / different versions of the ontology
-
 # Release build has import declarations removed
 $(RELEASE_BUILD_FILE): $(EDITOR_BUILD_FILE)
 	$(ROBOT) remove --input $< --select imports \
@@ -128,7 +114,7 @@ endef
 
 # ----------------------------------------
 #### Test / test ontology with reasoners and queries
-QUERIES = $(wildcard $(config.QUERIES_DIR)/*.rq)
+QUERIES = $(wildcard $(config.QUERIES_DIR)/*.sparql)
 
 # Check for inconsistency
 # Note: $(TEST_INPUT) is a "target-specific variable" that isn't a evaluated as a prerequisite here
@@ -153,17 +139,3 @@ report: $(TEST_INPUT) | $(config.REPORTS_DIR) $(ROBOT_FILE)
 	--fail-on $(config.REPORT_FAIL_ON) \
 	--print 10 \
 	--output $(REPORT_FILE_INPUT)
-
-
-# ----------------------------------------
-#### Make syntax cheatsheet
-# targets
-# .PHONY means a target that isn't a file to be created or checked
-
-# automatic variables
-# $@ means target
-# $< means first prerequisite
-# $^ means all prerequisites
-
-# := means simply expand
-# = means recursively/lazily expand
