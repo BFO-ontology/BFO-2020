@@ -125,7 +125,7 @@ endef
 
 # ----------------------------------------
 #### Test / test ontology with reasoners and queries
-QUERIES = $(wildcard Validation/SPARQL/*.sparql)
+QUERIES = $(wildcard $(config.QUERIES_DIR)/*.sparql)
 
 # Check for inconsistency
 .PHONY: reason
