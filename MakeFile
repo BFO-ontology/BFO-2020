@@ -25,7 +25,7 @@ config.FAIL_ON_TEST_FAILURES := false
 config.REPORT_FAIL_ON := none
 
 # Other constants
-TODAY  		:= $(shell date +%Y-%m-%d)
+TODAY		:= $(shell date +%Y-%m-%d)
 TIMESTAMP	:= $(shell date +'%Y-%m-%d %H:%M')
 
 # Default name for release. Ideally this should incude some kind of semantic versioning
@@ -70,7 +70,7 @@ report-edit report-release: report
 .PHONY: output-release-filepath
 output-release-filepath:
 	@echo $(RELEASE_BUILD_FILE)
-	
+
 .PHONY: output-release-version
 output-release-name:
 	@echo $(config.RELEASE_NAME)
@@ -149,3 +149,17 @@ report: $(TEST_INPUT) | $(config.REPORTS_DIR) $(ROBOT_FILE)
 	--fail-on $(config.REPORT_FAIL_ON) \
 	--print 10 \
 	--output $(REPORT_FILE_INPUT)
+
+
+# ----------------------------------------
+#### Make syntax cheatsheet
+# targets
+# .PHONY means a target that isn't a file to be created or checked
+
+# automatic variables
+# $@ means target
+# $< means first prerequisite
+# $^ means all prerequisites
+
+# := means simply expand
+# = means recursively/lazily expand
