@@ -3,10 +3,6 @@ This repository maintains the Basic Formal Ontology (BFO) artifact conformant to
 
 The most current version is the "bfo-core.owl" file located at in this repository at: src/owl/bfo-core.owl
 
-## Versioning and Release Chart
-
-![BFO Releases](documentation/images/bfo-release-gantt.png)
-
 ## Directory Structure
 * documentation
   - axiomatization pdfs - Contains first-order axiomatizations of BFO sub-theories stored in PDF, such as: continuant-mereology.pdf
@@ -21,6 +17,13 @@ The most current version is the "bfo-core.owl" file located at in this repositor
 * temporal extensions 
   - temporalized relations - Contains R&D project extending bfo-core.owl to a stronger representations of time, namely, one that employs temporal qualification of continuant object properties, resulting in "all times" and "some times" versions. 
   - contributions - Files that are not part of the bfo-core.owl distribution but are intended as potentially useful additions. 
+
+## Versioning and Release Chart
+
+![BFO Releases](documentation/images/bfo-release-gantt.png)
+
+## License
+These documents are licensed under the terms of  the Creative Commons Attribution 4.0 International (CC BY 4.0) license: https://creativecommons.org/licenses/by/4.0/ . The most current version of these files will be at https://github.com/BFO-ontology/BFO-2020
 
 ## Documentation
 For further documentation concerning this repository, see the [BFO Documentation Page](https://basic-formal-ontology.org/bfo-2020.html). \

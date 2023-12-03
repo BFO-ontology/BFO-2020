@@ -1,10 +1,10 @@
 @prefix : <http://purl.obolibrary.org/obo/bfo#> .
+@prefix dc: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dc11: <http://purl.org/dc/elements/1.1/> .
-@prefix dc: <http://purl.org/dc/terms/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @base <http://purl.obolibrary.org/obo/bfo> .
@@ -41,10 +41,10 @@
                                                        "Thomas Bittner" ,
                                                        "Werner Ceusters" ,
                                                        "Yongqun \"Oliver\" He" ;
-                                      dc:license <https://creativecommons.org/licenses/by/4.0/> ;
                                       dc:description "Basic Formal Ontology implemented in the Web Ontology Language (OWL 2) with direct semantics."@en ;
-                                      rdfs:comment "The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020" ;
-                                      dc:title "BFO 2020" .
+                                      dc:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                      dc:title "BFO 2020" ;
+                                      rdfs:comment "The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020" .
 
 #################################################################
 #    Annotation properties
@@ -60,6 +60,18 @@ dc11:identifier rdf:type owl:AnnotationProperty .
 
 ###  http://purl.org/dc/elements/1.1/license
 dc11:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dc:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dc:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#altLabel
@@ -718,7 +730,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              dc11:identifier "035-BFO" ;
                                              rdfs:label "spatial region"@en ;
                                              skos:definition "(Elucidation) A spatial region is a continuant entity that is a continuant part of the spatial projection of a portion of spacetime at a given time"@en ;
-                                             skos:example "As for zero-dimensional spatial region, one-dimensional spatial region, two-dimensional spatial region, three-dimensional spatial region."@en .
+                                             skos:example "As for zero-dimensional spatial region, one-dimensional spatial region, two-dimensional spatial region, three-dimensional spatial region"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000008
@@ -850,7 +862,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              rdfs:label "specifically dependent continuant"@en ;
                                              skos:definition "b is a specifically dependent continuant =Def b is a continuant & there is some independent continuant c which is not a spatial region & which is such that b specifically depends on c"@en ;
                                              skos:example "(with multiple bearers) John's love for Mary; the ownership relation between John and this statue; the relation of authority between John and his subordinates"@en ,
-                                                          "(with one bearer) The mass of this tomato; the pink colour of a medium rare piece of grilled filet mignon at its centre; the smell of this portion of mozzarella, the disposition of this fish to decay; the role of being a doctor; the function of this heart to pump blood; the shape of this hole"@en .
+                                                          "(with one bearer) The mass of this tomato; the pink colour of a medium rare piece of grilled filet mignon at its centre; the smell of this portion of mozzarella; the disposition of this fish to decay; the role of being a doctor; the function of this heart to pump blood; the shape of this hole"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000023
@@ -949,7 +961,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              rdfs:label "object"@en ;
                                              skos:definition "(Elucidation) An object is a material entity which manifests causal unity & is of a type instances of which are maximal relative to the sort of causal unity manifested"@en ;
                                              skos:example "An organism; a fish tank; a planet; a laptop; a valve; a block of marble; an ice cube"@en ;
-                                             skos:scopeNote "A description of three primary sorts of causal unity is provided in Basic Formal Ontology 2.0. Specification and User’s Guide"@en .
+                                             skos:scopeNote "A description of three primary sorts of causal unity is provided in Basic Formal Ontology 2.0. Specification and User Guide"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000031
@@ -1063,7 +1075,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              dc11:identifier "029-BFO" ;
                                              rdfs:label "continuant fiat boundary"@en ;
                                              skos:definition "(Elucidation) A continuant fiat boundary b is an immaterial entity that is of zero, one or two dimensions & such that there is no time t when b has a spatial region as continuant part & whose location is determined in relation to some material entity"@en ;
-                                             skos:example "As for fiat point, fiat line, fiat surface."@en .
+                                             skos:example "As for fiat point, fiat line, fiat surface"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000141
@@ -1072,7 +1084,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              dc11:identifier "028-BFO" ;
                                              rdfs:label "immaterial entity"@en ;
                                              skos:definition "b is an immaterial entity =Def b is an independent continuant which is such that there is no time t when it has a material entity as continuant part"@en ;
-                                             skos:example "As for fiat point, fiat line, fiat surface, site."@en .
+                                             skos:example "As for fiat point, fiat line, fiat surface, site"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000142
@@ -1124,7 +1136,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              dc11:identifier "031-BFO" ;
                                              rdfs:label "fiat point"@en ;
                                              skos:definition "(Elucidation) A fiat point is a zero-dimensional continuant fiat boundary that consists of a single point"@en ;
-                                             skos:example "The geographic North Pole; the quadripoint where the boundaries of Colorado, Utah, New Mexico and Arizona meet, the point of origin of some spatial coordinate system"@en .
+                                             skos:example "The geographic North Pole; the quadripoint where the boundaries of Colorado, Utah, New Mexico and Arizona meet; the point of origin of some spatial coordinate system"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000148
@@ -1156,7 +1168,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              rdfs:label "temporal interval"@en ;
                                              skos:definition "(Elucidation) A temporal interval is a one-dimensional temporal region that is continuous, thus without gaps or breaks"@en ;
                                              skos:example "The year 2018."@en ;
-                                             skos:scopeNote "A one-dimensional temporal region can include as parts not only temporal intervals but also temporal instants separated from other parts by gaps"@en .
+                                             skos:scopeNote "A one-dimensional temporal region can include as parts not only temporal intervals but also temporal instants separated from other parts by gaps."@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000203

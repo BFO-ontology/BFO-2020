@@ -4,4 +4,5 @@ This directory contains the Web Ontology Language (OWL) implementation of BFO, s
 
 ## Directory Structure
 * bfo-core.owl corresponds to [ISO/IEC 21838‑2](https://www.iso.org/obp/ui/#iso:std:iso-iec:21838:-2:ed-1:v1:en) A.1.2-3, formatted as RDF/XML. 
-* bfo-core.ofn correspond to [ISO/IEC 21838‑2](https://www.iso.org/obp/ui/#iso:std:iso-iec:21838:-2:ed-1:v1:en) A.1.2-3, formatted as Functional-Style Syntax.* bfo-core.ttl, formatted in the Terse RDF Triple Language flavor of RDF.
+* bfo-core.ofn correspond to [ISO/IEC 21838‑2](https://www.iso.org/obp/ui/#iso:std:iso-iec:21838:-2:ed-1:v1:en) A.1.2-3, formatted as Functional-Style Syntax.
+* bfo-core.ttl, formatted in the Terse RDF Triple Language flavor of RDF.
