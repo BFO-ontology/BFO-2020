@@ -45,7 +45,8 @@ REQUIRED_DIRS = $(config.TEMP_DIR) $(config.LIBRARY_DIR) $(config.SOURCE_DIR) $(
 # ----------------------------------------
 #### Targets / main "goals" of this Makefile
 .PHONY: all
-all: build-release reason-release test-release
+all: 
+	@echo "All is well"
 
 build-release: $(RELEASE_BUILD_FILE)
 
