@@ -49,7 +49,7 @@ all: reason-edit test-edit build-release reason-release test-release
 build-release: $(RELEASE_BUILD_FILE)
 
 # These are parameterized targets, which assign "target-specific variables" to be used in a resuable target
-.PHONY: reason-edit reason-release test-edit test-release report-edit report-
+.PHONY: reason-edit reason-release test-edit test-release report-edit report-release
 reason-edit test-edit report-edit: 				TEST_INPUT = $(EDITOR_BUILD_FILE)
 reason-release test-release report-release:		TEST_INPUT = $(RELEASE_BUILD_FILE)
 report-edit:									REPORT_FILE_INPUT = $(EDITOR_REPORT_FILE)
