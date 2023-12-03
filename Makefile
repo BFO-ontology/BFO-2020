@@ -4,7 +4,7 @@
 
 # ----------------------------------------
 # Project essentials
-config.ONTOLOGY_FILE	:= src/owl/bfo-core.owl
+config.ONTOLOGY_FILE	:= src/owl/bfo-core.ttl
 config.ONTOLOGY_PREFIX	:= BFO
 config.ONTOLOGY-IRI		:= http://purl.obolibrary.org/obo/bfo
 config.BASE_IRI			:= $(config.ONTOLOGY-IRI)_
