@@ -28,6 +28,13 @@ jobs:
           #key: ${{ env-cache-key}}-${{ hashFiles('**/package-lock.json') }}
           key: ${{ runner.os }}-${{ env.cache-key }}
 
+      - name: List directory contents
+        run: ls -la /home/runner/work/JB-Fork-BFO-2020/JB-Fork-BFO-2020
+
+      - name: Build and test ontology release
+        run: make all
+        working-directory: /home/runner/work/JB-Fork-BFO-2020/JB-Fork-BFO-2020
+
       # Run the main steps here
       - name: Build and test ontology release
         id: build_release
