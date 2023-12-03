@@ -62,7 +62,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
     (universal fiat-surface))
 
 
-  (cl:comment "spatial-region is a universal [qga-1]"
+  (cl:comment "spatial-region is a universal [rej-1]"
     (universal spatial-region))
 
 
@@ -154,7 +154,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
     (not (exists (x) (and (universal x) (particular x)))))
 
 
-  (cl:comment "history is subclass of process [abo-1]"
+  (cl:comment "history is subclass of process [zuj-1]"
     (forall (t x)
      (if (instance-of x history t) (instance-of x process t))))
 
