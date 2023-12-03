@@ -1,3 +1,3 @@
-## Directory Structure 
+# Directory Structure 
 
-This directory contains the First-Order Logic implementation of Basic Formal Ontology, stored as pdf documents, modularized into sub-theories of BFO. 
+This directory contains the first-order implementation of Basic Formal Ontology represented in a standard signature, modularized into sub-theories of BFO which are stored as pdf documents.

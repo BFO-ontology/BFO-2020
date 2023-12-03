@@ -1,6 +1,6 @@
 # Contributions
 
-The files in this directory are not part of the BFO-Core distributions
+The files in this directory are not part of the bfo-core.owl distribution
 but are intended as potentially useful additions. 
 
 ## Contributing
@@ -8,11 +8,11 @@ but are intended as potentially useful additions.
 Contributions are welcome as long as they are licensed with CC-BY 4 or
 later or with a compatible open source license. Please submit an issue if
 you would like to add a contribution. Contributions in CLIF or OWL are
-encouraged. All contributions should be verified to be consistent with BFO-FOL. If you need help with that, I may be able to assist.
+encouraged. All contributions should be verified to be consistent with one of the first-order implementations of BFO, namely, the collection of [CLIF](https://www.iso.org/standard/66249.html) sub-theories or the collection of sub-theories in Prover9 syntax. If you need help with that, please solicit assistance on the [Discussion Page](https://github.com/johnbeve/JB-Fork-BFO-2020/discussions).
 
-## Files
+## Directory Structure
 
-**allen-relation-definitions.cl** - Definitions for the Allen interval algebra in BFO-FOL terms.
+**allen-relation-definitions.cl** - Contains definitions intended to represent the [Allen Interval Algebra](https://en.wikipedia.org/wiki/Allen%27s_interval_algebra) as an extension of the CLIF implementation of BFO. 
 
 
 

@@ -1,15 +1,26 @@
 # Basic Formal Ontology
 This repository maintains the Basic Formal Ontology (BFO) artifact conformant to the requirements specified in [ISO/IEC 21838‑1](https://www.iso.org/standard/71954.html) for top-level ontologies. BFO contains classes and relations representing content common to all areas of scientific investigation, e.g. object, process, etc. and is used as a top-level architecture by numerous ontologies in the Open Biomedical and Biomedical Ontologies (OBO) Foundry, the Industrial Ontologies Foundry (IOF), and the Common Core Ontologies suite. Ontologies conformant to BFO promote interoperability, standardization, and reuse among domain-level ontologies. 
 
-The most current version is the "bfo-core.owl" file located "owl" directory within the "implementations" directory.
+The most current version is the "bfo-core.owl" file located at in this repository at: src/owl/bfo-core.owl
 
 ## Versioning and Release Chart
 
 ![BFO Releases](documentation/images/bfo-release-gantt.png)
 
 ## Directory Structure
-* implementations - Contains implementations of BFO in OWL, Common Logic, and syntax readable by [Prover9/Mace4](https://www.cs.unm.edu/~mccune/mace4/). 
-* temporal extensions - Contains R&D projects extending BFO to stronger representations of time. 
+* documentation
+  - axiomatization pdfs - Contains first-order axiomatizations of BFO sub-theories stored in PDF, such as: continuant-mereology.pdf
+  - FAQ - Contains guidance for contributing to this repository, using Github workflows, and so on.
+  - images - Contains images used in this repository. 
+  - user guides - Contains user guides for: ontology developers, software developers and subject matter experts. 
+* src
+  - owl - Contains the Web Ontology Language (OWL) implementation of BFO: bfo-core.owl.
+  - common logic - Contains the Common Logic Interchange Format (CLIF) implementation of BFO separated into files representing sub-theories of BFO, such as: material-entity.cl .
+  - prover9 - Contains an implementation of BFO that is readable by the Prover9 automated theorem prover, separated into files representing sub-theories of BFO, such as: temporal-region.prover9.
+  - sparql - Contains quality control checks written in the [SPARQL Protocol and RDF Query Language (SPARQL)](https://www.w3.org/TR/sparql11-query/) which are used to ensure updates to bfo-core.owl do not violate design principles, such as having exactly one skos:prefLabel per language: exactly_1_prefLabel_per_lang.sparql.
+* temporal extensions 
+  - temporalized relations - Contains R&D project extending bfo-core.owl to a stronger representations of time, namely, one that employs temporal qualification of continuant object properties, resulting in "all times" and "some times" versions. 
+  - contributions - Files that are not part of the bfo-core.owl distribution but are intended as potentially useful additions. 
 
 ## Documentation
 For further documentation concerning this repository, see the [BFO Documentation Page](https://basic-formal-ontology.org/bfo-2020.html). \

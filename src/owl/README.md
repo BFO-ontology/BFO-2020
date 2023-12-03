@@ -1,3 +1,7 @@
-## Directory Structure
+# bfo-core.owl
 
-This directory contains the owl file for the Basic Formal Ontology, serialized in RDF/XML. 
+This directory contains the Web Ontology Language (OWL) implementation of BFO, specifically, [OWL2](https://www.w3.org/TR/owl2-overview/). As the file name suggests, this is the foundational implementation for any extensions of BFO implemented in OWL 2, such as those found in the temporal extensions directory. 
+
+## Directory Structure
+* bfo-core.owl corresponds to [ISO/IEC 21838‑2](https://www.iso.org/obp/ui/#iso:std:iso-iec:21838:-2:ed-1:v1:en) A.1.2-3, formatted as RDF/XML. 
+* bfo-core.ofn correspond to [ISO/IEC 21838‑2](https://www.iso.org/obp/ui/#iso:std:iso-iec:21838:-2:ed-1:v1:en) A.1.2-3, formatted as Functional-Style Syntax.
