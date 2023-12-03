@@ -41,7 +41,8 @@
                                                        "Thomas Bittner" ,
                                                        "Werner Ceusters" ,
                                                        "Yongqun \"Oliver\" He" ;
-                                      dc11:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                      dc:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                      dc:description "Basic Formal Ontology implemented in the Web Ontology Language (OWL 2) with direct semantics."@en ;
                                       rdfs:comment "The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020" ;
                                       dc:title "BFO 2020" .
 
