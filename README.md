@@ -14,9 +14,7 @@ The most current version is the "bfo-core.owl" file located at in this repositor
   - common logic - Contains the Common Logic Interchange Format (CLIF) implementation of BFO separated into files representing sub-theories of BFO, such as: material-entity.cl .
   - prover9 - Contains an implementation of BFO that is readable by the Prover9 automated theorem prover, separated into files representing sub-theories of BFO, such as: temporal-region.prover9.
   - sparql - Contains quality control checks written in the [SPARQL Protocol and RDF Query Language (SPARQL)](https://www.w3.org/TR/sparql11-query/) which are used to ensure updates to bfo-core.owl do not violate design principles, such as having exactly one skos:prefLabel per language: exactly_1_prefLabel_per_lang.sparql.
-* temporal extensions 
-  - temporalized relations - Contains R&D project extending bfo-core.owl to a stronger representations of time, namely, one that employs temporal qualification of continuant object properties, resulting in "all times" and "some times" versions. 
-  - contributions - Files that are not part of the bfo-core.owl distribution but are intended as potentially useful additions. 
+* temporal extensions - Contains R&D project extending bfo-core.owl to stronger representations of time, as well as supplementary documentatin supporting such extensions. 
 
 ## Versioning and Release Chart
 

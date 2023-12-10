@@ -67,7 +67,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (spatially-projects-onto p q s))))
 
 
-  (cl:comment "located-in is transitive at a time [xlm-1]"
+  (cl:comment "located-in is transitive at a time [ets-1]"
     (forall (a b c t t2)
      (if
       (and (located-in a b t) (located-in b c t2)
