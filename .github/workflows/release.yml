@@ -33,7 +33,7 @@ jobs:
 
       - name: Build and test ontology release
         run: make all
-        working-directory: /home/runner/work/BFO-2020
+       # working-directory: /home/runner/work/BFO-2020
 
       # Run the main steps here
       - name: Build and test ontology release
