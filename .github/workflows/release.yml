@@ -29,11 +29,11 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-key }}
 
       - name: List directory contents
-        run: ls -la /home/runner/work/JB-Fork-BFO-2020/JB-Fork-BFO-2020
+        run: ls -la /home/runner/work/BFO-2020
 
       - name: Build and test ontology release
         run: make all
-        working-directory: /home/runner/work/JB-Fork-BFO-2020/JB-Fork-BFO-2020
+        working-directory: /home/runner/work/BFO-2020
 
       # Run the main steps here
       - name: Build and test ontology release

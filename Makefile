@@ -1,5 +1,5 @@
 #### Basic Formal Ontology Pipeline
-# Adapted from https://github.com/tmprd/ontology-pipeline/blob/master/Makefile by Tim Prudhomme <tmprdh@gmail.com>
+# Adapted from https://github.com/tmprd/ontology-pipeline/blob/master/Makefile by Tim Prudhomme <tmprdh@gmail.com>, which was heavily adapted from https://github.com/obi-ontology/obi/blob/master/Makefile by James Overton <james@overton.ca>.
 # Contact - John Beverley <johnbeve@buffalo.edu>
 
 # ----------------------------------------
