@@ -1,0 +1,116 @@
+% BFO 2020 Axiomatization of temporalized relations, generated 2024/01/08
+% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
+% This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
+
+% located-in at some time
+all p all q  ((locatedInAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (locatedIn(p,q,t)))))) # label("located-in-at-some-time") .
+
+% concretizes at some time
+all p all q  ((concretizesAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (concretizes(p,q,t)))))) # label("concretizes-at-some-time") .
+
+% location-of at some time
+all p all q  ((locationOfAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (locationOf(p,q,t)))))) # label("location-of-at-some-time") .
+
+% is-carrier-of at some time
+all p all q  ((isCarrierOfAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (isCarrierOf(p,q,t)))))) # label("is-carrier-of-at-some-time") .
+
+% member-part-of at some time
+all p all q  ((memberPartOfAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (memberPartOf(p,q,t)))))) # label("member-part-of-at-some-time") .
+
+% has-member-part at some time
+all p all q  ((hasMemberPartAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (hasMemberPart(p,q,t)))))) # label("has-member-part-at-some-time") .
+
+% has-participant at some time
+all p all q  ((hasParticipantAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (hasParticipant(p,q,t)))))) # label("has-participant-at-some-time") .
+
+% participates-in at some time
+all p all q  ((participatesInAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (participatesIn(p,q,t)))))) # label("participates-in-at-some-time") .
+
+% rdf:type is interpreted as meaning an instance is a given type whenever it exists, and that the instance exists at some point.
+all c all i  ((rdfType(c,i)) <-> (((all t  ((existsAt(i,t)) -> (instanceOf(i,c,t)))) & (exists t  (existsAt(i,t)))))) # label("rdf-type-interpretation") .
+
+% is-concretized-by at some time
+all p all q  ((isConcretizedByAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (isConcretizedBy(p,q,t)))))) # label("is-concretized-by-at-some-time") .
+
+% material-basis-of at some time
+all p all q  ((materialBasisOfAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (materialBasisOf(p,q,t)))))) # label("material-basis-of-at-some-time") .
+
+% continuant-part-of at some time
+all p all q  ((continuantPartOfAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (continuantPartOf(p,q,t)))))) # label("continuant-part-of-at-some-time") .
+
+% has-material-basis at some time
+all p all q  ((hasMaterialBasisAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (hasMaterialBasis(p,q,t)))))) # label("has-material-basis-at-some-time") .
+
+% has-continuant-part at some time
+all p all q  ((hasContinuantPartAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (hasContinuantPart(p,q,t)))))) # label("has-continuant-part-at-some-time") .
+
+% generically-depends-on at some time
+all p all q  ((genericallyDependsOnAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (genericallyDependsOn(p,q,t)))))) # label("generically-depends-on-at-some-time") .
+
+% occupies-spatial-region at some time
+all p all q  ((occupiesSpatialRegionAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (occupiesSpatialRegion(p,q,t)))))) # label("occupies-spatial-region-at-some-time") .
+
+% spatially-projects-onto at some time
+all p all q  ((spatiallyProjectsOntoAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (spatiallyProjectsOnto(p,q,t)))))) # label("spatially-projects-onto-at-some-time") .
+
+% proper-continuant-part-of at some time
+all p all q  ((properContinuantPartOfAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (properContinuantPartOf(p,q,t)))))) # label("proper-continuant-part-of-at-some-time") .
+
+% has-proper-continuant-part at some time
+all p all q  ((hasProperContinuantPartAtSomeTime(p,q)) <-> (exists t  (((existsAt(p,t)) & (existsAt(q,t)) & (hasProperContinuantPart(p,q,t)))))) # label("has-proper-continuant-part-at-some-time") .
+
+% located-in at all times
+all p all q  ((locatedInAtAllTimes(p,q)) <-> (((exists t  (((locatedIn(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (locatedIn(p,q,t))))))) # label("located-in-at-all-times") .
+
+% concretizes at all times
+all p all q  ((concretizesAtAllTimes(p,q)) <-> (((exists t  (((concretizes(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (concretizes(p,q,t))))))) # label("concretizes-at-all-times") .
+
+% location-of at all times
+all p all q  ((locationOfAtAllTimes(p,q)) <-> (((exists t  (((locationOf(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (locationOf(p,q,t))))))) # label("location-of-at-all-times") .
+
+% is-carrier-of at all times
+all p all q  ((isCarrierOfAtAllTimes(p,q)) <-> (((exists t  (((isCarrierOf(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (isCarrierOf(p,q,t))))))) # label("is-carrier-of-at-all-times") .
+
+% member-part-of at all times
+all p all q  ((memberPartOfAtAllTimes(p,q)) <-> (((exists t  (((memberPartOf(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (memberPartOf(p,q,t))))))) # label("member-part-of-at-all-times") .
+
+% has-member-part at all times
+all p all q  ((hasMemberPartAtAllTimes(p,q)) <-> (((exists t  (((hasMemberPart(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (hasMemberPart(p,q,t))))))) # label("has-member-part-at-all-times") .
+
+% has-participant at all times
+all p all q  ((hasParticipantAtAllTimes(p,q)) <-> (((exists t  (((hasParticipant(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (hasParticipant(p,q,t))))))) # label("has-participant-at-all-times") .
+
+% participates-in at all times
+all p all q  ((participatesInAtAllTimes(p,q)) <-> (((exists t  (((participatesIn(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (participatesIn(p,q,t))))))) # label("participates-in-at-all-times") .
+
+% is-concretized-by at all times
+all p all q  ((isConcretizedByAtAllTimes(p,q)) <-> (((exists t  (((isConcretizedBy(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (isConcretizedBy(p,q,t))))))) # label("is-concretized-by-at-all-times") .
+
+% material-basis-of at all times
+all p all q  ((materialBasisOfAtAllTimes(p,q)) <-> (((exists t  (((materialBasisOf(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (materialBasisOf(p,q,t))))))) # label("material-basis-of-at-all-times") .
+
+% continuant-part-of at all times
+all p all q  ((continuantPartOfAtAllTimes(p,q)) <-> (((exists t  (((continuantPartOf(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (continuantPartOf(p,q,t))))))) # label("continuant-part-of-at-all-times") .
+
+% has-material-basis at all times
+all p all q  ((hasMaterialBasisAtAllTimes(p,q)) <-> (((exists t  (((hasMaterialBasis(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (hasMaterialBasis(p,q,t))))))) # label("has-material-basis-at-all-times") .
+
+% has-continuant-part at all times
+all p all q  ((hasContinuantPartAtAllTimes(p,q)) <-> (((exists t  (((hasContinuantPart(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (hasContinuantPart(p,q,t))))))) # label("has-continuant-part-at-all-times") .
+
+% generically-depends-on at all times
+all p all q  ((genericallyDependsOnAtAllTimes(p,q)) <-> (((exists t  (((genericallyDependsOn(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (genericallyDependsOn(p,q,t))))))) # label("generically-depends-on-at-all-times") .
+
+% occupies-spatial-region at all times
+all p all q  ((occupiesSpatialRegionAtAllTimes(p,q)) <-> (((exists t  (((occupiesSpatialRegion(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (occupiesSpatialRegion(p,q,t))))))) # label("occupies-spatial-region-at-all-times") .
+
+% spatially-projects-onto at all times
+all p all q  ((spatiallyProjectsOntoAtAllTimes(p,q)) <-> (((exists t  (((spatiallyProjectsOnto(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (spatiallyProjectsOnto(p,q,t))))))) # label("spatially-projects-onto-at-all-times") .
+
+% proper-continuant-part-of at all times
+all p all q  ((properContinuantPartOfAtAllTimes(p,q)) <-> (((exists t  (((properContinuantPartOf(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (properContinuantPartOf(p,q,t))))))) # label("proper-continuant-part-of-at-all-times") .
+
+% has-proper-continuant-part at all times
+all p all q  ((hasProperContinuantPartAtAllTimes(p,q)) <-> (((exists t  (((hasProperContinuantPart(p,q,t)) & (existsAt(p,t))))) & (all t  ((existsAt(p,t)) -> (hasProperContinuantPart(p,q,t))))))) # label("has-proper-continuant-part-at-all-times") .
+

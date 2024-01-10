@@ -1,0 +1,254 @@
+Axioms whose logical form changed:
+----------------------------------
+
+Axiom has-last-instant-domain-range has changed [jtk-1]->[jtk-2]
+
+(:forall (?a ?b)                                                             (:forall (?a ?b)
+ (:implies (has-last-instant ?a ?b)                                           (:implies (has-last-instant ?a ?b)
+  (:and (:exists (?t) (instance-of ?a temporal-region ?t))                |    (:and (instance-of ?a temporal-region ?a)
+   (:exists (?t) (instance-of ?b temporal-instant ?t)))))                 |     (instance-of ?b temporal-instant ?b))))
+
+
+Axiom definition-of-temporal-part-for-temporal-regions has changed [cmy-1]->[cmy-2]
+
+(:forall (?b ?c)                                                             (:forall (?b ?c)
+ (:implies                                                                    (:implies
+  (:and (:exists (?t) (instance-of ?b temporal-region ?t))                |    (:and (instance-of ?b temporal-region ?b)
+   (:exists (?t) (instance-of ?c temporal-region ?t)))                    |     (instance-of ?c temporal-region ?c))
+  (:iff (temporal-part-of ?b ?c) (occurrent-part-of ?b ?c))))                  (:iff (temporal-part-of ?b ?c) (occurrent-part-of ?b ?c))))
+
+
+Axiom has-temporal-part.one-dimensional-temporal-region->or-one-dimensional-temporal-region-zero-dimensional-temporal-region has changed [eeg-1]->[eeg-2]
+
+(:forall (?p ?q)                                                             (:forall (?p ?q)
+ (:implies (has-temporal-part ?p ?q)                                          (:implies (has-temporal-part ?p ?q)
+  (:implies                                                               |    (:implies (instance-of ?p one-dimensional-temporal-region ?p)
+   (:exists (?t) (instance-of ?p one-dimensional-temporal-region ?t))     |     (:or (instance-of ?q one-dimensional-temporal-region ?q)
+   (:exists (?t)                                                          /      (instance-of ?q zero-dimensional-temporal-region ?q)))))
+    (:or (instance-of ?q one-dimensional-temporal-region ?t)              <
+     (instance-of ?q zero-dimensional-temporal-region ?t))))))            <
+
+
+Axiom occupies-temporal-region-domain-range has changed [lyx-1]->[lyx-2]
+
+(:forall (?a ?b)                                                             (:forall (?a ?b)
+ (:implies (occupies-temporal-region ?a ?b)                                   (:implies (occupies-temporal-region ?a ?b)
+  (:and                                                                        (:and
+   (:exists (?t)                                                                (:exists (?t)
+    (:or (instance-of ?a process ?t)                                             (:or (instance-of ?a process ?t)
+     (instance-of ?a process-boundary ?t)))                                       (instance-of ?a process-boundary ?t)))
+   (:exists (?t) (instance-of ?b temporal-region ?t)))))                  |     (instance-of ?b temporal-region ?b))))
+
+
+Axiom temporal-part-of.one-dimensional-temporal-region->one-dimensional-temporal-region has changed [mei-1]->[mei-2]
+
+(:forall (?p ?q)                                                             (:forall (?p ?q)
+ (:implies (temporal-part-of ?p ?q)                                           (:implies (temporal-part-of ?p ?q)
+  (:implies                                                               |    (:implies (instance-of ?p one-dimensional-temporal-region ?p)
+   (:exists (?t) (instance-of ?p one-dimensional-temporal-region ?t))     /     (instance-of ?q one-dimensional-temporal-region ?q))))
+   (:exists (?t)                                                          <
+    (instance-of ?q one-dimensional-temporal-region ?t)))))               <
+
+
+Axiom has-first-instant-domain-range has changed [fwk-1]->[fwk-2]
+
+(:forall (?a ?b)                                                             (:forall (?a ?b)
+ (:implies (has-first-instant ?a ?b)                                          (:implies (has-first-instant ?a ?b)
+  (:and (:exists (?t) (instance-of ?a temporal-region ?t))                |    (:and (instance-of ?a temporal-region ?a)
+   (:exists (?t) (instance-of ?b temporal-instant ?t)))))                 |     (instance-of ?b temporal-instant ?b))))
+
+
+Axiom temporal-part-of.temporal-region<->temporal-region has changed [mjn-1]->[mjn-2]
+
+(:forall (?p ?q)                                                             (:forall (?p ?q)
+ (:implies (temporal-part-of ?p ?q)                                           (:implies (temporal-part-of ?p ?q)
+  (:iff (:exists (?t) (instance-of ?p temporal-region ?t))                |    (:iff (instance-of ?p temporal-region ?p)
+   (:exists (?t) (instance-of ?q temporal-region ?t)))))                  |     (instance-of ?q temporal-region ?q))))
+
+
+Axiom has-temporal-part.zero-dimensional-temporal-region->zero-dimensional-temporal-region has changed [bnt-1]->[bnt-2]
+
+(:forall (?p ?q)                                                             (:forall (?p ?q)
+ (:implies (has-temporal-part ?p ?q)                                          (:implies (has-temporal-part ?p ?q)
+  (:implies                                                               |    (:implies (instance-of ?p zero-dimensional-temporal-region ?p)
+   (:exists (?t)                                                          /     (instance-of ?q zero-dimensional-temporal-region ?q))))
+    (instance-of ?p zero-dimensional-temporal-region ?t))                 <
+   (:exists (?t)                                                          <
+    (instance-of ?q zero-dimensional-temporal-region ?t)))))              <
+
+
+Axiom temporally-projects-onto-domain-range has changed [cvr-1]->[cvr-2]
+
+(:forall (?a ?b)                                                             (:forall (?a ?b)
+ (:implies (temporally-projects-onto ?a ?b)                                   (:implies (temporally-projects-onto ?a ?b)
+  (:and (:exists (?t) (instance-of ?a spatiotemporal-region ?t))               (:and (:exists (?t) (instance-of ?a spatiotemporal-region ?t))
+   (:exists (?t) (instance-of ?b temporal-region ?t)))))                  |     (instance-of ?b temporal-region ?b))))
+
+
+Axiom occurrent-part-of.temporal-region<->temporal-region has changed [gjl-1]->[gjl-2]
+
+(:forall (?p ?q)                                                             (:forall (?p ?q)
+ (:implies (occurrent-part-of ?p ?q)                                          (:implies (occurrent-part-of ?p ?q)
+  (:iff (:exists (?t) (instance-of ?p temporal-region ?t))                |    (:iff (instance-of ?p temporal-region ?p)
+   (:exists (?t) (instance-of ?q temporal-region ?t)))))                  |     (instance-of ?q temporal-region ?q))))
+
+
+Axiom temporal-part-of-is-reflexive-on-temporal-region has changed [dbj-1]->[dbj-2]
+
+(:forall (?a)                                                                (:forall (?a)
+ (:implies (:exists (?t) (instance-of ?a temporal-region ?t))             |   (:implies (instance-of ?a temporal-region ?a)
+  (temporal-part-of ?a ?a)))                                                   (temporal-part-of ?a ?a)))
+
+
+Axiom temporal-instant-only-has-self-as-part has changed [pir-1]->[pir-2]
+
+(:forall (?p ?q)                                                             (:forall (?p ?q)
+ (:implies                                                                    (:implies
+  (:and (:exists (?t) (instance-of ?p temporal-instant ?t))               |    (:and (instance-of ?p temporal-instant ?p)
+   (has-temporal-part ?p ?q))                                                   (has-temporal-part ?p ?q))
+  (:= ?p ?q)))                                                                 (:= ?p ?q)))
+
+
+Axiom every-temporal-region-is-projection-from-spatiotemporal-region has changed [xco-1]->[xco-2]
+
+(:forall (?tr)                                                               (:forall (?tr)
+ (:implies (:exists (?t) (instance-of ?tr temporal-region ?t))            |   (:implies (instance-of ?tr temporal-region ?tr)
+  (:exists (?st)                                                               (:exists (?st)
+   (:and (:exists (?t) (instance-of ?st spatiotemporal-region ?t))              (:and (:exists (?t) (instance-of ?st spatiotemporal-region ?t))
+    (temporally-projects-onto ?st ?tr)))))                                       (temporally-projects-onto ?st ?tr)))))
+
+
+Axiom temporal-regions-instance-of-at-self has changed [tvx-1]->[tvx-2]
+
+(:forall (?a ?u)                                                             (:forall (?a ?u)
+ (:implies                                                                |   (:iff
+  (:exists (?t)                                                                (:exists (?t)
+   (:and (instance-of ?a temporal-region ?t) (instance-of ?a ?u ?t)))           (:and (instance-of ?a temporal-region ?t) (instance-of ?a ?u ?t)))
+  (instance-of ?a ?u ?a)))                                                     (instance-of ?a ?u ?a)))
+
+
+Axioms whose name changed:
+--------------------------
+
+
+Axioms whose descriptions only changed:
+---------------------------------------
+
+Axiom description for s-depends-means-bearer-exists-when-dependent-exists [iyu-1] has changed,
+was: 'If x s-depends-on y then there's at least one time when they both exist'
+now: 'If s s-depends-on c then there's at least one time when they both exist and whenever s exists, c must also exist'
+
+
+Only in old theory:
+-------------------
+
+Axiom inheres-in-domain-range [lmq-1]:
+inheres-in has domain specifically-dependent-continuant and range independent-continuant but not spatial-region
+(:forall (?a ?b)
+ (:implies (inheres-in ?a ?b)
+  (:and
+   (:exists (?t)
+    (instance-of ?a specifically-dependent-continuant ?t))
+   (:exists (?t)
+    (:and (instance-of ?b independent-continuant ?t)
+     (:not (instance-of ?b spatial-region ?t)))))))
+
+
+Only in new theory:
+-------------------
+
+Axiom occupying-a-three-dimensional-spatial-region-is-rigid [rlf-1]: 
+The dimensionality of the region of something occupying a three dimensional spatial region does not change
+(:forall (?m ?s)
+ (:implies
+  (:exists (?t)
+   (:and (occupies-spatial-region ?m ?s ?t)
+    (instance-of ?s three-dimensional-spatial-region ?t)))
+  (:forall (?t1 ?s1)
+   (:implies (occupies-spatial-region ?m ?s1 ?t1)
+    (instance-of ?s1 three-dimensional-spatial-region ?t1)))))
+
+Axiom fiat-line-occupies-1d-spatial-regions [kcq-1]: 
+A fiat line occupies a one-dimensional spatial region
+(:forall (?x ?t)
+ (:implies (instance-of ?x fiat-line ?t)
+  (:exists (?s ?tp)
+   (:and (temporal-part-of ?tp ?t)
+    (occupies-spatial-region ?x ?s ?tp)
+    (instance-of ?s one-dimensional-spatial-region ?tp)))))
+
+Axiom occupying-a-one-dimensional-spatial-region-is-rigid [qfe-1]: 
+The dimensionality of the region of something occupying a one dimensional spatial region does not change
+(:forall (?m ?s)
+ (:implies
+  (:exists (?t)
+   (:and (occupies-spatial-region ?m ?s ?t)
+    (instance-of ?s one-dimensional-spatial-region ?t)))
+  (:forall (?t1 ?s1)
+   (:implies (occupies-spatial-region ?m ?s1 ?t1)
+    (instance-of ?s1 one-dimensional-spatial-region ?t1)))))
+
+Axiom occupying-a-two-dimensional-spatial-region-is-rigid [dor-1]: 
+The dimensionality of the region of something occupying a two dimensional spatial region does not change
+(:forall (?m ?s)
+ (:implies
+  (:exists (?t)
+   (:and (occupies-spatial-region ?m ?s ?t)
+    (instance-of ?s two-dimensional-spatial-region ?t)))
+  (:forall (?t1 ?s1)
+   (:implies (occupies-spatial-region ?m ?s1 ?t1)
+    (instance-of ?s1 two-dimensional-spatial-region ?t1)))))
+
+Axiom all-participation-at-process-occupied-temporal-region [kxe-1]: 
+If c participates in p at t and p occupies-temporal-region r then t is part of r
+(:forall (?c ?p ?r ?t)
+ (:implies
+  (:and (occupies-temporal-region ?p ?r) (participates-in ?c ?p ?t))
+  (temporal-part-of ?t ?r)))
+
+Axiom fiat-surface-occupies-2d-spatial-regions [fpl-1]: 
+A fiat surface occupies a two-dimensional spatial region
+(:forall (?x ?t)
+ (:implies (instance-of ?x fiat-surface ?t)
+  (:exists (?s ?tp)
+   (:and (temporal-part-of ?tp ?t)
+    (occupies-spatial-region ?x ?s ?tp)
+    (instance-of ?s two-dimensional-spatial-region ?tp)))))
+
+Axiom all-role-types-are-rigid [bks-1]: 
+No role changes type during its existence
+(:forall (?o)
+ (:implies (:exists (?t) (instance-of ?o role ?t))
+  (:forall (?u)
+   (:implies (:exists (?t) (instance-of ?o ?u ?t))
+    (:forall (?t)
+     (:iff (instance-of ?o role ?t) (instance-of ?o ?u ?t)))))))
+
+Axiom occupying-a-zero-dimensional-spatial-region-is-rigid [fok-1]: 
+The dimensionality of the region of something occupying a zero dimensional spatial region does not change
+(:forall (?m ?s)
+ (:implies
+  (:exists (?t)
+   (:and (occupies-spatial-region ?m ?s ?t)
+    (instance-of ?s zero-dimensional-spatial-region ?t)))
+  (:forall (?t1 ?s1)
+   (:implies (occupies-spatial-region ?m ?s1 ?t1)
+    (instance-of ?s1 zero-dimensional-spatial-region ?t1)))))
+
+Axiom occupies-spatial-region.material-entity->three-dimensional-spatial-region [ocw-1]: 
+If a occupies-spatial-region b then if a is an instance of material-entity then b is an instance of three-dimensional-spatial-region
+(:forall (?p ?q ?t)
+ (:implies
+  (:and (occupies-spatial-region ?p ?q ?t)
+   (instance-of ?p material-entity ?t))
+  (instance-of ?q three-dimensional-spatial-region ?t)))
+
+Axiom fiat-point-occupies-0d-spatial-regions [alm-1]: 
+A fiat point occupies a zero-dimensional spatial region
+(:forall (?x ?t)
+ (:implies (instance-of ?x fiat-point ?t)
+  (:exists (?tp ?s)
+   (:and (temporal-part-of ?tp ?t)
+    (occupies-spatial-region ?x ?s ?tp)
+    (instance-of ?s zero-dimensional-spatial-region ?tp)))))
+
