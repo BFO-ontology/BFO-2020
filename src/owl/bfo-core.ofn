@@ -778,7 +778,7 @@ SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000035> ObjectAllValuesFrom(<htt
 
 AnnotationAssertion(dc11:identifier <http://purl.obolibrary.org/obo/BFO_0000038> "103-BFO")
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000038> "one-dimensional temporal region"@en)
-AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000038> "(Elucidation) A one-dimensional temporal region is a temporal region is a whole that has a temporal interval and zero or more temporal intervals and temporal instants as parts"@en)
+AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000038> "(Elucidation) A one-dimensional temporal region is a temporal region that is a whole that has a temporal interval and zero or more temporal intervals and temporal instants as parts"@en)
 AnnotationAssertion(skos:example <http://purl.obolibrary.org/obo/BFO_0000038> "The temporal region during which a process occurs"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000038> <http://purl.obolibrary.org/obo/BFO_0000008>)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000038> ObjectAllValuesFrom(<http://purl.obolibrary.org/obo/BFO_0000121> ObjectUnionOf(<http://purl.obolibrary.org/obo/BFO_0000038> <http://purl.obolibrary.org/obo/BFO_0000148>)))
