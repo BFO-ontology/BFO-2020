@@ -1109,7 +1109,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000019> ;
                                              dc11:identifier "057-BFO" ;
                                              rdfs:label "relational quality"@en ;
-                                             skos:definition "b is a relational quality =Def b is a quality & there exists c and d such that b and c are not identical & b specifically depends on c & b specifically depends on d"@en ;
+                                             skos:definition "b is a relational quality =Def b is a quality & there exists c and d such that c and d are not identical & b specifically depends on c & b specifically depends on d"@en ;
                                              skos:example "A marriage bond; an instance of love; an obligation between one person and another"@en .
 
 
