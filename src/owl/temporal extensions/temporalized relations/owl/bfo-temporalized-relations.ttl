@@ -1437,7 +1437,7 @@ obo:BFO_0000038 rdf:type owl:Class ;
                 owl:disjointWith obo:BFO_0000148 ;
                 dc11:identifier "103-BFO" ;
                 rdfs:label "one-dimensional temporal region"@en ;
-                skos:definition "(Elucidation) A one-dimensional temporal region is a temporal region is a whole that has a temporal interval and zero or more temporal intervals and temporal instants as parts"@en ;
+                skos:definition "(Elucidation) A one-dimensional temporal region is a temporal region that is a whole that has a temporal interval and zero or more temporal intervals and temporal instants as parts"@en ;
                 skos:example "The temporal region during which a process occurs"@en ;
                 skos:prefLabel "one-dimensional temporal region"@en .
 
@@ -1517,7 +1517,7 @@ obo:BFO_0000145 rdf:type owl:Class ;
                 rdfs:subClassOf obo:BFO_0000019 ;
                 dc11:identifier "057-BFO" ;
                 rdfs:label "relational quality"@en ;
-                skos:definition "b is a relational quality =Def b is a quality & there exists c and d such that b and c are not identical & b specifically depends on c & b specifically depends on d"@en ;
+                skos:definition "b is a relational quality =Def b is a quality & there exists c and d such that c and d are not identical & b specifically depends on c & b specifically depends on d"@en ;
                 skos:example "A marriage bond; an instance of love; an obligation between one person and another"@en ;
                 skos:prefLabel "relational quality"@en .
 
