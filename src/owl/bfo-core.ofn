@@ -778,7 +778,7 @@ SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000035> ObjectAllValuesFrom(<htt
 
 AnnotationAssertion(dc11:identifier <http://purl.obolibrary.org/obo/BFO_0000038> "103-BFO")
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000038> "one-dimensional temporal region"@en)
-AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000038> "(Elucidation) A one-dimensional temporal region is a temporal region is a whole that has a temporal interval and zero or more temporal intervals and temporal instants as parts"@en)
+AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000038> "(Elucidation) A one-dimensional temporal region is a temporal region that is a whole that has a temporal interval and zero or more temporal intervals and temporal instants as parts"@en)
 AnnotationAssertion(skos:example <http://purl.obolibrary.org/obo/BFO_0000038> "The temporal region during which a process occurs"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000038> <http://purl.obolibrary.org/obo/BFO_0000008>)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000038> ObjectAllValuesFrom(<http://purl.obolibrary.org/obo/BFO_0000121> ObjectUnionOf(<http://purl.obolibrary.org/obo/BFO_0000038> <http://purl.obolibrary.org/obo/BFO_0000148>)))
@@ -827,7 +827,7 @@ SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000142> ObjectAllValuesFrom(<htt
 
 AnnotationAssertion(dc11:identifier <http://purl.obolibrary.org/obo/BFO_0000145> "057-BFO")
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000145> "relational quality"@en)
-AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000145> "b is a relational quality =Def b is a quality & there exists c and d such that b and c are not identical & b specifically depends on c & b specifically depends on d"@en)
+AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000145> "b is a relational quality =Def b is a quality & there exists c and d such that c and d are not identical & b specifically depends on c & b specifically depends on d"@en)
 AnnotationAssertion(skos:example <http://purl.obolibrary.org/obo/BFO_0000145> "A marriage bond; an instance of love; an obligation between one person and another"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000145> <http://purl.obolibrary.org/obo/BFO_0000019>)
 
