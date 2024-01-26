@@ -2,8 +2,8 @@
 
 This directory contains documentation reflecting the requirements of [ISO/IEC 21838‑2:2020](https://www.iso.org/obp/ui/#iso:std:iso-iec:21838:-2:ed-1:v1:en), specifically:
 * owl 
-    - bfo-core.owl - Implementation of BFO in the Web Ontology Language (OWL), rendered in RDF/XML.
-    - bfo-core.owl - Implementation of BFO in the Web Ontology Language (OWL), rendered in Functional Syntax.
+    - bfo-core.owl - Implementation of BFO in the Web Ontology Language (OWL), rendered in OWL/XML.
+    - bfo-core.ofn - Implementation of BFO in the Web Ontology Language (OWL), rendered in Functional Syntax.
 * common logic
     - Files containing modularized sub-theories of BFO in CLIF, such as the theory of spatial regions spatial.cl and the theory of histories history.cl. 
 * prover9 

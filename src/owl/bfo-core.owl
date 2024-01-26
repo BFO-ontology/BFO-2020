@@ -1941,7 +1941,7 @@
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="skos:definition"/>
         <IRI>http://purl.obolibrary.org/obo/BFO_0000038</IRI>
-        <Literal xml:lang="en">(Elucidation) A one-dimensional temporal region is a temporal region is a whole that has a temporal interval and zero or more temporal intervals and temporal instants as parts</Literal>
+        <Literal xml:lang="en">(Elucidation) A one-dimensional temporal region is a temporal region that is a whole that has a temporal interval and zero or more temporal intervals and temporal instants as parts</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="skos:example"/>
@@ -2466,7 +2466,7 @@
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="skos:definition"/>
         <IRI>http://purl.obolibrary.org/obo/BFO_0000145</IRI>
-        <Literal xml:lang="en">b is a relational quality =Def b is a quality &amp; there exists c and d such that b and c are not identical &amp; b specifically depends on c &amp; b specifically depends on d</Literal>
+        <Literal xml:lang="en">b is a relational quality =Def b is a quality &amp; there exists c and d such that c and d are not identical &amp; b specifically depends on c &amp; b specifically depends on d</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="skos:example"/>
