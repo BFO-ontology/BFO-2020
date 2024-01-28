@@ -1,6 +1,6 @@
 # SPARQL Quality Control 
 
-This directory contains SPARQL files used to automate quality control checks against updates to bfo-core-owl. 
+This directory contains [SPARQL](https://www.w3.org/TR/sparql11-query/) files used to automate quality control checks against updates to bfo-core-owl. 
 
 ## Quality Control Format
 
