@@ -5,8 +5,8 @@ A long-standing issue among BFO users and developers has concerned how best to r
 
 Since FOL allows using ternary relations. OWL's restriction to at most binary relations precludes expressions like (1); indeed, there is no simple, straightforward way to represent the content of (1) in OWL. Given the need to represent time and change in many domains and the wide use of OWL in ontology circles, proposals have been offered by users of BFO for representing such phenomena within the binary constraints of OWL. Examples include: 
 
-    A. [Temporalized Relations](src/owl/profiles/temporal extensions/temporalized relations/owl/README.md) 
-    B. [Temporal Interpretation Annotation](https://oborel.github.io/obo-relations/temporal-semantics/)
+* [Temporalized Relations](src/owl/profiles/temporal extensions/temporalized relations/owl/README.md) 
+* [Temporal Interpretation Annotation](https://oborel.github.io/obo-relations/temporal-semantics/)
 
 Each is a plausible avenue of research in the interest of more rigorous representations of time in restricted formal languages. Details for each can be viewed at the above links. 
 
