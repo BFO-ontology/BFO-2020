@@ -18,3 +18,5 @@ Files in this directory reflect moduralization of BFO into sub-theories, namely:
 - Participation between continuants and processes
 - Precedence relationships across temporal regions
 - Existence between entities and temporal regions
+
+Release notes are available in the top level directory "release-notes"

@@ -14,9 +14,9 @@ The axiom all-participation-at-process-occupied-temporal-region tightens the rel
 participation and processes, ensuring that all participation happens in the temporal region
 a process occupies.
 
-Common Logic files: 'src/common logic'
-Prover 9 files: 'src/prover9'
-Typeset: 'documentation/axiomatization pdfs'
+Common Logic files: src/common-logic
+Prover 9 files: src/prover9
+Traditional notation: documentation/first-order-logic-axiomatization/
 
 Alan Ruttenberg 2024-01-10
 
