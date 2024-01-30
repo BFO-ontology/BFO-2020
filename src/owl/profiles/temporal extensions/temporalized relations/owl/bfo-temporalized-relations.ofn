@@ -10,8 +10,8 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
 
 
-Ontology(<http://purl.obolibrary.org/obo/bfo-temporalized-relations.owl>
-<http://purl.obolibrary.org/obo/bfo/2020/bfo-temporalized-relations.owl>
+Ontology(<http://purl.obolibrary.org/obo/bfo.owl>
+<http://purl.obolibrary.org/obo/bfo/2020/bfo.owl>
 Annotation(dc11:contributor "Alan Ruttenberg")
 Annotation(dc11:contributor "Albert Goldfain")
 Annotation(dc11:contributor "Barry Smith")

@@ -9,8 +9,8 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @base <http://purl.obolibrary.org/obo/bfo> .
 
-<http://purl.obolibrary.org/obo/bfo> rdf:type owl:Ontology ;
-                                      owl:versionIRI <http://purl.obolibrary.org/obo/bfo/2020/bfo> ;
+<http://purl.obolibrary.org/obo/bfo.owl> rdf:type owl:Ontology ;
+                                      owl:versionIRI <http://purl.obolibrary.org/obo/bfo/2020/bfo-core.ttl> ;
                                       dc11:contributor "Alan Ruttenberg" ,
                                                        "Albert Goldfain" ,
                                                        "Barry Smith" ,
