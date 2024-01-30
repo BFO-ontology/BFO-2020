@@ -1,7 +1,7 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2022/11/01
+BFO 2020 Axiomatization, generated 2024/01/08
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
-Author: Alan Ruttenberg - alanruttenberg@gmail.com
+Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:text
@@ -48,6 +48,13 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (forall (t) (if (exists-at o1 t) (exists-at o2 t))))))
 
 
+  (cl:comment "If a occurrent-part-of b then if a is an instance of temporal-region then b is an instance of temporal-region, and vice-versa [gjl-2]"
+    (forall (p q)
+     (if (occurrent-part-of p q)
+      (iff (instance-of p temporal-region p)
+       (instance-of q temporal-region q)))))
+
+
   (cl:comment "occurrent-part-of has domain occurrent and range occurrent [zmr-1]"
     (forall (a b)
      (if (occurrent-part-of a b)
@@ -84,11 +91,12 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (occurrent-part-of pb p))))))
 
 
-  (cl:comment "If a occurrent-part-of b then if a is an instance of temporal-region then b is an instance of temporal-region, and vice-versa [gjl-1]"
-    (forall (p q)
-     (if (occurrent-part-of p q)
-      (iff (exists (t) (instance-of p temporal-region t))
-       (exists (t) (instance-of q temporal-region t))))))
+  (cl:comment "definition of temporal part for temporal regions [cmy-2]"
+    (forall (b c)
+     (if
+      (and (instance-of b temporal-region b)
+       (instance-of c temporal-region c))
+      (iff (temporal-part-of b c) (occurrent-part-of b c)))))
 
 
   (cl:comment "If a has-occurrent-part b then if a is an instance of process-boundary then b is an instance of process-boundary [hdk-1]"
@@ -103,14 +111,6 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
      (if (occurrent-part-of p q)
       (iff (exists (t) (instance-of p spatiotemporal-region t))
        (exists (t) (instance-of q spatiotemporal-region t))))))
-
-
-  (cl:comment "definition of temporal part for temporal regions [cmy-1]"
-    (forall (b c)
-     (if
-      (and (exists (t) (instance-of b temporal-region t))
-       (exists (t) (instance-of c temporal-region t)))
-      (iff (temporal-part-of b c) (occurrent-part-of b c)))))
 
 
   (cl:comment "If a has-occurrent-part b then if a is an instance of process then b is an instance of process or process-boundary  [ccz-1]"
@@ -169,7 +169,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
           (or (= tb ftp) (= tb ltp)))))))))
 
 
-  (cl:comment "b temporal part c (both spatiotemporal regions) iff b temporal projection is part of c's temporal projection, and for all parts of b's existence, if it spatially-projects-onto s at that time, then so does c [eom-1]"
+  (cl:comment "b temporal part c (both spatiotemporal regions) iff b temporal projection is part of c's temporal projection, and for all parts of b's existence, if it spatially-projects-onto s at that time, then so does c [eom-2]"
     (forall (b c)
      (if
       (and (exists (t) (instance-of b spatiotemporal-region t))

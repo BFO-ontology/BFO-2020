@@ -1,7 +1,7 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2021/11/12
+BFO 2020 Axiomatization, generated 2024/01/08
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
-Author: Alan Ruttenberg - alanruttenberg@gmail.com
+Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:text
@@ -80,11 +80,19 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (instance-of t temporal-region t)))))
 
 
-  (cl:comment "If x s-depends-on y then there's at least one time when they both exist [iyu-1]"
+  (cl:comment "If s s-depends-on c then there's at least one time when they both exist and whenever s exists, c must also exist [iyu-1]"
     (forall (s c)
      (if (specifically-depends-on s c)
       (and (exists (t) (and (exists-at s t) (exists-at c t)))
        (forall (t) (if (exists-at s t) (exists-at c t)))))))
+
+
+  (cl:comment "No role changes type during its existence [bks-1]"
+    (forall (o)
+     (if (exists (t) (instance-of o role t))
+      (forall (u)
+       (if (exists (t) (instance-of o u t))
+        (forall (t) (iff (instance-of o role t) (instance-of o u t))))))))
 
 
   (cl:comment "DEFINITION: b is a relational quality = Def. b is a quality and there exists distinct c and d such that at all times t, b inheres in c if and only b specifically-depends-on. [dbp-1]"
@@ -95,16 +103,6 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (and (not (= c d)) (inheres-in b c)
          (specifically-depends-on b d)))
        (exists (t) (instance-of b quality t))))))
-
-
-  (cl:comment "inheres-in has domain specifically-dependent-continuant and range independent-continuant but not spatial-region [lmq-1]"
-    (forall (a b)
-     (if (inheres-in a b)
-      (and
-       (exists (t) (instance-of a specifically-dependent-continuant t))
-       (exists (t)
-        (and (instance-of b independent-continuant t)
-         (not (instance-of b spatial-region t))))))))
 
 
   (cl:comment "a inheres_in b =Def. a is a specifically dependent continuant and b is an independent continuant that is not a spatial region and a s-depends_on b. [tht-1]"

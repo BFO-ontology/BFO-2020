@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2021/11/12
+% BFO 2020 Axiomatization, generated 2024/01/08
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -15,6 +15,9 @@ all p all t  ((instanceOf(p,process,t)) -> (exists c  (participatesIn(c,p,t)))) 
 
 % participates-in is dissective on third argument, a temporal region
 all p all q all r all s  ((((participatesIn(p,q,r)) & (temporalPartOf(s,r)))) -> (participatesIn(p,q,s))) # label("participates-in-dissective-on-third-argument-temporal") .
+
+% If c participates in p at t and p occupies-temporal-region r then t is part of r
+all c all p all r all t  ((((occupiesTemporalRegion(p,r)) & (participatesIn(c,p,t)))) -> (temporalPartOf(t,r))) # label("all-participation-at-process-occupied-temporal-region") .
 
 % participates-in is time indexed and has domain: independent-continuant but not spatial-region or specifically-dependent-continuant or generically-dependent-continuant  and range: process
 all a all b all t  ((participatesIn(a,b,t)) -> (((((((instanceOf(a,independentContinuant,t)) & (-(instanceOf(a,spatialRegion,t))))) | (instanceOf(a,specificallyDependentContinuant,t)) | (instanceOf(a,genericallyDependentContinuant,t)))) & (instanceOf(b,process,t)) & (instanceOf(t,temporalRegion,t))))) # label("participates-in-domain-range") .

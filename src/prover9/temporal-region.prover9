@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2022/09/26
+% BFO 2020 Axiomatization, generated 2024/01/08
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -19,6 +19,9 @@ all a all b  ((temporalPartOf(a,b)) <-> (hasTemporalPart(b,a))) # label("tempora
 % temporal-part-of for occurrents implies occurrent-part-of
 all a all b  ((temporalPartOf(a,b)) -> (occurrentPartOf(a,b))) # label("temporal-part-of-subproperty-of-occurrent-part-of") .
 
+% temporal-part-of is reflexive
+all a  ((instanceOf(a,temporalRegion,a)) -> (temporalPartOf(a,a))) # label("temporal-part-of-is-reflexive-on-temporal-region") .
+
 % proper-temporal-part-of and has-proper-temporal-part are inverse relations
 all a all b  ((properTemporalPartOf(a,b)) <-> (hasProperTemporalPart(b,a))) # label("proper-temporal-part-of-inverse-of-has-proper-temporal-part") .
 
@@ -37,14 +40,14 @@ all a all b  ((properTemporalPartOf(a,b)) -> (-(properTemporalPartOf(b,a)))) # l
 % has-last-instant is functional on second argument
 all p all q all r  ((((hasLastInstant(p,q)) & (hasLastInstant(p,r)))) -> ((q) = (r))) # label("has-last-instant-functional-on-second-argument") .
 
-% temporal-part-of is reflexive
-all a  ((exists t  (instanceOf(a,temporalRegion,t))) -> (temporalPartOf(a,a))) # label("temporal-part-of-is-reflexive-on-temporal-region") .
-
 % has-first-instant is functional on second argument
 all p all q all r  ((((hasFirstInstant(p,q)) & (hasFirstInstant(p,r)))) -> ((q) = (r))) # label("has-first-instant-functional-on-second-argument") .
 
 % a proper temporal part of b means a is a temporal part of b and b a is not the same as b
 all x all y  ((properTemporalPartOf(x,y)) <-> (((temporalPartOf(x,y)) & (-((x) = (y)))))) # label("definition-of-proper-temporal-part-of") .
+
+% The only part of a temporal instant is itself
+all p all q  ((((instanceOf(p,temporalInstant,p)) & (hasTemporalPart(p,q)))) -> ((p) = (q))) # label("temporal-instant-only-has-self-as-part") .
 
 % instance-of is dissective on third argument, a temporal region
 all p all q all r all s  ((((instanceOf(p,q,r)) & (temporalPartOf(s,r)))) -> (instanceOf(p,q,s))) # label("instance-of-dissective-on-third-argument-temporal") .
@@ -55,14 +58,20 @@ all a all b all c  ((((temporalPartOf(a,b)) & (temporalPartOf(b,c)))) -> (tempor
 % The first and last time points for an instant are the instant itself
 all i  ((instanceOf(i,temporalInstant,i)) <-> (((hasFirstInstant(i,i)) & (hasLastInstant(i,i))))) # label("instant-first-and-last-instant-are-itself") .
 
-% The only part of a temporal instant is itself
-all p all q  ((((exists t  (instanceOf(p,temporalInstant,t))) & (hasTemporalPart(p,q)))) -> ((p) = (q))) # label("temporal-instant-only-has-self-as-part") .
-
 % temporal regions are instances at themselves
-all a all u  ((exists t  (((instanceOf(a,temporalRegion,t)) & (instanceOf(a,u,t))))) -> (instanceOf(a,u,a))) # label("temporal-regions-instance-of-at-self") .
+all a all u  ((exists t  (((instanceOf(a,temporalRegion,t)) & (instanceOf(a,u,t))))) <-> (instanceOf(a,u,a))) # label("temporal-regions-instance-of-at-self") .
+
+% If a temporal-part-of b then if a is an instance of temporal-region then b is an instance of temporal-region, and vice-versa
+all p all q  ((temporalPartOf(p,q)) -> ((instanceOf(p,temporalRegion,p)) <-> (instanceOf(q,temporalRegion,q)))) # label("temporal-part-of.temporal-region<->temporal-region") .
+
+% has-last-instant has domain temporal-region and range temporal-instant
+all a all b  ((hasLastInstant(a,b)) -> (((instanceOf(a,temporalRegion,a)) & (instanceOf(b,temporalInstant,b))))) # label("has-last-instant-domain-range") .
 
 % proper-temporal-part-of is transitive
 all a all b all c  ((((properTemporalPartOf(a,b)) & (properTemporalPartOf(b,c)))) -> (properTemporalPartOf(a,c))) # label("proper-temporal-part-of-transitive") .
+
+% has-first-instant has domain temporal-region and range temporal-instant
+all a all b  ((hasFirstInstant(a,b)) -> (((instanceOf(a,temporalRegion,a)) & (instanceOf(b,temporalInstant,b))))) # label("has-first-instant-domain-range") .
 
 % If the last instant of a temporal region precedes the first instant of another, then the first region precedes the second
 all i1 all i2 all l1 all f2  ((((hasLastInstant(i1,l1)) & (hasFirstInstant(i2,f2)) & (precedes(l1,f2)))) -> (precedes(i1,i2))) # label("regions-precede-if-last-first-before-first-second") .
@@ -82,17 +91,14 @@ all t all ft all lt  ((((-(instanceOf(t,temporalInstant,t))) & (hasFirstInstant(
 % If one temporal region precedes another then the first last time point precedes the second first time point
 all t1 all t2 all l1 all f2  ((((precedes(t1,t2)) & (hasLastInstant(t1,l1)) & (hasFirstInstant(t2,f2)) & (-((l1) = (f2))))) -> (precedes(l1,f2))) # label("regions-precede-mean-endpoints-precede-unless-they-coincide") .
 
-% If a temporal-part-of b then if a is an instance of temporal-region then b is an instance of temporal-region, and vice-versa
-all p all q  ((temporalPartOf(p,q)) -> ((exists t  (instanceOf(p,temporalRegion,t))) <-> (exists t  (instanceOf(q,temporalRegion,t))))) # label("temporal-part-of.temporal-region<->temporal-region") .
-
-% has-last-instant has domain temporal-region and range temporal-instant
-all a all b  ((hasLastInstant(a,b)) -> (((exists t  (instanceOf(a,temporalRegion,t))) & (exists t  (instanceOf(b,temporalInstant,t)))))) # label("has-last-instant-domain-range") .
-
-% has-first-instant has domain temporal-region and range temporal-instant
-all a all b  ((hasFirstInstant(a,b)) -> (((exists t  (instanceOf(a,temporalRegion,t))) & (exists t  (instanceOf(b,temporalInstant,t)))))) # label("has-first-instant-domain-range") .
+% If a temporal-part-of b then if a is an instance of one-dimensional-temporal-region then b is an instance of one-dimensional-temporal-region
+all p all q  ((temporalPartOf(p,q)) -> ((instanceOf(p,oneDimensionalTemporalRegion,p)) -> (instanceOf(q,oneDimensionalTemporalRegion,q)))) # label("temporal-part-of.one-dimensional-temporal-region->one-dimensional-temporal-region") .
 
 % A one-dimensional temporal region has at least one interval as part
 all t  ((((instanceOf(t,oneDimensionalTemporalRegion,t)))) -> (exists p  (((temporalPartOf(p,t)) & (instanceOf(p,temporalInterval,p)))))) # label("one-dimensional-temporal-has-at-least-one-interval-part") .
+
+% If a has-temporal-part b then if a is an instance of zero-dimensional-temporal-region then b is an instance of zero-dimensional-temporal-region
+all p all q  ((hasTemporalPart(p,q)) -> ((instanceOf(p,zeroDimensionalTemporalRegion,p)) -> (instanceOf(q,zeroDimensionalTemporalRegion,q)))) # label("has-temporal-part.zero-dimensional-temporal-region->zero-dimensional-temporal-region") .
 
 % temporal instants are totally ordered
 all t1 all t2  ((((instanceOf(t1,temporalInstant,t1)) & (instanceOf(t2,temporalInstant,t2)))) -> (((precedes(t1,t2)) | (precedes(t2,t1)) | ((t1) = (t2))))) # label("temporal-instants-connex-related") .
@@ -100,14 +106,11 @@ all t1 all t2  ((((instanceOf(t1,temporalInstant,t1)) & (instanceOf(t2,temporalI
 % temporal-region is the union of zero-dimensional-temporal-region and one-dimensional-temporal-region 
 all i all t  ((instanceOf(i,temporalRegion,t)) -> (((instanceOf(i,zeroDimensionalTemporalRegion,t)) | (instanceOf(i,oneDimensionalTemporalRegion,t))))) # label("temporal-region-cover") .
 
-% If a temporal-part-of b then if a is an instance of one-dimensional-temporal-region then b is an instance of one-dimensional-temporal-region
-all p all q  ((temporalPartOf(p,q)) -> ((exists t  (instanceOf(p,oneDimensionalTemporalRegion,t))) -> (exists t  (instanceOf(q,oneDimensionalTemporalRegion,t))))) # label("temporal-part-of.one-dimensional-temporal-region->one-dimensional-temporal-region") .
-
-% If a has-temporal-part b then if a is an instance of zero-dimensional-temporal-region then b is an instance of zero-dimensional-temporal-region
-all p all q  ((hasTemporalPart(p,q)) -> ((exists t  (instanceOf(p,zeroDimensionalTemporalRegion,t))) -> (exists t  (instanceOf(q,zeroDimensionalTemporalRegion,t))))) # label("has-temporal-part.zero-dimensional-temporal-region->zero-dimensional-temporal-region") .
-
 % If the last instant of a temporal region is the first instant of another, the first region precedes the second
 all i1 all i2 all l1 all f2  ((((-(instanceOf(i1,temporalInstant,i1))) & (-(instanceOf(i2,temporalInstant,i2))) & (hasLastInstant(i1,l1)) & (hasFirstInstant(i2,f2)) & ((l1) = (f2)))) -> (precedes(i1,i2))) # label("regions-precede-if-they-meet") .
+
+% If a has-temporal-part b then if a is an instance of one-dimensional-temporal-region then b is an instance of one-dimensional-temporal-region or zero-dimensional-temporal-region 
+all p all q  ((hasTemporalPart(p,q)) -> ((instanceOf(p,oneDimensionalTemporalRegion,p)) -> (((instanceOf(q,oneDimensionalTemporalRegion,q)) | (instanceOf(q,zeroDimensionalTemporalRegion,q)))))) # label("has-temporal-part.one-dimensional-temporal-region->or-one-dimensional-temporal-region-zero-dimensional-temporal-region") .
 
 % A last instant is either part of an extended region or is preceded by it
 all l all i  ((((instanceOf(l,temporalInstant,l)) & (instanceOf(i,temporalRegion,i)) & (-(instanceOf(i,temporalInstant,i))) & (hasLastInstant(i,l)))) -> ((-(temporalPartOf(l,i))) <-> (precedes(i,l)))) # label("either-last-instant-part-or-preceded-by") .
@@ -117,9 +120,6 @@ all f all i  ((((instanceOf(f,temporalInstant,f)) & (instanceOf(i,temporalRegion
 
 % If two temporal intervals do not overlap then one of them precedes the other
 all t1 all t2  ((((instanceOf(t1,temporalInterval,t1)) & (instanceOf(t2,temporalInterval,t2)) & (-(exists part  (((temporalPartOf(part,t1)) & (temporalPartOf(part,t2)))))))) -> (((precedes(t1,t2)) | (precedes(t2,t1))))) # label("temporal-intervals-dont-overlap-implies-one-precedes-the-other") .
-
-% If a has-temporal-part b then if a is an instance of one-dimensional-temporal-region then b is an instance of one-dimensional-temporal-region or zero-dimensional-temporal-region 
-all p all q  ((hasTemporalPart(p,q)) -> ((exists t  (instanceOf(p,oneDimensionalTemporalRegion,t))) -> (exists t  (((instanceOf(q,oneDimensionalTemporalRegion,t)) | (instanceOf(q,zeroDimensionalTemporalRegion,t))))))) # label("has-temporal-part.one-dimensional-temporal-region->or-one-dimensional-temporal-region-zero-dimensional-temporal-region") .
 
 % The first temporal instant is such that it precedes every part of the interval that doesn't have the first instant as part
 all fi all i  ((((instanceOf(fi,temporalInstant,fi)) & (instanceOf(i,temporalRegion,i)) & (-(instanceOf(i,temporalInstant,i))))) -> ((hasFirstInstant(i,fi)) -> (all ip  ((((temporalPartOf(ip,i)) & (-(temporalPartOf(fi,ip))))) -> (precedes(fi,ip)))))) # label("first-instant-for-temporal-regions-precedes-all-parts-of-region-other-than-self") .

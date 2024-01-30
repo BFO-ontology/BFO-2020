@@ -1,14 +1,14 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2021/11/12
+BFO 2020 Axiomatization, generated 2024/01/08
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
-Author: Alan Ruttenberg - alanruttenberg@gmail.com
+Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:text
 
   (cl:ttl https://basic-formal-ontology.org/2020/formulas/clif/continuant-mereology.cl
 
-   (cl:outdiscourse temporal-part-of exists-at has-proper-continuant-part proper-continuant-part-of instance-of has-continuant-part continuant-part-of)
+   (cl:outdiscourse occupies-spatial-region temporal-part-of exists-at has-proper-continuant-part proper-continuant-part-of instance-of has-continuant-part continuant-part-of)
 
   (cl:comment "continuant-part-of and has-continuant-part are inverse relations [eld-1]"
     (forall (t a b)
@@ -163,6 +163,30 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (proper-continuant-part-of a c t))))
 
 
+  (cl:comment "A fiat line occupies a one-dimensional spatial region [kcq-1]"
+    (forall (x t)
+     (if (instance-of x fiat-line t)
+      (exists (s tp)
+       (and (temporal-part-of tp t) (occupies-spatial-region x s tp)
+        (instance-of s one-dimensional-spatial-region tp))))))
+
+
+  (cl:comment "A fiat point occupies a zero-dimensional spatial region [alm-1]"
+    (forall (x t)
+     (if (instance-of x fiat-point t)
+      (exists (tp s)
+       (and (temporal-part-of tp t) (occupies-spatial-region x s tp)
+        (instance-of s zero-dimensional-spatial-region tp))))))
+
+
+  (cl:comment "A fiat surface occupies a two-dimensional spatial region [fpl-1]"
+    (forall (x t)
+     (if (instance-of x fiat-surface t)
+      (exists (s tp)
+       (and (temporal-part-of tp t) (occupies-spatial-region x s tp)
+        (instance-of s two-dimensional-spatial-region tp))))))
+
+
   (cl:comment "If a has-continuant-part b then if a is an instance of material-entity then b is an instance of site or continuant-fiat-boundary or material-entity  [mic-1]"
     (forall (p q t)
      (if
@@ -191,6 +215,50 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (forall (t)
         (iff (continuant-part-of a b t) (continuant-part-of b a t))))
       (= a b))))
+
+
+  (cl:comment "The dimensionality of the region of something occupying a one dimensional spatial region does not change [qfe-1]"
+    (forall (m s)
+     (if
+      (exists (t)
+       (and (occupies-spatial-region m s t)
+        (instance-of s one-dimensional-spatial-region t)))
+      (forall (t1 s1)
+       (if (occupies-spatial-region m s1 t1)
+        (instance-of s1 one-dimensional-spatial-region t1))))))
+
+
+  (cl:comment "The dimensionality of the region of something occupying a two dimensional spatial region does not change [dor-1]"
+    (forall (m s)
+     (if
+      (exists (t)
+       (and (occupies-spatial-region m s t)
+        (instance-of s two-dimensional-spatial-region t)))
+      (forall (t1 s1)
+       (if (occupies-spatial-region m s1 t1)
+        (instance-of s1 two-dimensional-spatial-region t1))))))
+
+
+  (cl:comment "The dimensionality of the region of something occupying a zero dimensional spatial region does not change [fok-1]"
+    (forall (m s)
+     (if
+      (exists (t)
+       (and (occupies-spatial-region m s t)
+        (instance-of s zero-dimensional-spatial-region t)))
+      (forall (t1 s1)
+       (if (occupies-spatial-region m s1 t1)
+        (instance-of s1 zero-dimensional-spatial-region t1))))))
+
+
+  (cl:comment "The dimensionality of the region of something occupying a three dimensional spatial region does not change [rlf-1]"
+    (forall (m s)
+     (if
+      (exists (t)
+       (and (occupies-spatial-region m s t)
+        (instance-of s three-dimensional-spatial-region t)))
+      (forall (t1 s1)
+       (if (occupies-spatial-region m s1 t1)
+        (instance-of s1 three-dimensional-spatial-region t1))))))
 
 
   (cl:comment "If a material entity has a proper part, then at least one of its proper parts is not an immaterial entity [adm-1]"

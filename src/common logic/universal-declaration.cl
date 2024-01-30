@@ -1,7 +1,7 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2022/09/26
+BFO 2020 Axiomatization, generated 2024/01/08
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
-Author: Alan Ruttenberg - alanruttenberg@gmail.com
+Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:text
