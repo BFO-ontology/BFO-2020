@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2021/11/12
+% BFO 2020 Axiomatization, generated 2024/01/08
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -40,14 +40,14 @@ all r all p  ((realizes(p,r)) -> (exists proct exists first  (((occupiesTemporal
 % has-material-basis is time indexed and has domain: disposition and range: material-entity
 all a all b all t  ((hasMaterialBasis(a,b,t)) -> (((instanceOf(a,disposition,t)) & (instanceOf(b,materialEntity,t)) & (instanceOf(t,temporalRegion,t))))) # label("has-material-basis-domain-range") .
 
-% If x s-depends-on y then there's at least one time when they both exist
+% If s s-depends-on c then there's at least one time when they both exist and whenever s exists, c must also exist
 all s all c  ((specificallyDependsOn(s,c)) -> (((exists t  (((existsAt(s,t)) & (existsAt(c,t))))) & (all t  ((existsAt(s,t)) -> (existsAt(c,t))))))) # label("s-depends-means-bearer-exists-when-dependent-exists") .
+
+% No role changes type during its existence
+all o  ((exists t  (instanceOf(o,role,t))) -> (all u  ((exists t  (instanceOf(o,u,t))) -> (all t  ((instanceOf(o,role,t)) <-> (instanceOf(o,u,t))))))) # label("all-role-types-are-rigid") .
 
 % DEFINITION: b is a relational quality = Def. b is a quality and there exists distinct c and d such that at all times t, b inheres in c if and only b specifically-depends-on.
 all b  ((exists t  (instanceOf(b,relationalQuality,t))) <-> (((exists c exists d  (((-((c) = (d))) & (inheresIn(b,c)) & (specificallyDependsOn(b,d))))) & (exists t  (instanceOf(b,quality,t)))))) # label("relational-quality-definition") .
-
-% inheres-in has domain specifically-dependent-continuant and range independent-continuant but not spatial-region
-all a all b  ((inheresIn(a,b)) -> (((exists t  (instanceOf(a,specificallyDependentContinuant,t))) & (exists t  (((instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,spatialRegion,t))))))))) # label("inheres-in-domain-range") .
 
 % a inheres_in b =Def. a is a specifically dependent continuant and b is an independent continuant that is not a spatial region and a s-depends_on b.
 all a all b  ((inheresIn(a,b)) <-> (((specificallyDependsOn(a,b)) & (exists t  (((instanceOf(a,specificallyDependentContinuant,t)) & (instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,spatialRegion,t))))))))) # label("inheres-in-definition") .

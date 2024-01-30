@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2021/11/12
+% BFO 2020 Axiomatization, generated 2024/01/08
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -76,6 +76,15 @@ all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,zeroDimensional
 % proper-continuant-part-of is transitive at a time
 all a all b all c all t all t2  ((((properContinuantPartOf(a,b,t)) & (properContinuantPartOf(b,c,t2)) & (temporalPartOf(t,t2)))) -> (properContinuantPartOf(a,c,t))) # label("proper-continuant-part-of-transitive-at-a-time") .
 
+% A fiat line occupies a one-dimensional spatial region
+all x all t  ((instanceOf(x,fiatLine,t)) -> (exists s exists tp  (((temporalPartOf(tp,t)) & (occupiesSpatialRegion(x,s,tp)) & (instanceOf(s,oneDimensionalSpatialRegion,tp)))))) # label("fiat-line-occupies-1d-spatial-regions") .
+
+% A fiat point occupies a zero-dimensional spatial region
+all x all t  ((instanceOf(x,fiatPoint,t)) -> (exists tp exists s  (((temporalPartOf(tp,t)) & (occupiesSpatialRegion(x,s,tp)) & (instanceOf(s,zeroDimensionalSpatialRegion,tp)))))) # label("fiat-point-occupies-0d-spatial-regions") .
+
+% A fiat surface occupies a two-dimensional spatial region
+all x all t  ((instanceOf(x,fiatSurface,t)) -> (exists s exists tp  (((temporalPartOf(tp,t)) & (occupiesSpatialRegion(x,s,tp)) & (instanceOf(s,twoDimensionalSpatialRegion,tp)))))) # label("fiat-surface-occupies-2d-spatial-regions") .
+
 % If a has-continuant-part b then if a is an instance of material-entity then b is an instance of site or continuant-fiat-boundary or material-entity 
 all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,materialEntity,t)))) -> (((instanceOf(q,site,t)) | (instanceOf(q,continuantFiatBoundary,t)) | (instanceOf(q,materialEntity,t))))) # label("has-continuant-part.material-entity->or-site-continuant-fiat-boundary-material-entity") .
 
@@ -84,6 +93,18 @@ all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,oneDimensionalS
 
 % If at all times that two object-aggreates exist each is part of the other, then they are identical
 all a all b  ((((exists t  (((instanceOf(a,objectAggregate,t)) & (continuantPartOf(a,b,t)) & (continuantPartOf(b,a,t))))) & (all t  ((continuantPartOf(a,b,t)) <-> (continuantPartOf(b,a,t)))))) -> ((a) = (b))) # label("continuant-part-of-is-extent-antisymmetric-for-object-aggregates") .
+
+% The dimensionality of the region of something occupying a one dimensional spatial region does not change
+all m all s  ((exists t  (((occupiesSpatialRegion(m,s,t)) & (instanceOf(s,oneDimensionalSpatialRegion,t))))) -> (all t1 all s1  ((occupiesSpatialRegion(m,s1,t1)) -> (instanceOf(s1,oneDimensionalSpatialRegion,t1))))) # label("occupying-a-one-dimensional-spatial-region-is-rigid") .
+
+% The dimensionality of the region of something occupying a two dimensional spatial region does not change
+all m all s  ((exists t  (((occupiesSpatialRegion(m,s,t)) & (instanceOf(s,twoDimensionalSpatialRegion,t))))) -> (all t1 all s1  ((occupiesSpatialRegion(m,s1,t1)) -> (instanceOf(s1,twoDimensionalSpatialRegion,t1))))) # label("occupying-a-two-dimensional-spatial-region-is-rigid") .
+
+% The dimensionality of the region of something occupying a zero dimensional spatial region does not change
+all m all s  ((exists t  (((occupiesSpatialRegion(m,s,t)) & (instanceOf(s,zeroDimensionalSpatialRegion,t))))) -> (all t1 all s1  ((occupiesSpatialRegion(m,s1,t1)) -> (instanceOf(s1,zeroDimensionalSpatialRegion,t1))))) # label("occupying-a-zero-dimensional-spatial-region-is-rigid") .
+
+% The dimensionality of the region of something occupying a three dimensional spatial region does not change
+all m all s  ((exists t  (((occupiesSpatialRegion(m,s,t)) & (instanceOf(s,threeDimensionalSpatialRegion,t))))) -> (all t1 all s1  ((occupiesSpatialRegion(m,s1,t1)) -> (instanceOf(s1,threeDimensionalSpatialRegion,t1))))) # label("occupying-a-three-dimensional-spatial-region-is-rigid") .
 
 % If a material entity has a proper part, then at least one of its proper parts is not an immaterial entity
 all m all t  ((((instanceOf(m,materialEntity,t)) & (exists mp  (((continuantPartOf(mp,m,t)) & (-((mp) = (m)))))))) -> (exists mp  (((-((mp) = (m))) & (continuantPartOf(mp,m,t)) & (-(instanceOf(mp,immaterialEntity,t))))))) # label("material-entity-has-at-least-one-non-immaterial-entity-as-proper-part") .

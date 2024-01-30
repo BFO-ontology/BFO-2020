@@ -1,14 +1,14 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2022/11/01
+BFO 2020 Axiomatization, generated 2024/01/08
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
-Author: Alan Ruttenberg - alanruttenberg@gmail.com
+Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:text
 
   (cl:ttl https://basic-formal-ontology.org/2020/formulas/clif/temporal-region.cl
 
-   (cl:outdiscourse precedes instance-of has-proper-temporal-part proper-temporal-part-of occurrent-part-of has-temporal-part temporal-part-of first-instant-of has-first-instant last-instant-of has-last-instant)
+   (cl:outdiscourse precedes has-proper-temporal-part proper-temporal-part-of instance-of occurrent-part-of has-temporal-part temporal-part-of first-instant-of has-first-instant last-instant-of has-last-instant)
 
   (cl:comment "has-last-instant and last-instant-of are inverse relations [wal-1]"
     (forall (a b) (iff (has-last-instant a b) (last-instant-of b a))))
@@ -24,6 +24,11 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
 
   (cl:comment "temporal-part-of for occurrents implies occurrent-part-of [bal-1]"
     (forall (a b) (if (temporal-part-of a b) (occurrent-part-of a b))))
+
+
+  (cl:comment "temporal-part-of is reflexive [dbj-2]"
+    (forall (a)
+     (if (instance-of a temporal-region a) (temporal-part-of a a))))
 
 
   (cl:comment "proper-temporal-part-of and has-proper-temporal-part are inverse relations [dbc-1]"
@@ -57,12 +62,6 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
      (if (and (has-last-instant p q) (has-last-instant p r)) (= q r))))
 
 
-  (cl:comment "temporal-part-of is reflexive [dbj-1]"
-    (forall (a)
-     (if (exists (t) (instance-of a temporal-region t))
-      (temporal-part-of a a))))
-
-
   (cl:comment "has-first-instant is functional on second argument [fwf-1]"
     (forall (p q r)
      (if (and (has-first-instant p q) (has-first-instant p r)) (= q r))))
@@ -72,6 +71,12 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
     (forall (x y)
      (iff (proper-temporal-part-of x y)
       (and (temporal-part-of x y) (not (= x y))))))
+
+
+  (cl:comment "The only part of a temporal instant is itself [pir-2]"
+    (forall (p q)
+     (if (and (instance-of p temporal-instant p) (has-temporal-part p q))
+      (= p q))))
 
 
   (cl:comment "instance-of is dissective on third argument, a temporal region [qaf-1]"
@@ -92,20 +97,26 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (and (has-first-instant i i) (has-last-instant i i)))))
 
 
-  (cl:comment "The only part of a temporal instant is itself [pir-1]"
-    (forall (p q)
-     (if
-      (and (exists (t) (instance-of p temporal-instant t))
-       (has-temporal-part p q))
-      (= p q))))
-
-
-  (cl:comment "temporal regions are instances at themselves [tvx-1]"
+  (cl:comment "temporal regions are instances at themselves [tvx-2]"
     (forall (a u)
-     (if
+     (iff
       (exists (t)
        (and (instance-of a temporal-region t) (instance-of a u t)))
       (instance-of a u a))))
+
+
+  (cl:comment "If a temporal-part-of b then if a is an instance of temporal-region then b is an instance of temporal-region, and vice-versa [mjn-2]"
+    (forall (p q)
+     (if (temporal-part-of p q)
+      (iff (instance-of p temporal-region p)
+       (instance-of q temporal-region q)))))
+
+
+  (cl:comment "has-last-instant has domain temporal-region and range temporal-instant [jtk-2]"
+    (forall (a b)
+     (if (has-last-instant a b)
+      (and (instance-of a temporal-region a)
+       (instance-of b temporal-instant b)))))
 
 
   (cl:comment "proper-temporal-part-of is transitive [mns-1]"
@@ -113,6 +124,13 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
      (if
       (and (proper-temporal-part-of a b) (proper-temporal-part-of b c))
       (proper-temporal-part-of a c))))
+
+
+  (cl:comment "has-first-instant has domain temporal-region and range temporal-instant [fwk-2]"
+    (forall (a b)
+     (if (has-first-instant a b)
+      (and (instance-of a temporal-region a)
+       (instance-of b temporal-instant b)))))
 
 
   (cl:comment "If the last instant of a temporal region precedes the first instant of another, then the first region precedes the second [qqv-1]"
@@ -160,25 +178,11 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (precedes l1 f2))))
 
 
-  (cl:comment "If a temporal-part-of b then if a is an instance of temporal-region then b is an instance of temporal-region, and vice-versa [mjn-1]"
+  (cl:comment "If a temporal-part-of b then if a is an instance of one-dimensional-temporal-region then b is an instance of one-dimensional-temporal-region [mei-2]"
     (forall (p q)
      (if (temporal-part-of p q)
-      (iff (exists (t) (instance-of p temporal-region t))
-       (exists (t) (instance-of q temporal-region t))))))
-
-
-  (cl:comment "has-last-instant has domain temporal-region and range temporal-instant [jtk-1]"
-    (forall (a b)
-     (if (has-last-instant a b)
-      (and (exists (t) (instance-of a temporal-region t))
-       (exists (t) (instance-of b temporal-instant t))))))
-
-
-  (cl:comment "has-first-instant has domain temporal-region and range temporal-instant [fwk-1]"
-    (forall (a b)
-     (if (has-first-instant a b)
-      (and (exists (t) (instance-of a temporal-region t))
-       (exists (t) (instance-of b temporal-instant t))))))
+      (if (instance-of p one-dimensional-temporal-region p)
+       (instance-of q one-dimensional-temporal-region q)))))
 
 
   (cl:comment "A one-dimensional temporal region has at least one interval as part [jhe-1]"
@@ -186,6 +190,13 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
      (if (and (instance-of t one-dimensional-temporal-region t))
       (exists (p)
        (and (temporal-part-of p t) (instance-of p temporal-interval p))))))
+
+
+  (cl:comment "If a has-temporal-part b then if a is an instance of zero-dimensional-temporal-region then b is an instance of zero-dimensional-temporal-region [bnt-2]"
+    (forall (p q)
+     (if (has-temporal-part p q)
+      (if (instance-of p zero-dimensional-temporal-region p)
+       (instance-of q zero-dimensional-temporal-region q)))))
 
 
   (cl:comment "temporal instants are totally ordered [qnf-1]"
@@ -203,20 +214,6 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (instance-of i one-dimensional-temporal-region t)))))
 
 
-  (cl:comment "If a temporal-part-of b then if a is an instance of one-dimensional-temporal-region then b is an instance of one-dimensional-temporal-region [mei-1]"
-    (forall (p q)
-     (if (temporal-part-of p q)
-      (if (exists (t) (instance-of p one-dimensional-temporal-region t))
-       (exists (t) (instance-of q one-dimensional-temporal-region t))))))
-
-
-  (cl:comment "If a has-temporal-part b then if a is an instance of zero-dimensional-temporal-region then b is an instance of zero-dimensional-temporal-region [bnt-1]"
-    (forall (p q)
-     (if (has-temporal-part p q)
-      (if (exists (t) (instance-of p zero-dimensional-temporal-region t))
-       (exists (t) (instance-of q zero-dimensional-temporal-region t))))))
-
-
   (cl:comment "If the last instant of a temporal region is the first instant of another, the first region precedes the second [suk-1]"
     (forall (i1 i2 l1 f2)
      (if
@@ -224,6 +221,14 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (not (instance-of i2 temporal-instant i2))
        (has-last-instant i1 l1) (has-first-instant i2 f2) (= l1 f2))
       (precedes i1 i2))))
+
+
+  (cl:comment "If a has-temporal-part b then if a is an instance of one-dimensional-temporal-region then b is an instance of one-dimensional-temporal-region or zero-dimensional-temporal-region  [eeg-2]"
+    (forall (p q)
+     (if (has-temporal-part p q)
+      (if (instance-of p one-dimensional-temporal-region p)
+       (or (instance-of q one-dimensional-temporal-region q)
+        (instance-of q zero-dimensional-temporal-region q))))))
 
 
   (cl:comment "A last instant is either part of an extended region or is preceded by it [acg-1]"
@@ -253,15 +258,6 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (exists (part)
          (and (temporal-part-of part t1) (temporal-part-of part t2)))))
       (or (precedes t1 t2) (precedes t2 t1)))))
-
-
-  (cl:comment "If a has-temporal-part b then if a is an instance of one-dimensional-temporal-region then b is an instance of one-dimensional-temporal-region or zero-dimensional-temporal-region  [eeg-1]"
-    (forall (p q)
-     (if (has-temporal-part p q)
-      (if (exists (t) (instance-of p one-dimensional-temporal-region t))
-       (exists (t)
-        (or (instance-of q one-dimensional-temporal-region t)
-         (instance-of q zero-dimensional-temporal-region t)))))))
 
 
   (cl:comment "The first temporal instant is such that it precedes every part of the interval that doesn't have the first instant as part [ixz-1]"
@@ -343,7 +339,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (= i1 i2)))))
 
 
-  (cl:comment "temporal-part-of has unique-product [wsg-1]"
+  (cl:comment "temporal-part-of has unique-product [wsg-2]"
     (forall (x y)
      (if
       (and (instance-of x temporal-region x)

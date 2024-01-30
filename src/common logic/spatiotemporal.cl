@@ -1,7 +1,7 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2021/11/12
+BFO 2020 Axiomatization, generated 2024/01/08
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
-Author: Alan Ruttenberg - alanruttenberg@gmail.com
+Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:text
@@ -71,6 +71,21 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (temporally-projects-onto st t))))))
 
 
+  (cl:comment "temporally-projects-onto has domain spatiotemporal-region and range temporal-region [cvr-2]"
+    (forall (a b)
+     (if (temporally-projects-onto a b)
+      (and (exists (t) (instance-of a spatiotemporal-region t))
+       (instance-of b temporal-region b)))))
+
+
+  (cl:comment "If a occupies-spatial-region b then if a is an instance of material-entity then b is an instance of three-dimensional-spatial-region [ocw-1]"
+    (forall (p q t)
+     (if
+      (and (occupies-spatial-region p q t)
+       (instance-of p material-entity t))
+      (instance-of q three-dimensional-spatial-region t))))
+
+
   (cl:comment "A process boundary occupies a spatiotemporal instant [atz-1]"
     (forall (pb tr)
      (if
@@ -87,19 +102,20 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (exists (s) (occupies-spatiotemporal-region p s)))))
 
 
-  (cl:comment "temporally-projects-onto has domain spatiotemporal-region and range temporal-region [cvr-1]"
-    (forall (a b)
-     (if (temporally-projects-onto a b)
-      (and (exists (t) (instance-of a spatiotemporal-region t))
-       (exists (t) (instance-of b temporal-region t))))))
-
-
   (cl:comment "Spatiotemporal regions always project on to some temporal region [scq-1]"
     (forall (st)
      (if (exists (t) (instance-of st spatiotemporal-region t))
       (exists (t)
        (and (instance-of t temporal-region t)
         (temporally-projects-onto st t))))))
+
+
+  (cl:comment "Every temporal region is a projection from a spatiotemporal region [xco-2]"
+    (forall (tr)
+     (if (instance-of tr temporal-region tr)
+      (exists (st)
+       (and (exists (t) (instance-of st spatiotemporal-region t))
+        (temporally-projects-onto st tr))))))
 
 
   (cl:comment "spatially-projects-onto is time indexed and has domain: spatiotemporal-region and range: spatial-region [blj-1]"
@@ -110,12 +126,14 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (instance-of t temporal-region t)))))
 
 
-  (cl:comment "Every temporal region is a projection from a spatiotemporal region [xco-1]"
-    (forall (tr)
-     (if (exists (t) (instance-of tr temporal-region t))
-      (exists (st)
-       (and (exists (t) (instance-of st spatiotemporal-region t))
-        (temporally-projects-onto st tr))))))
+  (cl:comment "occupies-temporal-region has domain process or process-boundary  and range temporal-region [lyx-2]"
+    (forall (a b)
+     (if (occupies-temporal-region a b)
+      (and
+       (exists (t)
+        (or (instance-of a process t)
+         (instance-of a process-boundary t)))
+       (instance-of b temporal-region b)))))
 
 
   (cl:comment "Spatiotemporal regions always project on to some spatial region at any time [geq-1]"
@@ -124,16 +142,6 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (exists (s tp)
        (and (temporal-part-of tp t) (instance-of s spatial-region tp)
         (spatially-projects-onto st s tp))))))
-
-
-  (cl:comment "occupies-temporal-region has domain process or process-boundary  and range temporal-region [lyx-1]"
-    (forall (a b)
-     (if (occupies-temporal-region a b)
-      (and
-       (exists (t)
-        (or (instance-of a process t)
-         (instance-of a process-boundary t)))
-       (exists (t) (instance-of b temporal-region t))))))
 
 
   (cl:comment "Every spatial region is a projection from a spatiotemporal region [mdb-1]"

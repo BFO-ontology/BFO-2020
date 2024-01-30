@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2021/11/12
+% BFO 2020 Axiomatization, generated 2024/01/08
 % Author: Alan Ruttenberg - alanruttenberg@gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -34,29 +34,32 @@ all p all q all t  ((((occupiesSpatialRegion(p,q,t)) & (instanceOf(p,site,t)))) 
 % The temporal region during which a process occurs is the same as that which the spatiotemporal region the process occupies temporally projects onto
 all p all t  ((occupiesTemporalRegion(p,t)) <-> (exists st  (((occupiesSpatiotemporalRegion(p,st)) & (temporallyProjectsOnto(st,t)))))) # label("process-occupies-temporal-region-same-as-st-region-occupies") .
 
+% temporally-projects-onto has domain spatiotemporal-region and range temporal-region
+all a all b  ((temporallyProjectsOnto(a,b)) -> (((exists t  (instanceOf(a,spatiotemporalRegion,t))) & (instanceOf(b,temporalRegion,b))))) # label("temporally-projects-onto-domain-range") .
+
+% If a occupies-spatial-region b then if a is an instance of material-entity then b is an instance of three-dimensional-spatial-region
+all p all q all t  ((((occupiesSpatialRegion(p,q,t)) & (instanceOf(p,materialEntity,t)))) -> (instanceOf(q,threeDimensionalSpatialRegion,t))) # label("occupies-spatial-region.material-entity->three-dimensional-spatial-region") .
+
 % A process boundary occupies a spatiotemporal instant
 all pb all tr  ((((exists t  (instanceOf(pb,processBoundary,t))) & (occupiesTemporalRegion(pb,tr)))) -> (instanceOf(tr,temporalInstant,tr))) # label("process-boundary-occupies-temporal-instant") .
 
 % for every process there's a corresponding spatiotemporal-region
 all p  ((exists t  (((instanceOf(p,process,t)) | (instanceOf(p,processBoundary,t))))) -> (exists s  (occupiesSpatiotemporalRegion(p,s)))) # label("processes-occupy-spatiotemporal-regions") .
 
-% temporally-projects-onto has domain spatiotemporal-region and range temporal-region
-all a all b  ((temporallyProjectsOnto(a,b)) -> (((exists t  (instanceOf(a,spatiotemporalRegion,t))) & (exists t  (instanceOf(b,temporalRegion,t)))))) # label("temporally-projects-onto-domain-range") .
-
 % Spatiotemporal regions always project on to some temporal region
 all st  ((exists t  (instanceOf(st,spatiotemporalRegion,t))) -> (exists t  (((instanceOf(t,temporalRegion,t)) & (temporallyProjectsOnto(st,t)))))) # label("every-spatiotemporal-region-projects-onto-temporal-region") .
+
+% Every temporal region is a projection from a spatiotemporal region
+all tr  ((instanceOf(tr,temporalRegion,tr)) -> (exists st  (((exists t  (instanceOf(st,spatiotemporalRegion,t))) & (temporallyProjectsOnto(st,tr)))))) # label("every-temporal-region-is-projection-from-spatiotemporal-region") .
 
 % spatially-projects-onto is time indexed and has domain: spatiotemporal-region and range: spatial-region
 all a all b all t  ((spatiallyProjectsOnto(a,b,t)) -> (((instanceOf(a,spatiotemporalRegion,t)) & (instanceOf(b,spatialRegion,t)) & (instanceOf(t,temporalRegion,t))))) # label("spatially-projects-onto-domain-range") .
 
-% Every temporal region is a projection from a spatiotemporal region
-all tr  ((exists t  (instanceOf(tr,temporalRegion,t))) -> (exists st  (((exists t  (instanceOf(st,spatiotemporalRegion,t))) & (temporallyProjectsOnto(st,tr)))))) # label("every-temporal-region-is-projection-from-spatiotemporal-region") .
+% occupies-temporal-region has domain process or process-boundary  and range temporal-region
+all a all b  ((occupiesTemporalRegion(a,b)) -> (((exists t  (((instanceOf(a,process,t)) | (instanceOf(a,processBoundary,t))))) & (instanceOf(b,temporalRegion,b))))) # label("occupies-temporal-region-domain-range") .
 
 % Spatiotemporal regions always project on to some spatial region at any time
 all st all t  ((instanceOf(st,spatiotemporalRegion,t)) -> (exists s exists tp  (((temporalPartOf(tp,t)) & (instanceOf(s,spatialRegion,tp)) & (spatiallyProjectsOnto(st,s,tp)))))) # label("every-spatiotemporal-region-projects-onto-spatial-region") .
-
-% occupies-temporal-region has domain process or process-boundary  and range temporal-region
-all a all b  ((occupiesTemporalRegion(a,b)) -> (((exists t  (((instanceOf(a,process,t)) | (instanceOf(a,processBoundary,t))))) & (exists t  (instanceOf(b,temporalRegion,t)))))) # label("occupies-temporal-region-domain-range") .
 
 % Every spatial region is a projection from a spatiotemporal region
 all sr  ((exists t  (instanceOf(sr,spatialRegion,t))) -> (exists st  (((exists t  (instanceOf(st,spatiotemporalRegion,t))) & (exists t  (spatiallyProjectsOnto(st,sr,t))))))) # label("every-spatial-region-is-projection-from-spatiotemporal-region") .
