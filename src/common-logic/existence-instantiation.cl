@@ -18,7 +18,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
     (forall (u) (if (universal u) (exists (p t) (instance-of p u t)))))
 
 
-  (cl:comment "exists-at is dissective on first argumentwhen it is a continuant [uns-1]"
+  (cl:comment "exists-at is dissective on first argumen twhen it is a continuant [uns-1]"
     (forall (p q r)
      (if (and (exists-at p q) (continuant-part-of r p q))
       (exists-at r q))))
