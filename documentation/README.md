@@ -1,10 +1,11 @@
 # BFO Repository Documentation
   
-This directory contains files to promote user understanding and contributions: 
+This directory contains users guides, release notes, and contribution guidelance:
 
 * axiomatization pdfs - Contains first-order axiomatizations of BFO sub-theories stored in PDF, such as: continuant-mereology.pdf
 * FAQ - Contains guidance for contributing to this repository, using Github workflows, and so on.
 * user guides - Contains user guides for: ontology developers, software developers and subject matter experts. 
+* release-notes - Contains notes outlining updates, revisions, and other changes between releases of BFO implementations. 
 
 This directory also contains files needed to support automated quality control checks and illustration within this repository: 
 

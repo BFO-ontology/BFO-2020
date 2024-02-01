@@ -1,6 +1,6 @@
 # Directory Structure
 
-This directory contains the Prover9 implementation of Basic Formal Ontology (BFO) as well as two versions of a consistent model: one in Prover9's native syntax and one in clausetester format.
+This directory contains Prover9 implementations of Basic Formal Ontology (BFO) as well as two versions of a consistent model: one in Prover9's native syntax and one in clausetester format. 
 
 **Prover9** is first-order automated theorem prover, developed by [William McCune](https://www.cs.unm.edu/~mccune/prover9/), a version of which can be found [here](https://github.com/ai4reason/Prover9). Files in this directory are used to automatically verify various formal properties and theorems of BFO. 
 

@@ -1,6 +1,6 @@
 # Directory Structure
 
-This directory contains the Common Logic (CL) implementation of Basic Formal Ontology (BFO). 
+This directory contains Common Logic (CL) implementations of Basic Formal Ontology (BFO). 
 
 **Common Logic** is a framework for a family of first-order logical languages, specified in [ISO/IEC 24707:2018](https://www.iso.org/standard/66249.html), is designed for use in the representation and interchange of disparate data sources, and is specified in three dialects, one of which - **Common Logic Interchange Format** (CLIF) - is adopted here.
 
