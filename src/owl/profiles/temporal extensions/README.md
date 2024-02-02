@@ -51,3 +51,7 @@ As well as the following relations and their inverses (where applicable):
 
 ## Temporal Extension Integration
 BFO is a top-level ontology designed to provide a common hierarchy across all scientific research; as a consequence, interoperability is its main motivation. It is thus incumbent on developers to demonstrate not only that their preferred formalization of time conforms to BFO, but also that interpretations, formal mappings, or provable containments exists across temporal extensions. This is, admittedly, considerable work, but it is a consequence of sustaining interoperability, which our community prizes. 
+
+## Further Reading
+
+* Request for temporal representation use cases on Common Core Ontologies issue tracker: https://github.com/CommonCoreOntology/CommonCoreOntologies/issues/118
