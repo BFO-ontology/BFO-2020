@@ -104,8 +104,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              dc11:identifier "059-BFO" ;
                                              rdfs:label "realizes"@en ;
                                              skos:definition "(Elucidation) realizes is a relation between a process b and realizable entity c such that c inheres in some d & for all t, if b has participant d then c exists & the type instantiated by b is correlated with the type instantiated by c"@en ;
-                                             skos:example "A balding process realizes a disposition to go bald; a studying process realizes a student role; a process of pumping blood realizes the pumping function of a heart"@en ;
-                                             skos:scopeNote "Users that require more sophisticated representations of time are encouraged to import a temporal extension of BFO-Core provided by the BFO development team. See documentation for guidance: <Link>"@en .
+                                             skos:example "A balding process realizes a disposition to go bald; a studying process realizes a student role; a process of pumping blood realizes the pumping function of a heart"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000062
