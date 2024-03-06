@@ -3,8 +3,8 @@ This repository maintains the Basic Formal Ontology (BFO) artifact conformant to
 
 ## Current Release 
 
-* The most current version is the "bfo-core.owl" file located at in this repository: src/owl/bfo-core.owl. 
-* The most version of these files will always be at https://github.com/BFO-ontology/BFO-2020
+* The current release of BFO 2020 is the "bfo-core.owl" file located in this repository: src/owl/bfo-core.owl. 
+* The most current version of these files can always be found at: https://github.com/BFO-ontology/BFO-2020
 
 ## Directory Structure
 * documentation
