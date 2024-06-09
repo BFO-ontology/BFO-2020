@@ -3,7 +3,7 @@
 # Constraint Description: 
 #    No two ontology elements may have the exact same definition.    
 # Severity:
-#     Error
+#     Error 
 
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
