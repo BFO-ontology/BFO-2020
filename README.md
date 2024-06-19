@@ -1,6 +1,9 @@
 # Basic Formal Ontology
 This repository maintains the Basic Formal Ontology (BFO) artifact conformant to the requirements specified in [ISO/IEC 21838‑1](https://www.iso.org/standard/71954.html) for top-level ontologies. BFO contains classes and relations representing content common to all areas of scientific investigation, e.g. object, process, etc. and is used as a top-level architecture by numerous ontologies in the [Open Biomedical and Biomedical Ontologies (OBO) Foundry](https://obofoundry.org/), the [Industrial Ontologies Foundry (IOF)](https://oagi.org/pages/industrial-ontologies), and the [Common Core Ontologies](https://github.com/CommonCoreOntology/CommonCoreOntologies) suite. Ontologies conformant to BFO promote interoperability, standardization, and reuse among domain-level ontologies. 
 
+## BFO-CCO Office Hours
+The BFO developer team have partnered with the developers of the [Common Core Ontologies](https://github.com/CommonCoreOntology/CommonCoreOntologies) to hold biweekly "office hours", which meet alternate Fridays remotely for an hour starting at 11am EST. For more information see [here](https://johnbeve.github.io/NCOR-Test/office-hours/) or contact John Beverley at johnbeve[@]buffalo.edu. 
+
 ## Current Release 
 
 * The current release of BFO 2020 is the "bfo-core.owl" file located in this repository: src/owl/bfo-core.owl. 
