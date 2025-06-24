@@ -21,6 +21,7 @@ The BFO developer team have partnered with the developers of the [Common Core On
   - prover9 - Contains an implementation of BFO that is readable by the Prover9 automated theorem prover, separated into files representing sub-theories of BFO, such as: temporal-region.prover9.
   - sparql - Contains quality control checks written in the [SPARQL Protocol and RDF Query Language (SPARQL)](https://www.w3.org/TR/sparql11-query/) which are used to ensure updates to bfo-core.owl do not violate design principles, such as having exactly one skos:prefLabel per language: exactly_1_prefLabel_per_lang.sparql.
 * temporal extensions - Contains R&D project extending bfo-core.owl to stronger representations of time, as well as supplementary documentation supporting such extensions. 
+* contrib - Contains contributed files that are extensions of the axiomatization, intended to add features or to demonstrate techniques
 
 ## License
 These documents are licensed under the terms of  the [Creative Commons Attribution 4.0 International (CC BY 4.0) license](https://creativecommons.org/licenses/by/4.0/).
