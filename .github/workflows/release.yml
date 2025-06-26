@@ -45,7 +45,7 @@ jobs:
       
       # Save any artifact files produced even if tests fail
       - name: Save artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ontology_release_results
