@@ -252,7 +252,7 @@ ObjectPropertyRange(obo:BFO_0000063 obo:BFO_0000003)
 
 AnnotationAssertion(dc11:identifier obo:BFO_0000066 "143-BFO")
 AnnotationAssertion(rdfs:label obo:BFO_0000066 "occurs in"@en)
-AnnotationAssertion(skos:definition obo:BFO_0000066 "b occurs in c =Def b is a process or a process boundary & c is a material entity or site & there exists a spatiotemporal region r & b occupies spatiotemporal region r & for all time t, if b exists at t then c exists at t & there exist spatial regions s and s' where b spatially projects onto s at t & c occupies spatial region s' at t & s is a continuant part of s' at t"@en)
+AnnotationAssertion(skos:definition obo:BFO_0000066 "b occurs in c =Def b is a process or a process boundary & c is a material entity or site & there exists a spatiotemporal region r & b occupies spatiotemporal region r & for all time t, if b exists at t then c exists at t & there exist spatial regions s and s' where r spatially projects onto s at t & c occupies spatial region s' at t & s is a continuant part of s' at t"@en)
 AnnotationAssertion(skos:example obo:BFO_0000066 "A process of digestion occurs in the interior of an organism; a process of loading artillery rounds into a tank cannon occurs in the interior of the tank"@en)
 AnnotationAssertion(skos:prefLabel obo:BFO_0000066 "occurs in"@en)
 InverseObjectProperties(obo:BFO_0000066 obo:BFO_0000183)

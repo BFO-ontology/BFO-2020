@@ -147,7 +147,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                                         ] ;
                                              dc11:identifier "143-BFO" ;
                                              rdfs:label "occurs in"@en ;
-                                             skos:definition "b occurs in c =Def b is a process or a process boundary & c is a material entity or site & there exists a spatiotemporal region r & b occupies spatiotemporal region r & for all time t, if b exists at t then c exists at t & there exist spatial regions s and s' where b spatially projects onto s at t & c occupies spatial region s' at t & s is a continuant part of s' at t"@en ;
+                                             skos:definition "b occurs in c =Def b is a process or a process boundary & c is a material entity or site & there exists a spatiotemporal region r & b occupies spatiotemporal region r & for all time t, if b exists at t then c exists at t & there exist spatial regions s and s' where r spatially projects onto s at t & c occupies spatial region s' at t & s is a continuant part of s' at t"@en ;
                                              skos:example "A process of digestion occurs in the interior of an organism; a process of loading artillery rounds into a tank cannon occurs in the interior of the tank"@en .
 
 
