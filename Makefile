@@ -4,7 +4,7 @@
 
 # ----------------------------------------
 # Project essentials
-config.ONTOLOGY_FILE	:= src/owl/bfo-core.ttl
+config.ONTOLOGY_FILE	:= 21838-2/owl/bfo-core.ttl
 config.ONTOLOGY_PREFIX	:= BFO
 config.ONTOLOGY-IRI		:= http://purl.obolibrary.org/obo/bfo
 config.BASE_IRI			:= $(config.ONTOLOGY-IRI)_
@@ -12,7 +12,7 @@ config.DEV_IRI			:= $(config.ONTOLOGY-IRI)/dev
 config.MODULES_IRI		:= $(config.DEV_IRI)/modules
 
 # Local project directories
-config.SOURCE_DIR		:= src/owl
+config.SOURCE_DIR		:= 21838-2/owl
 config.TEMP_DIR			:= build/artifacts
 config.RELEASE_DIR		:= /
 config.REPORTS_DIR		:= $(config.TEMP_DIR)
