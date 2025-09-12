@@ -1442,7 +1442,7 @@
         <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/BFO_0000141"/>
         <dc11:identifier>019-BFO</dc11:identifier>
         <rdfs:label xml:lang="en">material entity</rdfs:label>
-        <skos:definition xml:lang="en">(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part</skos:definition>
+        <skos:definition xml:lang="en">(Elucidation) A material entity is an independent continuant that at all times at which it exists has some portion of matter as continuant part</skos:definition>
         <skos:example xml:lang="en">A human being; the undetached arm of a human being; an aggregate of human beings</skos:example>
     </owl:Class>
     

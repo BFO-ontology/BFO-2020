@@ -788,7 +788,7 @@ DisjointClasses(<http://purl.obolibrary.org/obo/BFO_0000038> <http://purl.obolib
 
 AnnotationAssertion(dc11:identifier <http://purl.obolibrary.org/obo/BFO_0000040> "019-BFO")
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000040> "material entity"@en)
-AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000040> "(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part"@en)
+AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000040> "(Elucidation) A material entity is an independent continuant that at all times at which it exists has some portion of matter as continuant part"@en)
 AnnotationAssertion(skos:example <http://purl.obolibrary.org/obo/BFO_0000040> "A human being; the undetached arm of a human being; an aggregate of human beings"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000040> <http://purl.obolibrary.org/obo/BFO_0000004>)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000040> ObjectAllValuesFrom(<http://purl.obolibrary.org/obo/BFO_0000176> <http://purl.obolibrary.org/obo/BFO_0000040>))
