@@ -6,7 +6,7 @@ The BFO developer team have partnered with the developers of the [Common Core On
 
 ## Current Release 
 
-* The current release of BFO 2020 is the "bfo-core.owl" file located in this repository: src/owl/bfo-core.owl. 
+* The current release of BFO 2020 is the "bfo-core.owl" file located in this repository: 21838-2/owl/bfo-core.owl. 
 * The most current version of these files can always be found at: https://github.com/BFO-ontology/BFO-2020
 
 ## Directory Structure
@@ -15,7 +15,7 @@ The BFO developer team have partnered with the developers of the [Common Core On
   - FAQ - Contains guidance for contributing to this repository, using [Github workflows](https://docs.github.com/en/actions/using-workflows), and so on.
   - images - Contains images used in this repository. 
   - user guides - Directory for planned user guides for: ontology developers, software developers and subject matter experts. 
-* src
+* 21838-2
   - owl - Contains Web Ontology Language ([OWL2](https://www.w3.org/TR/owl2-overview/)) implementations of BFO in [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/), [Functional-style Syntax](https://www.w3.org/TR/owl2-syntax/#Functional-Style_Syntax), and [Terse RDF Triple Language](https://www.w3.org/TR/turtle/).
   - common logic - Contains the Common Logic Interchange Format (CLIF) implementation of BFO separated into files representing sub-theories of BFO, such as: material-entity.cl.
   - prover9 - Contains an implementation of BFO that is readable by the Prover9 automated theorem prover, separated into files representing sub-theories of BFO, such as: temporal-region.prover9.
