@@ -366,7 +366,7 @@ ObjectPropertyRange(<http://purl.obolibrary.org/obo/BFO_0000171> ObjectIntersect
 
 AnnotationAssertion(dc11:identifier <http://purl.obolibrary.org/obo/BFO_0000176> "221-BFO")
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000176> "continuant part of"@en)
-AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000176> "b continuant part of c =Def b and c are continuants & there is some time t such that b and c exist at t & b continuant part of c at t"@en)
+AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000176> "b continuant part of c =Def b and c are continuants & there is some time t such that b and c exist at t & b part of c at t"@en)
 AnnotationAssertion(skos:example <http://purl.obolibrary.org/obo/BFO_0000176> "Milk teeth continuant part of human; surgically removed tumour continuant part of organism"@en)
 AnnotationAssertion(skos:scopeNote <http://purl.obolibrary.org/obo/BFO_0000176> "Users that require more sophisticated representations of time are encouraged to import a temporal extension of BFO-Core provided by the BFO development team. See documentation for guidance: <https://github.com/BFO-ontology/BFO-2020/tree/master/src/owl/profiles/temporal%20extensions>"@en)
 InverseObjectProperties(<http://purl.obolibrary.org/obo/BFO_0000176> <http://purl.obolibrary.org/obo/BFO_0000178>)

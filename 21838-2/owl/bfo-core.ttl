@@ -424,7 +424,7 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              rdfs:range <http://purl.obolibrary.org/obo/BFO_0000002> ;
                                              dc11:identifier "221-BFO" ;
                                              rdfs:label "continuant part of"@en ;
-                                             skos:definition "b continuant part of c =Def b and c are continuants & there is some time t such that b and c exist at t & b continuant part of c at t"@en ;
+                                             skos:definition "b continuant part of c =Def b and c are continuants & there is some time t such that b and c exist at t & b part of c at t"@en ;
                                              skos:example "Milk teeth continuant part of human; surgically removed tumour continuant part of organism"@en ;
                                              skos:scopeNote "Users that require more sophisticated representations of time are encouraged to import a temporal extension of BFO-Core provided by the BFO development team. See documentation for guidance: <https://github.com/BFO-ontology/BFO-2020/tree/master/src/owl/profiles/temporal%20extensions>"@en .
 

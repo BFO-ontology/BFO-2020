@@ -569,7 +569,7 @@
         <rdfs:range rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
         <dc11:identifier>221-BFO</dc11:identifier>
         <rdfs:label xml:lang="en">continuant part of</rdfs:label>
-        <skos:definition xml:lang="en">b continuant part of c =Def b and c are continuants &amp; there is some time t such that b and c exist at t &amp; b continuant part of c at t</skos:definition>
+        <skos:definition xml:lang="en">b continuant part of c =Def b and c are continuants &amp; there is some time t such that b and c exist at t &amp; b part of c at t</skos:definition>
         <skos:example xml:lang="en">Milk teeth continuant part of human; surgically removed tumour continuant part of organism</skos:example>
         <skos:scopeNote xml:lang="en">Users that require more sophisticated representations of time are encouraged to import a temporal extension of BFO-Core provided by the BFO development team. See documentation for guidance: &lt;https://github.com/BFO-ontology/BFO-2020/tree/master/src/owl/profiles/temporal%20extensions&gt;</skos:scopeNote>
     </owl:ObjectProperty>
