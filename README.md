@@ -40,41 +40,41 @@ These documents are licensed under the terms of  the [Creative Commons Attributi
 ## Basic Formal Ontology Hierarchy
 ```mermaid
 graph RL
-	B(Continuant)-->A(Entity):::BFO
-	D(Specifically Dependent<br> Continuant)-->B(Continuant):::BFO
-	E(Generically Dependent<br> Continuant):::BFO-->B(Continuant)
-	F(Independent<br> Continuant)-->B(Continuant)
-	G(Material Entity)-->F(Independent<br> Continuant):::BFO
-	H(Immaterial<br> Entity)-->F(Independent<br> Continuant)
-	I(Quality)-->D(Specifically Dependent<br> Continuant):::BFO
-	J(Realizable<br> Entity):::BFO-->D(Specifically Dependent<br> Continuant)
-	K(Relational<br> Quality):::BFO-->I(Quality):::BFO
-	L(Role):::BFO-->J(Realizable<br> Entity):::BFO
-	M(Disposition):::BFO-->J(Realizable<br> Entity)
-	N(Function):::BFO-->M(Disposition)
-	O(Site):::BFO-->H(Immaterial<br> Entity):::BFO
-	P(Spatial<br> Region):::BFO-->H(Immaterial<br> Entity)
-	Q(Continuant Fiat<br> Boundary):::BFO-->H(Immaterial<br> Entity)
-	R(Fiat<br> Point):::BFO-->Q(Continuant Fiat<br> Boundary):::BFO
-	S(Fiat<br> Surface):::BFO-->Q(Continuant Fiat<br> Boundary)
-	T(Fiat<br> Line):::BFO-->Q(Continuant Fiat<br> Boundary)
-	VD(Zero-Dimensional<br> Spatial Region):::BFO-->P(Spatial<br> Region):::BFO
-	U(One-Dimensional<br> Spatial Region):::BFO-->P(Spatial<br> Region):::BFO
-	V(Two-Dimensional<br> Spatial Region):::BFO-->P(Spatial<br> Region):::BFO
-	W(Three-Dimensional<br> Spatial Region):::BFO-->P(Spatial<br> Region):::BFO
-	X(Fiat Object Part):::BFO-->G(Material<br> Entity):::BFO
-	Y(Object<br> Aggregate):::BFO-->G(Material<br> Entity):::BFO
-	Z(Object):::BFO-->G(Material<br> Entity):::BFO
-	C(Occurrent):::BFO-->A(Entity):::BFO
-	AA(Process):::BFO-->C(Occurrent):::BFO
-	AB(Process<br> Boundary):::BFO-->C(Occurrent)
-	AC(Temporal<br> Region):::BFO-->C(Occurrent)
-	AD(Spatiotemporal<br> Region):::BFO-->C(Occurrent)
-	AE(History):::BFO-->AA(Process):::BFO
-	AF(Zero-Dimensional<br> Temporal Region):::BFO-->AC(Temporal<br> Region):::BFO
-	AI(One-Dimensional<br> Temporal Region):::BFO-->AC(Temporal<br> Region):::BFO
-	AG(Temporal<br> Instant):::BFO-->AF(Zero-Dimensional<br> Temporal Region):::BFO
-	AH(Temporal<br> Interval):::BFO-->AI(One-Dimensional<br> Temporal Region):::BFO
+	B(continuant)-->A(entity):::BFO
+	D(specifically dependent<br> continuant)-->B(continuant):::BFO
+	E(generically dependent<br> continuant):::BFO-->B(continuant)
+	F(independent<br> continuant)-->B(continuant)
+	G(material entity)-->F(independent<br> continuant):::BFO
+	H(immaterial<br> entity)-->F(independent<br> continuant)
+	I(quality)-->D(specifically dependent<br> continuant):::BFO
+	J(realizable<br> entity):::BFO-->D(specifically dependent<br> continuant)
+	K(relational<br> quality):::BFO-->I(quality):::BFO
+	L(role):::BFO-->J(realizable<br> entity):::BFO
+	M(disposition):::BFO-->J(realizable<br> entity)
+	N(function):::BFO-->M(disposition)
+	O(site):::BFO-->H(immaterial<br> entity):::BFO
+	P(spatial<br> region):::BFO-->H(immaterial<br> entity)
+	Q(continuant fiat<br> boundary):::BFO-->H(immaterial<br> entity)
+	R(fiat<br> point):::BFO-->Q(continuant fiat<br> boundary):::BFO
+	S(fiat<br> surface):::BFO-->Q(continuant fiat<br> boundary)
+	T(fiat<br> line):::BFO-->Q(continuant fiat<br> boundary)
+	VD(zero-dimensional<br> spatial region):::BFO-->P(spatial<br> region):::BFO
+	U(one-dimensional<br> spatial region):::BFO-->P(spatial<br> region):::BFO
+	V(two-dimensional<br> spatial region):::BFO-->P(spatial<br> region):::BFO
+	W(three-dimensional<br> spatial region):::BFO-->P(spatial<br> region):::BFO
+	X(fiat object part):::BFO-->G(material<br> entity):::BFO
+	Y(object<br> aggregate):::BFO-->G(material<br> entity):::BFO
+	Z(object):::BFO-->G(material<br> entity):::BFO
+	C(occurrent):::BFO-->A(entity):::BFO
+	AA(process):::BFO-->C(occurrent):::BFO
+	AB(process<br> boundary):::BFO-->C(occurrent)
+	AC(temporal<br> region):::BFO-->C(occurrent)
+	AD(spatiotemporal<br> region):::BFO-->C(occurrent)
+	AE(history):::BFO-->AA(process):::BFO
+	AF(zero-dimensional<br> temporal region):::BFO-->AC(temporal<br> region):::BFO
+	AI(one-dimensional<br> temporal region):::BFO-->AC(temporal<br> region):::BFO
+	AG(temporal<br> instant):::BFO-->AF(zero-dimensional<br> temporal region):::BFO
+	AH(temporal<br> interval):::BFO-->AI(one-dimensional<br> temporal region):::BFO
 
     classDef BFO fill:#F5AD27,color:#060606
 
