@@ -34,7 +34,7 @@ These documents are licensed under the terms of  the [Creative Commons Attributi
 
 ## Development Team
 * [Barry Smith](https://www.buffalo.edu/cas/philosophy/faculty/faculty_directory/smith-b.html), SUNY Distinguished Professor of Philosophy and Julian Park Chair, University at Buffalo, Department of Philosophy
-* [Alan Ruttenberg](https://dental.buffalo.edu/faculty/home.html?ubit=alanrutt), Director of Clinical and Translational Data Exchange, University at Buffalo
+* [Alan Ruttenberg](https://dental.buffalo.edu/faculty/home.html?ubit=alanrutt), formerly Director of Clinical and Translational Data Exchange, University at Buffalo
 * [John Beverley](https://www.buffalo.edu/cas/philosophy/faculty/faculty_directory/john-beverley.html), Assistant Professor, University at Buffalo
 
 ## Basic Formal Ontology Hierarchy
