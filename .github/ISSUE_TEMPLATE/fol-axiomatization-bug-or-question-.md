@@ -11,6 +11,6 @@ Explain the bug or issue. Ideally provide a test case. Best tests are either pro
 
 List axiom tags involved, e.g dok-1 ("If a continuant-part-of b then if a is an instance of material-entity then b is an instance of material-entity")
 
-Remember to put \`\`\` on the line before and after any formula so that it keeps its indentation.
+Remember to put ``` on the line before and after any formula so that it keeps its indentation.
 
 You may delete these instructions.
