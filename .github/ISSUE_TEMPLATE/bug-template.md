@@ -2,8 +2,8 @@
 name: Bug Template
 about: Create a report to help us improve
 title: 'BUG: [TITLE SUMMARIZING ISSUE]'
-labels: bug
-assignees: johnbeve
+labels: bug, FOL/CLIF
+assignees: alanruttenberg, johnbeve
 
 ---
 
