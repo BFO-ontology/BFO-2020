@@ -1,5 +1,5 @@
-% BFO 2020 Axiomatization, generated 2024/01/08
-% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% BFO 2020 Axiomatization, generated 2025/12/05
+% Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
@@ -31,7 +31,7 @@ all a all b all t  ((genericallyDependsOn(a,b,t)) -> (((instanceOf(a,generically
 % If a specifically-dependent-continuant concretizes a gdc then the gdc generically-depends-on the bearer of the sdc
 all g all b all sdc  ((((exists t  (instanceOf(g,genericallyDependentContinuant,t))) & (exists t  (instanceOf(sdc,specificallyDependentContinuant,t))) & (exists t  (instanceOf(b,independentContinuant,t))))) -> (all t  ((((concretizes(sdc,g,t)) & (inheresIn(sdc,b)))) -> (genericallyDependsOn(g,b,t))))) # label("sdc-concretizes-means-bearer-generically-depends") .
 
-% If a generically dependent continuant participates in a process p then, if it is concretized as a process, that process is part of p, fand if concretized as an sdc then the bearer of that sdc participates in the process
+% If a generically dependent continuant participates in a process p then, if it is concretized as a process, that process is part of p, and if concretized as an sdc then the bearer of that sdc participates in the process
 all gdc all p all t  ((((instanceOf(gdc,genericallyDependentContinuant,t)) & (participatesIn(gdc,p,t)))) -> (exists tp exists b  (((temporalPartOf(tp,t)) & (concretizes(b,gdc,tp)) & (((((instanceOf(b,specificallyDependentContinuant,tp)) & (exists ic  (((specificallyDependsOn(b,ic)) & (participatesIn(ic,p,tp))))))) | (((occurrentPartOf(b,p)) & (existsAt(b,tp)))))))))) # label("participation-of-generically-dependent-continuant") .
 
 

@@ -1,0 +1,245 @@
+In addition to the difference in axioms listed below, some Common Logic syntax errors were fixed:
+- Comment texts are surrounded by single, not double quotes
+- The title is after cl:ttl, not cl:text and is surrounded by double quotes (previously no quotes)
+
+This release addressed issues 156,155,153,148,146,129,99,97,96,95,91,81,74, and 31
+
+Axioms whose logical form changed:
+----------------------------------
+
+Axiom all-role-types-are-rigid has changed [bks-1]->[bks-2]
+
+(:forall (?o)                                                             |  (:forall (?o ?u ?t1 ?t2)
+ (:implies (:exists (?t) (instance-of ?o role ?t))                        |   (:implies (:and (instance-of ?o role ?t1) (instance-of ?o ?u ?t2))
+  (:forall (?u)                                                           /    (:and (instance-of ?o role ?t2) (instance-of ?o ?u ?t1))))
+   (:implies (:exists (?t) (instance-of ?o ?u ?t))                        <
+    (:forall (?t)                                                         <
+     (:iff (instance-of ?o role ?t) (instance-of ?o ?u ?t)))))))          <
+
+
+Axiom disposition+role-are-mutually-disjoint has changed [bwk-1]->[bwk-2]
+
+(:and                                                                     <
+ (:not                                                                       (:not
+  (:exists (?x ?t)                                                            (:exists (?x ?t)
+   (:and (instance-of ?x disposition ?t) (instance-of ?x role ?t)))))     |    (:and (instance-of ?x disposition ?t) (instance-of ?x role ?t))))
+
+
+Axiom one-dimensional-temporal-region+zero-dimensional-temporal-region-are-mutually-disjoint has changed [zkj-1]->[zkj-2]
+
+(:and                                                                     <
+ (:not                                                                       (:not
+  (:exists (?x ?t)                                                            (:exists (?x ?t)
+   (:and (instance-of ?x one-dimensional-temporal-region ?t)                   (:and (instance-of ?x one-dimensional-temporal-region ?t)
+    (instance-of ?x zero-dimensional-temporal-region ?t)))))              |     (instance-of ?x zero-dimensional-temporal-region ?t))))
+
+
+Axiom last-instant-for-temporal-regions-preceded-by-all-parts-of-region-other-than-self has changed [nhd-1]->[nhd-2]
+
+(:forall (?li ?i)                                                            (:forall (?li ?i)
+ (:implies                                                                    (:implies
+  (:and (instance-of ?li temporal-instant ?li)                                 (:and (instance-of ?li temporal-instant ?li)
+   (instance-of ?i temporal-region ?i)                                          (instance-of ?i temporal-region ?i)
+   (:not (instance-of ?i temporal-instant ?i)))                                 (:not (instance-of ?i temporal-instant ?i)))
+  (:implies (has-last-instant ?i ?li)                                          (:implies (has-last-instant ?i ?li)
+   (:and                                                                  <
+    (:forall (?ip)                                                              (:forall (?ip)
+     (:implies                                                                   (:implies
+      (:and (temporal-part-of ?ip ?i)                                             (:and (temporal-part-of ?ip ?i)
+       (:not (temporal-part-of ?li ?ip)))                                          (:not (temporal-part-of ?li ?ip)))
+      (precedes ?ip ?li)))))))                                            |       (precedes ?ip ?li))))))
+
+
+Axiom process-boundary-definition has changed [esh-1]->[esh-2]
+
+(:forall (?pb)                                                            |  (:forall (?pb ?t)
+ (:iff (:exists (?t) (instance-of ?pb process-boundary ?t))               |   (:iff (instance-of ?pb process-boundary ?t)
+  (:and                                                                        (:and
+   (:exists (?p)                                                                (:exists (?p)
+    (:and (temporal-part-of ?pb ?p)                                              (:and (temporal-part-of ?pb ?p)
+     (:exists (?t) (instance-of ?p process ?t))))                                 (:exists (?t) (instance-of ?p process ?t))))
+   (:exists (?t)                                                          <
+    (:and (occupies-temporal-region ?pb ?t)                                     (:and (occupies-temporal-region ?pb ?t)
+     (instance-of ?t temporal-instant ?t))))))                            |      (instance-of ?t temporal-instant ?t)))))
+
+
+Axiom continuant+occurrent-are-mutually-disjoint has changed [wrf-1]->[wrf-2]
+
+(:and                                                                     <
+ (:not                                                                       (:not
+  (:exists (?x ?t)                                                            (:exists (?x ?t)
+   (:and (instance-of ?x continuant ?t)                                        (:and (instance-of ?x continuant ?t)
+    (instance-of ?x occurrent ?t)))))                                     |     (instance-of ?x occurrent ?t))))
+
+
+Axiom continuant-part-of.spatial-region<->spatial-region has changed [kbr-1]->[kbr-2]
+
+(:forall (?p ?q ?t)                                                          (:forall (?p ?q ?t)
+ (:implies (continuant-part-of ?p ?q ?t)                                      (:implies (continuant-part-of ?p ?q ?t)
+  (:iff (instance-of ?p spatial-region ?t)                                     (:iff (instance-of ?p spatial-region ?t)
+   (:and (instance-of ?q spatial-region ?t)))))                           |     (instance-of ?q spatial-region ?t))))
+
+
+Axiom temporal-regions-instance-of-at-self has changed [tvx-2]->[tvx-3]
+
+(:forall (?a ?u)                                                          |  (:forall (?a ?b)
+ (:iff                                                                    |   (:and
+  (:exists (?t)                                                           |    (:forall (?c)
+   (:and (instance-of ?a temporal-region ?t) (instance-of ?a ?u ?t)))     |     (:implies
+  (instance-of ?a ?u ?a)))                                                \      (:and (instance-of ?a ?b ?c) (instance-of ?a temporal-region ?c))
+                                                                          >      (instance-of ?a ?b ?a)))
+                                                                          >    (:implies (instance-of ?a ?b ?a)
+                                                                          >     (instance-of ?a temporal-region ?a))))
+
+
+Axiom continuant-part-of.independent-continuant<->independent-continuant has changed [cez-1]->[cez-2]
+
+(:forall (?p ?q ?t)                                                          (:forall (?p ?q ?t)
+ (:implies (continuant-part-of ?p ?q ?t)                                      (:implies (continuant-part-of ?p ?q ?t)
+  (:iff (instance-of ?p independent-continuant ?t)                             (:iff (instance-of ?p independent-continuant ?t)
+   (:and (instance-of ?q independent-continuant ?t)))))                   |     (instance-of ?q independent-continuant ?t))))
+
+
+Axiom material-entity+immaterial-entity-are-mutually-disjoint has changed [sij-1]->[sij-2]
+
+(:and                                                                     <
+ (:not                                                                       (:not
+  (:exists (?x ?t)                                                            (:exists (?x ?t)
+   (:and (instance-of ?x material-entity ?t)                                   (:and (instance-of ?x material-entity ?t)
+    (instance-of ?x immaterial-entity ?t)))))                             |     (instance-of ?x immaterial-entity ?t))))
+
+
+Axiom one-dimensional-temporal-has-at-least-one-interval-part has changed [jhe-1]->[jhe-2]
+
+(:forall (?t)                                                                (:forall (?t)
+ (:implies (:and (instance-of ?t one-dimensional-temporal-region ?t))     |   (:implies (instance-of ?t one-dimensional-temporal-region ?t)
+  (:exists (?p)                                                                (:exists (?p)
+   (:and (temporal-part-of ?p ?t)                                               (:and (temporal-part-of ?p ?t)
+    (instance-of ?p temporal-interval ?p)))))                                    (instance-of ?p temporal-interval ?p)))))
+
+
+Axiom participates-in-domain-range has changed [ild-1]->[ild-2]
+Description was: 'participates-in is time indexed and has domain: independent-continuant but not spatial-region or specifically-dependent-continuant or generically-dependent-continuant  and range: process'
+now: 'participates-in is time indexed and has domain: independent-continuant or specifically-dependent-continuant or generically-dependent-continuant  but not spatial-region and range: process'
+
+(:forall (?a ?b ?t)                                                          (:forall (?a ?b ?t)
+ (:implies (participates-in ?a ?b ?t)                                         (:implies (participates-in ?a ?b ?t)
+  (:and                                                                        (:and
+   (:or                                                                   |     (:and
+    (:and (instance-of ?a independent-continuant ?t)                      |      (:or (instance-of ?a independent-continuant ?t)
+     (:not (instance-of ?a spatial-region ?t)))                           <
+    (instance-of ?a specifically-dependent-continuant ?t)                         (instance-of ?a specifically-dependent-continuant ?t)
+    (instance-of ?a generically-dependent-continuant ?t))                         (instance-of ?a generically-dependent-continuant ?t))
+                                                                          >      (:not (instance-of ?a spatial-region ?t)))
+   (instance-of ?b process ?t) (instance-of ?t temporal-region ?t))))           (instance-of ?b process ?t) (instance-of ?t temporal-region ?t))))
+
+
+Axiom quality+realizable-entity-are-mutually-disjoint has changed [ksk-1]->[ksk-2]
+
+(:and                                                                     <
+ (:not                                                                       (:not
+  (:exists (?x ?t)                                                            (:exists (?x ?t)
+   (:and (instance-of ?x quality ?t)                                           (:and (instance-of ?x quality ?t)
+    (instance-of ?x realizable-entity ?t)))))                             |     (instance-of ?x realizable-entity ?t))))
+
+
+Axiom process-occurrent-part-of-implication has changed [kqv-1]->[kqv-2]
+
+(:forall (?p1 ?p2)                                                           (:forall (?p1 ?p2)
+ (:implies                                                                    (:implies
+  (:and                                                                        (:and
+   (:or (:exists (?t) (instance-of ?p1 process ?t))                             (:or (:exists (?t) (instance-of ?p1 process ?t))
+    (:exists (?t) (instance-of ?p1 process-boundary ?t)))                        (:exists (?t) (instance-of ?p1 process-boundary ?t)))
+   (:or (:exists (?t) (instance-of ?p2 process ?t))                             (:or (:exists (?t) (instance-of ?p2 process ?t))
+    (:exists (?t) (instance-of ?p2 process-boundary ?t))))                       (:exists (?t) (instance-of ?p2 process-boundary ?t))))
+  (:iff (occurrent-part-of ?p1 ?p2)                                       |    (:implies (occurrent-part-of ?p1 ?p2)
+   (:exists (?st1 ?st2)                                                         (:exists (?st1 ?st2)
+    (:and (occupies-spatiotemporal-region ?p1 ?st1)                              (:and (occupies-spatiotemporal-region ?p1 ?st1)
+     (occupies-spatiotemporal-region ?p2 ?st2)                                    (occupies-spatiotemporal-region ?p2 ?st2)
+     (occurrent-part-of ?st1 ?st2))))))                                           (occurrent-part-of ?st1 ?st2))))))
+
+
+Axiom continuant-part-of-is-extent-antisymmetric-for-object-aggregates has changed [glc-1]->[glc-2]
+Description was: 'If at all times that two object-aggreates exist each is part of the other, then they are identical'
+now: 'If at all times that two object-aggregates exist each is part of the other, then they are identical'
+
+(:forall (?a ?b)                                                             (:forall (?a ?b)
+ (:implies                                                                    (:implies
+  (:and                                                                        (:and
+   (:exists (?t)                                                                (:exists (?t)
+    (:and (instance-of ?a object-aggregate ?t)                                   (:and (instance-of ?a object-aggregate ?t)
+     (continuant-part-of ?a ?b ?t) (continuant-part-of ?b ?a ?t)))                (continuant-part-of ?a ?b ?t) (continuant-part-of ?b ?a ?t)))
+                                                                          >     (:forall (?t) (:iff (exists-at ?a ?t) (exists-at ?b ?t)))
+   (:forall (?t)                                                                (:forall (?t)
+    (:iff (continuant-part-of ?a ?b ?t)                                   |      (:implies (exists-at ?a ?t)
+     (continuant-part-of ?b ?a ?t))))                                     |       (:and (continuant-part-of ?a ?b ?t)
+                                                                          >        (continuant-part-of ?b ?a ?t)))))
+  (:= ?a ?b)))                                                                 (:= ?a ?b)))
+
+
+Axiom all-occurrent-types-are-rigid has changed [ayr-1]->[ayr-2]
+
+(:forall (?o)                                                             |  (:forall (?o ?u ?t1 ?t2)
+ (:implies (:exists (?t) (instance-of ?o occurrent ?t))                   |   (:implies
+  (:forall (?u)                                                           |    (:and (instance-of ?o occurrent ?t1) (instance-of ?o ?u ?t2))
+   (:implies (:exists (?t) (instance-of ?o ?u ?t))                        /    (:and (instance-of ?o occurrent ?t2) (instance-of ?o ?u ?t1))))
+    (:forall (?t)                                                         <
+     (:iff (instance-of ?o occurrent ?t) (instance-of ?o ?u ?t)))))))     <
+
+
+Axioms whose name changed:
+--------------------------
+
+
+Axioms whose descriptions only changed:
+---------------------------------------
+
+Axiom description for continuant-part-of-is-antisymmetric-except-for-object-aggregates [tab-1] has changed,
+was: 'If at any time that two non-object aggreates exist each is part of the other, then they are identical'
+now: 'If at any time that two non-object aggregates exist each is part of the other, then they are identical'
+
+Axiom description for realizable-bearer-participates-in-realization [grx-1] has changed,
+was: 'When a role is realized the bearer of the role participates in the realization process'
+now: 'When a realizable entity is realized, the bearer of the thing realized participates in the realization process'
+
+Axiom description for located-in-dissective-on-first-argument-continuant [wty-1] has changed,
+was: 'located-in is dissective on first argumentwhen it is a continuant'
+now: 'located-in is dissective on first argument when it is a continuant'
+
+Axiom description for processes-occupy-spatiotemporal-regions [qyy-1] has changed,
+was: 'for every process there's a corresponding spatiotemporal-region'
+now: 'for every process or process boundary there's a corresponding spatiotemporal region that it occupies'
+
+Axiom description for occurs-in-dissective-on-first-argument-occurrent [jil-1] has changed,
+was: 'occurs-in is dissective on first argumentwhen it is an occurrent'
+now: 'occurs-in is dissective on first argument when it is an occurrent'
+
+Axiom description for instantiation-existence [bee-1] has changed,
+was: 'If you exist you instatiate a universal and vice-versa'
+now: 'If you exist you instantiate a universal and vice-versa'
+
+
+Only in old theory:
+-------------------
+
+
+Only in new theory:
+-------------------
+
+Axiom occupies-spatial-region-functional-on-first-argument [csx-1]: 
+occupies-spatial-region is functional on first argument
+(:forall (?p ?q ?r ?s)
+ (:implies
+  (:and (occupies-spatial-region ?p ?q ?r)
+   (occupies-spatial-region ?s ?q ?r))
+  (:= ?p ?s)))
+
+Axiom material-entities-always-occupy-spatial-regions [hpz-1]: 
+Material entities occupy three dimensional spatial regions
+(:forall (?m ?t)
+ (:implies (instance-of ?m material-entity ?t)
+  (:exists (?t1 ?s)
+   (:and (temporal-part-of ?t1 ?t)
+    (instance-of ?s three-dimensional-spatial-region ?t1)
+    (occupies-spatial-region ?m ?s ?t1)))))
+

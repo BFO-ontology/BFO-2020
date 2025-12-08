@@ -4,7 +4,6 @@ This directory contains BFO research & development projects - or "profiles" - th
 
 ## Directory Structure
 * temporal extensions - Contains research & development projects extending bfo-core.owl with a stronger representation of time.
-    - temporalized relations - Contains R&D project extending bfo-core.owl to a stronger representation of time, namely, one that employs temporal qualification of continuant object properties, resulting in "all times" and "some times" versions. 
-    - contributions - Files that are not part of the bfo-core.owl distribution but are intended as potentially useful additions. 
+    - temporalized relations - Contains R&D project extending bfo-core.owl to a stronger representation of time, namely, one that employs temporal qualification of continuant object properties, resulting in "all times" and "some times" versions. This version is accessible at http://purl.obolibrary.org/obo/bfo/bfo-2020.owl and is the version that was submitted as part of the 21838-2 standard.
 * atemporal - Contains research & development projects removing relations referencing time from bfo-core.owl.
     - bfo-2020-without-some-all-times.owl, formatted as [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/). 

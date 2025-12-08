@@ -1,5 +1,5 @@
-% BFO 2020 Axiomatization, generated 2024/01/08
-% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% BFO 2020 Axiomatization, generated 2025/12/05
+% Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
@@ -13,7 +13,7 @@ all a all b  ((occursIn(a,b)) <-> (environs(b,a))) # label("occurs-in-inverse-of
 % located-in and location-of are inverse relations
 all t all a all b  ((locatedIn(a,b,t)) <-> (locationOf(b,a,t))) # label("located-in-inverse-of-location-of") .
 
-% occurs-in is dissective on first argumentwhen it is an occurrent
+% occurs-in is dissective on first argument when it is an occurrent
 all p all q all r  ((((occursIn(p,q)) & (occurrentPartOf(r,p)))) -> (occursIn(r,q))) # label("occurs-in-dissective-on-first-argument-occurrent") .
 
 % If a process (or process-boundary) occurs in a continuant, that continuant exists at least as long as the process does
@@ -25,11 +25,14 @@ all p all q all r all s  ((((locatedIn(p,q,r)) & (temporalPartOf(s,r)))) -> (loc
 % located-in is a lower bound on second argument
 all p all q all r all s  ((((locatedIn(p,q,r)) & (continuantPartOf(q,s,r)))) -> (locatedIn(p,s,r))) # label("located-in-is-a-lower-bound-on-second-argument-continuant") .
 
-% located-in is dissective on first argumentwhen it is a continuant
+% located-in is dissective on first argument when it is a continuant
 all p all q all r all s  ((((locatedIn(p,q,r)) & (continuantPartOf(s,p,r)))) -> (locatedIn(s,q,r))) # label("located-in-dissective-on-first-argument-continuant") .
 
 % occupies-spatial-region is functional on second argument
 all p all q all r all s  ((((occupiesSpatialRegion(p,q,r)) & (occupiesSpatialRegion(p,s,r)))) -> ((q) = (s))) # label("occupies-spatial-region-functional-on-second-argument") .
+
+% occupies-spatial-region is functional on first argument
+all p all q all r all s  ((((occupiesSpatialRegion(p,q,r)) & (occupiesSpatialRegion(s,q,r)))) -> ((p) = (s))) # label("occupies-spatial-region-functional-on-first-argument") .
 
 % occupies-spatial-region is dissective on third argument, a temporal region
 all p all q all r all s  ((((occupiesSpatialRegion(p,q,r)) & (temporalPartOf(s,r)))) -> (occupiesSpatialRegion(p,q,s))) # label("occupies-spatial-region-dissective-on-third-argument-temporal") .
@@ -48,6 +51,9 @@ all s all t  ((instanceOf(s,spatialRegion,t)) -> (exists s3  (((instanceOf(s3,th
 
 % occurs-in is lower bound location
 all p all c1 all c2  ((((occursIn(p,c1)) & (all t  ((existsAt(p,t)) <-> (((existsAt(c2,t)) & (continuantPartOf(c1,c2,t)))))))) -> (occursIn(p,c2))) # label("occurs-in-lower-bound-on-process") .
+
+% Material entities occupy three dimensional spatial regions
+all m all t  ((instanceOf(m,materialEntity,t)) -> (exists t1 exists s  (((temporalPartOf(t1,t)) & (instanceOf(s,threeDimensionalSpatialRegion,t1)) & (occupiesSpatialRegion(m,s,t1)))))) # label("material-entities-always-occupy-spatial-regions") .
 
 % If something is located in something else then the region of the first is part of the region of the second
 all a all b all t  ((locatedIn(a,b,t)) -> (exists r1 exists r2 exists t2  (((temporalPartOf(t2,t)) & (occupiesSpatialRegion(a,r1,t2)) & (occupiesSpatialRegion(b,r2,t2)) & (continuantPartOf(r1,r2,t2)))))) # label("when-located-regions-part-of") .

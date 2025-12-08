@@ -1,14 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2021/11/12
+BFO 2020 Axiomatization, generated 2025/12/05
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
-Author: Alan Ruttenberg - alanruttenberg@gmail.com
+Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
- (cl:text
-
-  (cl:ttl https://basic-formal-ontology.org/2020/formulas/clif/satisfying-model.cl
-
-   (cl:outdiscourse occupies-spatiotemporal-region spatially-projects-onto proper-continuant-part-of occupies-spatial-region occupies-temporal-region generically-depends-on temporally-projects-onto proper-occurrent-part-of proper-temporal-part-of has-material-basis specifically-depends-on continuant-part-of participates-in occurrent-part-of member-part-of instance-of has-first-instant temporal-part-of has-last-instant concretizes located-in history-of realizes precedes occurs-in inheres-in exists-at universal particular entity)
+ (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/satisfying-model.cl" 
+  (cl:text  
+  (cl:outdiscourse occupies-spatiotemporal-region spatially-projects-onto proper-continuant-part-of occupies-spatial-region occupies-temporal-region generically-depends-on temporally-projects-onto proper-occurrent-part-of proper-temporal-part-of has-material-basis specifically-depends-on continuant-part-of participates-in occurrent-part-of member-part-of instance-of has-first-instant temporal-part-of has-last-instant concretizes located-in history-of realizes precedes occurs-in inheres-in exists-at universal particular entity)
 
     (entity ag)
     (entity me)

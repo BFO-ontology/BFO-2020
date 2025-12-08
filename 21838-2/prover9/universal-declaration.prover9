@@ -1,5 +1,5 @@
-% BFO 2020 Axiomatization, generated 2024/01/08
-% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% BFO 2020 Axiomatization, generated 2025/12/05
+% Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
@@ -121,6 +121,9 @@ all t all x  ((instanceOf(x,history,t)) -> (instanceOf(x,process,t))) # label("h
 % process is subclass of occurrent
 all t all x  ((instanceOf(x,process,t)) -> (instanceOf(x,occurrent,t))) # label("process-isa-occurrent") .
 
+% disposition, role are mutually disjoint
+-(exists x exists t  (((instanceOf(x,disposition,t)) & (instanceOf(x,role,t))))) # label("disposition+role-are-mutually-disjoint") .
+
 % function is subclass of disposition
 all t all x  ((instanceOf(x,function,t)) -> (instanceOf(x,disposition,t))) # label("function-isa-disposition") .
 
@@ -136,11 +139,11 @@ all t all x  ((instanceOf(x,site,t)) -> (instanceOf(x,immaterialEntity,t))) # la
 % If something is an instance of temporal region at t, then t is part of that temporal region
 all ti all t  ((instanceOf(ti,temporalRegion,t)) -> (temporalPartOf(t,ti))) # label("time-once") .
 
+% continuant, occurrent are mutually disjoint
+-(exists x exists t  (((instanceOf(x,continuant,t)) & (instanceOf(x,occurrent,t))))) # label("continuant+occurrent-are-mutually-disjoint") .
+
 % temporal-region is subclass of occurrent
 all t all x  ((instanceOf(x,temporalRegion,t)) -> (instanceOf(x,occurrent,t))) # label("temporal-region-isa-occurrent") .
-
-% disposition, role are mutually disjoint
-((-(exists x exists t  (((instanceOf(x,disposition,t)) & (instanceOf(x,role,t))))))) # label("disposition+role-are-mutually-disjoint") .
 
 % process-boundary is subclass of occurrent
 all t all x  ((instanceOf(x,processBoundary,t)) -> (instanceOf(x,occurrent,t))) # label("process-boundary-isa-occurrent") .
@@ -148,11 +151,11 @@ all t all x  ((instanceOf(x,processBoundary,t)) -> (instanceOf(x,occurrent,t))) 
 % relational-quality is subclass of quality
 all t all x  ((instanceOf(x,relationalQuality,t)) -> (instanceOf(x,quality,t))) # label("relational-quality-isa-quality") .
 
+% quality, realizable-entity are mutually disjoint
+-(exists x exists t  (((instanceOf(x,quality,t)) & (instanceOf(x,realizableEntity,t))))) # label("quality+realizable-entity-are-mutually-disjoint") .
+
 % disposition is subclass of realizable-entity
 all t all x  ((instanceOf(x,disposition,t)) -> (instanceOf(x,realizableEntity,t))) # label("disposition-isa-realizable-entity") .
-
-% continuant, occurrent are mutually disjoint
-((-(exists x exists t  (((instanceOf(x,continuant,t)) & (instanceOf(x,occurrent,t))))))) # label("continuant+occurrent-are-mutually-disjoint") .
 
 % spatiotemporal-region is subclass of occurrent
 all t all x  ((instanceOf(x,spatiotemporalRegion,t)) -> (instanceOf(x,occurrent,t))) # label("spatiotemporal-region-isa-occurrent") .
@@ -172,11 +175,11 @@ all t all x  ((instanceOf(x,independentContinuant,t)) -> (instanceOf(x,continuan
 % fiat-line is subclass of continuant-fiat-boundary
 all t all x  ((instanceOf(x,fiatLine,t)) -> (instanceOf(x,continuantFiatBoundary,t))) # label("fiat-line-isa-continuant-fiat-boundary") .
 
-% quality, realizable-entity are mutually disjoint
-((-(exists x exists t  (((instanceOf(x,quality,t)) & (instanceOf(x,realizableEntity,t))))))) # label("quality+realizable-entity-are-mutually-disjoint") .
-
 % fiat-point is subclass of continuant-fiat-boundary
 all t all x  ((instanceOf(x,fiatPoint,t)) -> (instanceOf(x,continuantFiatBoundary,t))) # label("fiat-point-isa-continuant-fiat-boundary") .
+
+% material-entity, immaterial-entity are mutually disjoint
+-(exists x exists t  (((instanceOf(x,materialEntity,t)) & (instanceOf(x,immaterialEntity,t))))) # label("material-entity+immaterial-entity-are-mutually-disjoint") .
 
 % fiat-surface is subclass of continuant-fiat-boundary
 all t all x  ((instanceOf(x,fiatSurface,t)) -> (instanceOf(x,continuantFiatBoundary,t))) # label("fiat-surface-isa-continuant-fiat-boundary") .
@@ -192,9 +195,6 @@ all t all x  ((instanceOf(x,quality,t)) -> (instanceOf(x,specificallyDependentCo
 
 % continuant-fiat-boundary is subclass of immaterial-entity
 all t all x  ((instanceOf(x,continuantFiatBoundary,t)) -> (instanceOf(x,immaterialEntity,t))) # label("continuant-fiat-boundary-isa-immaterial-entity") .
-
-% material-entity, immaterial-entity are mutually disjoint
-((-(exists x exists t  (((instanceOf(x,materialEntity,t)) & (instanceOf(x,immaterialEntity,t))))))) # label("material-entity+immaterial-entity-are-mutually-disjoint") .
 
 % generically-dependent-continuant is subclass of continuant
 all t all x  ((instanceOf(x,genericallyDependentContinuant,t)) -> (instanceOf(x,continuant,t))) # label("generically-dependent-continuant-isa-continuant") .
@@ -238,14 +238,14 @@ all x  ((exists t  (instanceOf(x,role,t))) -> (all t  ((existsAt(x,t)) -> (insta
 % If something is a site at any time then as long as it exists it is a site.
 all x  ((exists t  (instanceOf(x,site,t))) -> (all t  ((existsAt(x,t)) -> (instanceOf(x,site,t))))) # label("site-is-rigid") .
 
+% one-dimensional-temporal-region, zero-dimensional-temporal-region are mutually disjoint
+-(exists x exists t  (((instanceOf(x,oneDimensionalTemporalRegion,t)) & (instanceOf(x,zeroDimensionalTemporalRegion,t))))) # label("one-dimensional-temporal-region+zero-dimensional-temporal-region-are-mutually-disjoint") .
+
 % If something is a quality at any time then as long as it exists it is a quality.
 all x  ((exists t  (instanceOf(x,quality,t))) -> (all t  ((existsAt(x,t)) -> (instanceOf(x,quality,t))))) # label("quality-is-rigid") .
 
 % If something is a function at any time then as long as it exists it is a function.
 all x  ((exists t  (instanceOf(x,function,t))) -> (all t  ((existsAt(x,t)) -> (instanceOf(x,function,t))))) # label("function-is-rigid") .
-
-% one-dimensional-temporal-region, zero-dimensional-temporal-region are mutually disjoint
-((-(exists x exists t  (((instanceOf(x,oneDimensionalTemporalRegion,t)) & (instanceOf(x,zeroDimensionalTemporalRegion,t))))))) # label("one-dimensional-temporal-region+zero-dimensional-temporal-region-are-mutually-disjoint") .
 
 % If something is a fiat-line at any time then as long as it exists it is a fiat-line.
 all x  ((exists t  (instanceOf(x,fiatLine,t))) -> (all t  ((existsAt(x,t)) -> (instanceOf(x,fiatLine,t))))) # label("fiat-line-is-rigid") .
@@ -267,6 +267,9 @@ all x  ((exists t  (instanceOf(x,spatialRegion,t))) -> (all t  ((existsAt(x,t)) 
 
 % If something is a material-entity at any time then as long as it exists it is a material-entity.
 all x  ((exists t  (instanceOf(x,materialEntity,t))) -> (all t  ((existsAt(x,t)) -> (instanceOf(x,materialEntity,t))))) # label("material-entity-is-rigid") .
+
+% No occurrent changes type during its existence
+all o all u all t1 all t2  ((((instanceOf(o,occurrent,t1)) & (instanceOf(o,u,t2)))) -> (((instanceOf(o,occurrent,t2)) & (instanceOf(o,u,t1))))) # label("all-occurrent-types-are-rigid") .
 
 % If something is a immaterial-entity at any time then as long as it exists it is a immaterial-entity.
 all x  ((exists t  (instanceOf(x,immaterialEntity,t))) -> (all t  ((existsAt(x,t)) -> (instanceOf(x,immaterialEntity,t))))) # label("immaterial-entity-is-rigid") .
@@ -300,9 +303,6 @@ all x  ((exists t  (instanceOf(x,threeDimensionalSpatialRegion,t))) -> (all t  (
 
 % If something is a specifically-dependent-continuant at any time then as long as it exists it is a specifically-dependent-continuant.
 all x  ((exists t  (instanceOf(x,specificallyDependentContinuant,t))) -> (all t  ((existsAt(x,t)) -> (instanceOf(x,specificallyDependentContinuant,t))))) # label("specifically-dependent-continuant-is-rigid") .
-
-% No occurrent changes type during its existence
-all o  ((exists t  (instanceOf(o,occurrent,t))) -> (all u  ((exists t  (instanceOf(o,u,t))) -> (all t  ((instanceOf(o,occurrent,t)) <-> (instanceOf(o,u,t))))))) # label("all-occurrent-types-are-rigid") .
 
 % fiat-surface, fiat-line, fiat-point are mutually disjoint
 ((-(exists x exists t  (((instanceOf(x,fiatSurface,t)) & (instanceOf(x,fiatLine,t)))))) & (-(exists x exists t  (((instanceOf(x,fiatSurface,t)) & (instanceOf(x,fiatPoint,t)))))) & (-(exists x exists t  (((instanceOf(x,fiatLine,t)) & (instanceOf(x,fiatPoint,t))))))) # label("fiat-surface+fiat-line+fiat-point-are-mutually-disjoint") .

@@ -1,5 +1,5 @@
-% BFO 2020 Axiomatization, generated 2024/01/08
-% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% BFO 2020 Axiomatization, generated 2025/12/05
+% Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
@@ -19,7 +19,7 @@ all t all a all b  ((hasMaterialBasis(a,b,t)) <-> (materialBasisOf(b,a,t))) # la
 % specifically-depends-on and specifically-depended-on-by are inverse relations
 all a all b  ((specificallyDependsOn(a,b)) <-> (specificallyDependedOnBy(b,a))) # label("specifically-depends-on-inverse-of-specifically-depended-on-by") .
 
-% When a role is realized the bearer of the role participates in the realization process
+% When a realizable entity is realized, the bearer of the thing realized participates in the realization process
 all r all p all b  ((((realizes(p,r)) & (inheresIn(r,b)))) -> (exists t  (participatesIn(b,p,t)))) # label("realizable-bearer-participates-in-realization") .
 
 % has-material-basis is dissective on third argument, a temporal region
@@ -27,6 +27,9 @@ all p all q all r all s  ((((hasMaterialBasis(p,q,r)) & (temporalPartOf(s,r)))) 
 
 % realizes has domain process and range realizable-entity
 all a all b  ((realizes(a,b)) -> (((exists t  (instanceOf(a,process,t))) & (exists t  (instanceOf(b,realizableEntity,t)))))) # label("realizes-domain-range") .
+
+% No role changes type during its existence
+all o all u all t1 all t2  ((((instanceOf(o,role,t1)) & (instanceOf(o,u,t2)))) -> (((instanceOf(o,role,t2)) & (instanceOf(o,u,t1))))) # label("all-role-types-are-rigid") .
 
 % specifically-depends-on is transitive
 all a all b all c  ((((specificallyDependsOn(a,b)) & (specificallyDependsOn(b,c)) & (-((a) = (c))))) -> (specificallyDependsOn(a,c))) # label("specifically-depends-on-transitive") .
@@ -42,9 +45,6 @@ all a all b all t  ((hasMaterialBasis(a,b,t)) -> (((instanceOf(a,disposition,t))
 
 % If s s-depends-on c then there's at least one time when they both exist and whenever s exists, c must also exist
 all s all c  ((specificallyDependsOn(s,c)) -> (((exists t  (((existsAt(s,t)) & (existsAt(c,t))))) & (all t  ((existsAt(s,t)) -> (existsAt(c,t))))))) # label("s-depends-means-bearer-exists-when-dependent-exists") .
-
-% No role changes type during its existence
-all o  ((exists t  (instanceOf(o,role,t))) -> (all u  ((exists t  (instanceOf(o,u,t))) -> (all t  ((instanceOf(o,role,t)) <-> (instanceOf(o,u,t))))))) # label("all-role-types-are-rigid") .
 
 % DEFINITION: b is a relational quality = Def. b is a quality and there exists distinct c and d such that at all times t, b inheres in c if and only b specifically-depends-on.
 all b  ((exists t  (instanceOf(b,relationalQuality,t))) <-> (((exists c exists d  (((-((c) = (d))) & (inheresIn(b,c)) & (specificallyDependsOn(b,d))))) & (exists t  (instanceOf(b,quality,t)))))) # label("relational-quality-definition") .

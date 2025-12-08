@@ -1,5 +1,5 @@
-% BFO 2020 Axiomatization, generated 2024/01/08
-% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% BFO 2020 Axiomatization, generated 2025/12/05
+% Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
@@ -62,7 +62,7 @@ all p all q  ((hasOccurrentPart(p,q)) -> ((exists t  (instanceOf(p,process,t))) 
 all p all q  ((occurrentPartOf(p,q)) -> ((exists t  (instanceOf(p,processBoundary,t))) -> (exists t  (((instanceOf(q,process,t)) | (instanceOf(q,processBoundary,t))))))) # label("occurrent-part-of.process-boundary->or-process-process-boundary") .
 
 % a process boundary is any temporal part of a process that has no proper temporal parts.
-all pb  ((exists t  (instanceOf(pb,processBoundary,t))) <-> (((exists p  (((temporalPartOf(pb,p)) & (exists t  (instanceOf(p,process,t)))))) & (exists t  (((occupiesTemporalRegion(pb,t)) & (instanceOf(t,temporalInstant,t)))))))) # label("process-boundary-definition") .
+all pb all t  ((instanceOf(pb,processBoundary,t)) <-> (((exists p  (((temporalPartOf(pb,p)) & (exists t  (instanceOf(p,process,t)))))) & (((occupiesTemporalRegion(pb,t)) & (instanceOf(t,temporalInstant,t))))))) # label("process-boundary-definition") .
 
 % occurrent-part-of has a unique product
 all x all y  ((exists t  (((instanceOf(x,occurrent,t)) & (instanceOf(y,occurrent,t)) & (instanceOf(t,temporalRegion,t))))) -> ((exists w  (((occurrentPartOf(w,x)) & (occurrentPartOf(w,y))))) -> (exists z  (all w  ((occurrentPartOf(w,z)) <-> (((occurrentPartOf(w,x)) & (occurrentPartOf(w,y))))))))) # label("occurrent-part-of-has-a-unique-product") .

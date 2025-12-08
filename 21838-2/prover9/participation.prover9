@@ -1,5 +1,5 @@
-% BFO 2020 Axiomatization, generated 2024/01/08
-% Author: Alan Ruttenberg - alanruttenberg@gmail.com
+% BFO 2020 Axiomatization, generated 2025/12/05
+% Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
 
@@ -19,13 +19,13 @@ all p all q all r all s  ((((participatesIn(p,q,r)) & (temporalPartOf(s,r)))) ->
 % If c participates in p at t and p occupies-temporal-region r then t is part of r
 all c all p all r all t  ((((occupiesTemporalRegion(p,r)) & (participatesIn(c,p,t)))) -> (temporalPartOf(t,r))) # label("all-participation-at-process-occupied-temporal-region") .
 
-% participates-in is time indexed and has domain: independent-continuant but not spatial-region or specifically-dependent-continuant or generically-dependent-continuant  and range: process
-all a all b all t  ((participatesIn(a,b,t)) -> (((((((instanceOf(a,independentContinuant,t)) & (-(instanceOf(a,spatialRegion,t))))) | (instanceOf(a,specificallyDependentContinuant,t)) | (instanceOf(a,genericallyDependentContinuant,t)))) & (instanceOf(b,process,t)) & (instanceOf(t,temporalRegion,t))))) # label("participates-in-domain-range") .
+% participates-in is time indexed and has domain: independent-continuant or specifically-dependent-continuant or generically-dependent-continuant  but not spatial-region and range: process
+all a all b all t  ((participatesIn(a,b,t)) -> (((((((instanceOf(a,independentContinuant,t)) | (instanceOf(a,specificallyDependentContinuant,t)) | (instanceOf(a,genericallyDependentContinuant,t)))) & (-(instanceOf(a,spatialRegion,t))))) & (instanceOf(b,process,t)) & (instanceOf(t,temporalRegion,t))))) # label("participates-in-domain-range") .
 
 % At every time a specific dependent s participates in a process p there's a part of that time, during which there's an independent-continuant that s s-depends on, and that participates in p at that time
 all sdc all p all t  ((((instanceOf(sdc,specificallyDependentContinuant,t)) & (participatesIn(sdc,p,t)))) -> (exists tp exists ic  (((instanceOf(tp,temporalRegion,tp)) & (temporalPartOf(tp,t)) & (instanceOf(ic,independentContinuant,tp)) & (-(instanceOf(ic,spatialRegion,tp))) & (specificallyDependsOn(sdc,ic)) & (participatesIn(ic,p,tp)))))) # label("participation-of-specific-dependent-continuant") .
 
-% If a generically dependent continuant participates in a process p then, if it is concretized as a process, that process is part of p, fand if concretized as an sdc then the bearer of that sdc participates in the process
+% If a generically dependent continuant participates in a process p then, if it is concretized as a process, that process is part of p, and if concretized as an sdc then the bearer of that sdc participates in the process
 all gdc all p all t  ((((instanceOf(gdc,genericallyDependentContinuant,t)) & (participatesIn(gdc,p,t)))) -> (exists tp exists b  (((temporalPartOf(tp,t)) & (concretizes(b,gdc,tp)) & (((((instanceOf(b,specificallyDependentContinuant,tp)) & (exists ic  (((specificallyDependsOn(b,ic)) & (participatesIn(ic,p,tp))))))) | (((occurrentPartOf(b,p)) & (existsAt(b,tp)))))))))) # label("participation-of-generically-dependent-continuant") .
 
 

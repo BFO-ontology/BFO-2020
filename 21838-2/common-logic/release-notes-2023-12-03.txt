@@ -1,0 +1,4 @@
+2023-12-03 Fixed #72, giving new short codes
+    "Spatial region is a universal" was duplicate qga-1 changed to rej-1
+    "history is a subclass of process" was duplicate abo-1 changed to zuj-1
+    "located-in is transitive at a time" was duplicate xlm-1 changed to ets-1

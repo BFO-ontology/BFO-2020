@@ -1,39 +1,37 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2024/01/08
+BFO 2020 Axiomatization, generated 2025/12/05
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
- (cl:text
+ (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/spatiotemporal.cl" 
+  (cl:text  
+  (cl:outdiscourse occurrent-part-of instance-of occupies-spatial-region located-in occurs-in occupies-spatiotemporal-region spatially-projects-onto temporally-projects-onto temporal-part-of exists-at occupies-temporal-region)
 
-  (cl:ttl https://basic-formal-ontology.org/2020/formulas/clif/spatiotemporal.cl
-
-   (cl:outdiscourse occurrent-part-of instance-of occupies-spatial-region located-in occurs-in occupies-spatiotemporal-region spatially-projects-onto temporally-projects-onto temporal-part-of exists-at occupies-temporal-region)
-
-  (cl:comment "If something occupies a temporal region, then it exists at that region [bmc-1]"
+  (cl:comment 'If something occupies a temporal region, then it exists at that region [bmc-1]'
     (forall (a t) (if (occupies-temporal-region a t) (exists-at a t))))
 
 
-  (cl:comment "exists-at is a lower bound on first argument [jqz-1]"
+  (cl:comment 'exists-at is a lower bound on first argument [jqz-1]'
     (forall (p q r)
      (if (and (exists-at p q) (temporal-part-of p r)) (exists-at r q))))
 
 
-  (cl:comment "occupies-temporal-region is functional on second argument [wzd-1]"
+  (cl:comment 'occupies-temporal-region is functional on second argument [wzd-1]'
     (forall (p q r)
      (if
       (and (occupies-temporal-region p q) (occupies-temporal-region p r))
       (= q r))))
 
 
-  (cl:comment "temporally-projects-onto is functional on second argument [jtq-1]"
+  (cl:comment 'temporally-projects-onto is functional on second argument [jtq-1]'
     (forall (p q r)
      (if
       (and (temporally-projects-onto p q) (temporally-projects-onto p r))
       (= q r))))
 
 
-  (cl:comment "spatially-projects-onto is functional on second argument [fdb-1]"
+  (cl:comment 'spatially-projects-onto is functional on second argument [fdb-1]'
     (forall (p q r s)
      (if
       (and (spatially-projects-onto p q r)
@@ -41,7 +39,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (= q s))))
 
 
-  (cl:comment "occupies-spatiotemporal-region is functional on second argument [uqt-1]"
+  (cl:comment 'occupies-spatiotemporal-region is functional on second argument [uqt-1]'
     (forall (p q r)
      (if
       (and (occupies-spatiotemporal-region p q)
@@ -49,7 +47,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (= q r))))
 
 
-  (cl:comment "occurs-in is a lower bound on second argument [yex-1]"
+  (cl:comment 'occurs-in is a lower bound on second argument [yex-1]'
     (forall (p c1 c2)
      (if
       (and (occurs-in p c1)
@@ -57,13 +55,13 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (occurs-in p c2))))
 
 
-  (cl:comment "If a occupies-spatial-region b then if a is an instance of site then b is an instance of three-dimensional-spatial-region [uqb-1]"
+  (cl:comment 'If a occupies-spatial-region b then if a is an instance of site then b is an instance of three-dimensional-spatial-region [uqb-1]'
     (forall (p q t)
      (if (and (occupies-spatial-region p q t) (instance-of p site t))
       (instance-of q three-dimensional-spatial-region t))))
 
 
-  (cl:comment "The temporal region during which a process occurs is the same as that which the spatiotemporal region the process occupies temporally projects onto [cur-1]"
+  (cl:comment 'The temporal region during which a process occurs is the same as that which the spatiotemporal region the process occupies temporally projects onto [cur-1]'
     (forall (p t)
      (iff (occupies-temporal-region p t)
       (exists (st)
@@ -71,14 +69,14 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (temporally-projects-onto st t))))))
 
 
-  (cl:comment "temporally-projects-onto has domain spatiotemporal-region and range temporal-region [cvr-2]"
+  (cl:comment 'temporally-projects-onto has domain spatiotemporal-region and range temporal-region [cvr-2]'
     (forall (a b)
      (if (temporally-projects-onto a b)
       (and (exists (t) (instance-of a spatiotemporal-region t))
        (instance-of b temporal-region b)))))
 
 
-  (cl:comment "If a occupies-spatial-region b then if a is an instance of material-entity then b is an instance of three-dimensional-spatial-region [ocw-1]"
+  (cl:comment 'If a occupies-spatial-region b then if a is an instance of material-entity then b is an instance of three-dimensional-spatial-region [ocw-1]'
     (forall (p q t)
      (if
       (and (occupies-spatial-region p q t)
@@ -86,7 +84,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (instance-of q three-dimensional-spatial-region t))))
 
 
-  (cl:comment "A process boundary occupies a spatiotemporal instant [atz-1]"
+  (cl:comment 'A process boundary occupies a spatiotemporal instant [atz-1]'
     (forall (pb tr)
      (if
       (and (exists (t) (instance-of pb process-boundary t))
@@ -94,7 +92,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (instance-of tr temporal-instant tr))))
 
 
-  (cl:comment "for every process there's a corresponding spatiotemporal-region [qyy-1]"
+  (cl:comment 'for every process or process boundary there\'s a corresponding spatiotemporal region that it occupies [qyy-1]'
     (forall (p)
      (if
       (exists (t)
@@ -102,7 +100,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (exists (s) (occupies-spatiotemporal-region p s)))))
 
 
-  (cl:comment "Spatiotemporal regions always project on to some temporal region [scq-1]"
+  (cl:comment 'Spatiotemporal regions always project on to some temporal region [scq-1]'
     (forall (st)
      (if (exists (t) (instance-of st spatiotemporal-region t))
       (exists (t)
@@ -110,7 +108,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (temporally-projects-onto st t))))))
 
 
-  (cl:comment "Every temporal region is a projection from a spatiotemporal region [xco-2]"
+  (cl:comment 'Every temporal region is a projection from a spatiotemporal region [xco-2]'
     (forall (tr)
      (if (instance-of tr temporal-region tr)
       (exists (st)
@@ -118,7 +116,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (temporally-projects-onto st tr))))))
 
 
-  (cl:comment "spatially-projects-onto is time indexed and has domain: spatiotemporal-region and range: spatial-region [blj-1]"
+  (cl:comment 'spatially-projects-onto is time indexed and has domain: spatiotemporal-region and range: spatial-region [blj-1]'
     (forall (a b t)
      (if (spatially-projects-onto a b t)
       (and (instance-of a spatiotemporal-region t)
@@ -126,7 +124,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (instance-of t temporal-region t)))))
 
 
-  (cl:comment "occupies-temporal-region has domain process or process-boundary  and range temporal-region [lyx-2]"
+  (cl:comment 'occupies-temporal-region has domain process or process-boundary  and range temporal-region [lyx-2]'
     (forall (a b)
      (if (occupies-temporal-region a b)
       (and
@@ -136,7 +134,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (instance-of b temporal-region b)))))
 
 
-  (cl:comment "Spatiotemporal regions always project on to some spatial region at any time [geq-1]"
+  (cl:comment 'Spatiotemporal regions always project on to some spatial region at any time [geq-1]'
     (forall (st t)
      (if (instance-of st spatiotemporal-region t)
       (exists (s tp)
@@ -144,7 +142,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (spatially-projects-onto st s tp))))))
 
 
-  (cl:comment "Every spatial region is a projection from a spatiotemporal region [mdb-1]"
+  (cl:comment 'Every spatial region is a projection from a spatiotemporal region [mdb-1]'
     (forall (sr)
      (if (exists (t) (instance-of sr spatial-region t))
       (exists (st)
@@ -152,7 +150,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (exists (t) (spatially-projects-onto st sr t)))))))
 
 
-  (cl:comment "occupies-spatiotemporal-region has domain process or process-boundary  and range spatiotemporal-region [vvo-1]"
+  (cl:comment 'occupies-spatiotemporal-region has domain process or process-boundary  and range spatiotemporal-region [vvo-1]'
     (forall (a b)
      (if (occupies-spatiotemporal-region a b)
       (and
@@ -162,7 +160,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (exists (t) (instance-of b spatiotemporal-region t))))))
 
 
-  (cl:comment "A process occupies at least a temporal interval [fzy-1]"
+  (cl:comment 'A process occupies at least a temporal interval [fzy-1]'
     (forall (proc tr)
      (if
       (and (exists (t) (instance-of proc process t))
@@ -172,7 +170,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (temporal-part-of interval tr))))))
 
 
-  (cl:comment "If one occurrent is part of another, then the temporal region of the first is part of the temporal region of the second [jiv-1]"
+  (cl:comment 'If one occurrent is part of another, then the temporal region of the first is part of the temporal region of the second [jiv-1]'
     (forall (o1 o2 t1 t2)
      (if
       (and
@@ -184,7 +182,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (temporal-part-of t1 t2))))
 
 
-  (cl:comment "If one process or process boundary is part of another, then their corresponding temporal regions are also in a parthood relation [iqe-1]"
+  (cl:comment 'If one process or process boundary is part of another, then their corresponding temporal regions are also in a parthood relation [iqe-1]'
     (forall (o1 o2 st1 st2)
      (if
       (and
@@ -199,7 +197,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (occurrent-part-of st1 st2))))
 
 
-  (cl:comment "If a process or process boundary is part of another, their spatiotemporal regions are part too [kqv-1]"
+  (cl:comment 'If a process or process boundary is part of another, their spatiotemporal regions are part too [kqv-2]'
     (forall (p1 p2)
      (if
       (and
@@ -207,14 +205,14 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (exists (t) (instance-of p1 process-boundary t)))
        (or (exists (t) (instance-of p2 process t))
         (exists (t) (instance-of p2 process-boundary t))))
-      (iff (occurrent-part-of p1 p2)
+      (if (occurrent-part-of p1 p2)
        (exists (st1 st2)
         (and (occupies-spatiotemporal-region p1 st1)
          (occupies-spatiotemporal-region p2 st2)
          (occurrent-part-of st1 st2)))))))
 
 
-  (cl:comment "process or process-boundary p occupies-temporal-region t iff every part of p temporally occupies a part of t, and there isn't a smaller part of t that p occupies. [tao-1]"
+  (cl:comment 'process or process-boundary p occupies-temporal-region t iff every part of p temporally occupies a part of t, and there isn\'t a smaller part of t that p occupies. [tao-1]'
     (forall (o t)
      (if
       (and
@@ -234,7 +232,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
            (occupies-temporal-region o tprime)))))))))
 
 
-  (cl:comment "process p (or boundary) occupies-spatiotemporal-region st iff every part of p  occupies-spatiotemporal-region a part of st, and there isn't a smaller part of st that p occupies. [dki-1]"
+  (cl:comment 'process p (or boundary) occupies-spatiotemporal-region st iff every part of p  occupies-spatiotemporal-region a part of st, and there isn\'t a smaller part of st that p occupies. [dki-1]'
     (forall (o st)
      (if
       (and
