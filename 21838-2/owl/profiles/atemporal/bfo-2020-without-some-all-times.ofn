@@ -329,6 +329,7 @@ ObjectPropertyRange(<http://purl.obolibrary.org/obo/BFO_0000194> <http://purl.ob
 AnnotationAssertion(dc11:identifier <http://purl.obolibrary.org/obo/BFO_0000195> "012-BFO")
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000195> "specifically depends on"@en)
 AnnotationAssertion(skos:altLabel <http://purl.obolibrary.org/obo/BFO_0000195> "s-depends on"@en)
+TransitiveObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000062>)
 AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000195> "(Elucidation) specifically depends on is a relation between a specifically dependent continuant b and specifically dependent continuant or independent continuant that is not a spatial region c such that b and c share no parts in common & b is of a nature such that at all times t it cannot exist unless c exists & b is not a boundary of c"@en)
 AnnotationAssertion(skos:example <http://purl.obolibrary.org/obo/BFO_0000195> "A shape specifically depends on the shaped object; hue, saturation and brightness of a colour sample specifically depends on each other"@en)
 AnnotationAssertion(skos:scopeNote <http://purl.obolibrary.org/obo/BFO_0000195> "The analogue of specifically depends on for occurrents is has participant."@en)
