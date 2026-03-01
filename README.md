@@ -2,7 +2,7 @@
 This repository maintains the Basic Formal Ontology (BFO) artifact conformant to the requirements specified in [ISO/IEC 21838‑1](https://www.iso.org/standard/71954.html) for top-level ontologies. BFO contains classes and relations representing content common to all areas of scientific investigation, e.g. object, process, etc. and is used as a top-level architecture by numerous ontologies in the [Open Biomedical and Biomedical Ontologies (OBO) Foundry](https://obofoundry.org/), the [Industrial Ontologies Foundry (IOF)](https://oagi.org/pages/industrial-ontologies), and the [Common Core Ontologies](https://github.com/CommonCoreOntology/CommonCoreOntologies) suite. Ontologies conformant to BFO promote interoperability, standardization, and reuse among domain-level ontologies. 
 
 ## BFO-CCO Office Hours
-The BFO developer team have partnered with the developers of the [Common Core Ontologies](https://github.com/CommonCoreOntology/CommonCoreOntologies) to hold biweekly "office hours", which meet alternate Fridays remotely for an hour starting at 11am EST. For more information see [here](https://ncor-organization.github.io/NCOR-Test/office-hours/) or contact John Beverley at johnbeve[@]buffalo.edu. 
+The BFO developer team have partnered with the developers of the [Common Core Ontologies](https://github.com/CommonCoreOntology/CommonCoreOntologies) to hold biweekly "office hours", which meet alternate Fridays remotely for an hour starting at 11am EST. For more information see [here](https://ncor.us//office-hours/) or contact John Beverley at info[@]ncornetwork.org. 
 
 ## Current Release 
 
@@ -30,12 +30,12 @@ These documents are licensed under the terms of  the [Creative Commons Attributi
 * For further documentation concerning this repository, see the [BFO Documentation Page](https://basic-formal-ontology.org/bfo-2020.html). 
 * For further information about building ontologies using BFO artifacts and strategies, see [Building Ontologies with Basic Formal Ontology](https://mitpress.mit.edu/9780262527811/building-ontologies-with-basic-formal-ontology/). 
 * For example BFO design patterns, see the article [Basic Formal Ontology: Case Studies](https://philpapers.org/archive/OTTBBF.pdf). 
-* For information about upcoming and past BFO events, see [NCOR](https://ncorwiki.buffalo.edu/index.php/Main_Page). 
+* For information about upcoming and past BFO events, see [NCOR](https://ncor.us/). 
 
 ## Development Team
-* [Barry Smith](https://www.buffalo.edu/cas/philosophy/faculty/faculty_directory/smith-b.html), SUNY Distinguished Professor of Philosophy and Julian Park Chair, University at Buffalo, Department of Philosophy
+* [Barry Smith](http://ontology.buffalo.edu/smith/), SUNY Distinguished Professor of Philosophy and Julian Park Chair, University at Buffalo, Department of Philosophy; Board Chair, National Center for Ontological Research, Inc. 
 * [Alan Ruttenberg](https://dental.buffalo.edu/faculty/home.html?ubit=alanrutt), formerly Director of Clinical and Translational Data Exchange, University at Buffalo
-* [John Beverley](https://www.buffalo.edu/cas/philosophy/faculty/faculty_directory/john-beverley.html), Assistant Professor, University at Buffalo
+* [John Beverley](https://johnbeverley.com/), Assistant Professor, University at Buffalo; President, National Center for Ontological Research, Inc.
 
 ## Basic Formal Ontology Hierarchy
 ```mermaid
