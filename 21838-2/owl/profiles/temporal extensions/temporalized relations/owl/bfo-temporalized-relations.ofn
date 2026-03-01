@@ -690,6 +690,7 @@ AnnotationAssertion(skos:example obo:BFO_0000195 "A shape specifically depends o
 AnnotationAssertion(skos:prefLabel obo:BFO_0000195 "specifically depends on"@en)
 AnnotationAssertion(skos:scopeNote obo:BFO_0000195 "The analogue of specifically depends on for occurrents is has participant."@en)
 ObjectPropertyDomain(obo:BFO_0000195 obo:BFO_0000020)
+TransitiveObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000062>)
 ObjectPropertyRange(obo:BFO_0000195 ObjectUnionOf(obo:BFO_0000020 ObjectIntersectionOf(obo:BFO_0000004 ObjectComplementOf(obo:BFO_0000006))))
 
 # Object Property: obo:BFO_0000196 (bearer of)
