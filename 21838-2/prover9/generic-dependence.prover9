@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2025/12/05
+% BFO 2020 Axiomatization, generated 2026/10/05
 % Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -16,7 +16,7 @@ all t all a all b  ((genericallyDependsOn(a,b,t)) <-> (isCarrierOf(b,a,t))) # la
 % concretizes is dissective on third argument, a temporal region
 all p all q all r all s  ((((concretizes(p,q,r)) & (temporalPartOf(s,r)))) -> (concretizes(p,q,s))) # label("concretizes-dissective-on-third-argument-temporal") .
 
-% A generically dependent continuant is at all times at which it exists concretized by something
+% Along with qaf-1 this axiom has the consequence that a generically dependent continuant must always be concretized by something
 all t all g  ((instanceOf(g,genericallyDependentContinuant,t)) -> (exists s exists tp  (((temporalPartOf(tp,t)) & (concretizes(s,g,tp)))))) # label("g-depends-concretized-at-least-once") .
 
 % a g-dependent continuant b g-depends on an independent continuant c at t means: there inheres in c at t an s-dependent continuant which concretizes b at t

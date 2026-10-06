@@ -1,12 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/spatial.cl" 
   (cl:text  
-  (cl:outdiscourse instance-of spatially-projects-onto occupies-spatial-region continuant-part-of temporal-part-of exists-at occurrent-part-of location-of located-in environs occurs-in)
+   (cl:outdiscourse instance-of spatially-projects-onto occupies-spatial-region continuant-part-of temporal-part-of exists-at occurrent-part-of location-of located-in environs occurs-in)
 
   (cl:comment 'occurs-in and environs are inverse relations [uys-1]'
     (forall (a b) (iff (occurs-in a b) (environs b a))))
@@ -89,6 +89,14 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (instance-of q continuant-fiat-boundary t))))
 
 
+  (cl:comment 'If a process occurs in c then it occurs in any place that c is part of at least as long as p exists [czc-2]'
+    (forall (p c1 c2)
+     (if
+      (and (occurs-in p c1)
+       (forall (t) (if (exists-at p t) (continuant-part-of c1 c2 t))))
+      (occurs-in p c2))))
+
+
   (cl:comment 'All spatial regions are part of a 3-dimensional spatial region [xcx-1]'
     (forall (s t)
      (if (instance-of s spatial-region t)
@@ -97,14 +105,13 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (continuant-part-of s s3 t))))))
 
 
-  (cl:comment 'occurs-in is lower bound location [czc-1]'
-    (forall (p c1 c2)
+  (cl:comment 'spatial regions don\'t change what they are part of. [mlb-2]'
+    (forall (sr1 sr2 t1 t2)
      (if
-      (and (occurs-in p c1)
-       (forall (t)
-        (iff (exists-at p t)
-         (and (exists-at c2 t) (continuant-part-of c1 c2 t)))))
-      (occurs-in p c2))))
+      (and (continuant-part-of sr1 sr2 t1)
+       (or (exists-at sr2 t2) (exists-at sr1 t2))
+       (instance-of sr2 spatial-region t1))
+      (continuant-part-of sr1 sr2 t2))))
 
 
   (cl:comment 'Material entities occupy three dimensional spatial regions [hpz-1]'
@@ -134,17 +141,6 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
          (instance-of a process-boundary t)))
        (exists (t)
         (or (instance-of b material-entity t) (instance-of b site t)))))))
-
-
-  (cl:comment 'spatial regions don\'t change what they are part of. [mlb-1]'
-    (forall (s sp)
-     (if
-      (exists (t)
-       (and (instance-of s spatial-region t)
-        (continuant-part-of sp s t)))
-      (forall (t)
-       (if (exists (s-prime) (continuant-part-of s-prime s t))
-        (continuant-part-of sp s t))))))
 
 
   (cl:comment 'occupies-spatial-region is time indexed and has domain: independent-continuant but not spatial-region and range: spatial-region [lzw-1]'

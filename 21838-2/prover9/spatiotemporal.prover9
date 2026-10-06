@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2025/12/05
+% BFO 2020 Axiomatization, generated 2026/10/05
 % Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -25,8 +25,8 @@ all p all q all r all s  ((((spatiallyProjectsOnto(p,q,r)) & (spatiallyProjectsO
 % occupies-spatiotemporal-region is functional on second argument
 all p all q all r  ((((occupiesSpatiotemporalRegion(p,q)) & (occupiesSpatiotemporalRegion(p,r)))) -> ((q) = (r))) # label("occupies-spatiotemporal-region-functional-on-second-argument") .
 
-% occurs-in is a lower bound on second argument
-all p all c1 all c2  ((((occursIn(p,c1)) & (all t  ((existsAt(p,t)) <-> (locatedIn(c1,c2,t)))))) -> (occursIn(p,c2))) # label("occurs-in-is-a-lower-bound-on-second-argument-continuant") .
+% If a process occurs in c then it occurs in any place that c is located in at least as long as p exists
+all p all c1 all c2  ((((occursIn(p,c1)) & (all t  ((existsAt(p,t)) -> (locatedIn(c1,c2,t)))))) -> (occursIn(p,c2))) # label("occurs-in-is-a-lower-bound-on-second-argument-continuant") .
 
 % If a occupies-spatial-region b then if a is an instance of site then b is an instance of three-dimensional-spatial-region
 all p all q all t  ((((occupiesSpatialRegion(p,q,t)) & (instanceOf(p,site,t)))) -> (instanceOf(q,threeDimensionalSpatialRegion,t))) # label("occupies-spatial-region.site->three-dimensional-spatial-region") .

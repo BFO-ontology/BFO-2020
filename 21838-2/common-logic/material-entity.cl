@@ -1,12 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/material-entity.cl" 
   (cl:text  
-  (cl:outdiscourse generically-depends-on specifically-depends-on continuant-part-of proper-continuant-part-of instance-of temporal-part-of has-member-part member-part-of)
+   (cl:outdiscourse generically-depends-on specifically-depends-on continuant-part-of proper-continuant-part-of instance-of temporal-part-of has-member-part member-part-of)
 
   (cl:comment 'member-part-of and has-member-part are inverse relations [jrm-1]'
     (forall (t a b) (iff (member-part-of a b t) (has-member-part b a t))))

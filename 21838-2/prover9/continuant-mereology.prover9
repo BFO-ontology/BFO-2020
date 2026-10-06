@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2025/12/05
+% BFO 2020 Axiomatization, generated 2026/10/05
 % Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -10,7 +10,7 @@ set(prolog_style_variables)
 % continuant-part-of and has-continuant-part are inverse relations
 all t all a all b  ((continuantPartOf(a,b,t)) <-> (hasContinuantPart(b,a,t))) # label("continuant-part-of-inverse-of-has-continuant-part") .
 
-% continuant-part-of is reflexive at a time
+% All independent continuants are continuant part of themselves
 all a all t  ((instanceOf(a,independentContinuant,t)) -> (continuantPartOf(a,a,t))) # label("continuant-part-of-is-reflexive-on-independent-continuant-at-a-time") .
 
 % proper-continuant-part-of and has-proper-continuant-part are inverse relations
@@ -113,10 +113,10 @@ all p all q all t  ((((hasContinuantPart(p,q,t)) & (instanceOf(p,twoDimensionalS
 all a all b  ((exists t  (((instanceOf(a,independentContinuant,t)) & (-(instanceOf(a,objectAggregate,t))) & (instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,objectAggregate,t))) & (continuantPartOf(a,b,t)) & (continuantPartOf(b,a,t))))) -> ((a) = (b))) # label("continuant-part-of-is-antisymmetric-except-for-object-aggregates") .
 
 % If at all times that two object-aggregates exist each is part of the other, then they are identical
-all a all b  ((((exists t  (((instanceOf(a,objectAggregate,t)) & (continuantPartOf(a,b,t)) & (continuantPartOf(b,a,t))))) & (all t  ((existsAt(a,t)) <-> (existsAt(b,t)))) & (all t  ((existsAt(a,t)) -> (((continuantPartOf(a,b,t)) & (continuantPartOf(b,a,t)))))))) -> ((a) = (b))) # label("continuant-part-of-is-extent-antisymmetric-for-object-aggregates") .
+all a all b  ((((exists t  (((instanceOf(a,objectAggregate,t)) & (continuantPartOf(a,b,t)) & (continuantPartOf(b,a,t))))) & (all t  ((existsAt(a,t)) <-> (existsAt(b,t)))) & (all t  ((existsAt(a,t)) -> (((instanceOf(a,objectAggregate,t)) & (instanceOf(b,objectAggregate,t)) & (continuantPartOf(a,b,t)) & (continuantPartOf(b,a,t)))))))) -> ((a) = (b))) # label("continuant-part-of-is-extent-antisymmetric-for-object-aggregates") .
 
-% continuant-part-of has weak supplementation
-all t all x all y  ((((instanceOf(x,continuant,t)) & (instanceOf(y,continuant,t)) & (instanceOf(t,temporalRegion,t)))) -> ((((continuantPartOf(x,y,t)) & (-((x) = (y))))) -> (exists z  (((instanceOf(z,continuant,t)) & (continuantPartOf(z,y,t)) & (-((z) = (y))) & (-(exists overlap  (((instanceOf(overlap,continuant,t)) & (continuantPartOf(overlap,x,t)) & (continuantPartOf(overlap,z,t))))))))))) # label("continuant-part-of-has-weak-supplementation-at-a-time") .
+% the continuant parthood relation satisfies weak supplementation
+all t all x all y  ((((instanceOf(x,continuant,t)) & (instanceOf(y,continuant,t)) & (instanceOf(t,temporalRegion,t)))) -> ((properContinuantPartOf(x,y,t)) -> (exists z  (((instanceOf(z,continuant,t)) & (properContinuantPartOf(z,y,t)) & (-(exists overlap  (((instanceOf(overlap,continuant,t)) & (continuantPartOf(overlap,x,t)) & (continuantPartOf(overlap,z,t))))))))))) # label("continuant-part-of-has-weak-supplementation-at-a-time") .
 
 % continuant-part-of has a unique product at a time
 all x all y all t  ((((instanceOf(x,continuant,t)) & (instanceOf(y,continuant,t)) & (instanceOf(t,temporalRegion,t)))) -> ((exists overlap  (((instanceOf(overlap,continuant,t)) & (continuantPartOf(overlap,x,t)) & (continuantPartOf(overlap,y,t))))) -> (exists overlap  (((instanceOf(overlap,continuant,t)) & (all w  ((instanceOf(w,continuant,t)) -> ((continuantPartOf(w,overlap,t)) <-> (((continuantPartOf(w,x,t)) & (continuantPartOf(w,y,t)))))))))))) # label("continuant-part-of-has-a-unique-product-at-a-time") .

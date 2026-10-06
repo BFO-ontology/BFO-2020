@@ -1,12 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/specific-dependency.cl" 
   (cl:text  
-  (cl:outdiscourse exists-at has-first-instant occupies-temporal-region continuant-part-of instance-of temporal-part-of participates-in specifically-depended-on-by specifically-depends-on material-basis-of has-material-basis has-realization realizes bearer-of inheres-in)
+   (cl:outdiscourse exists-at has-first-instant occupies-temporal-region continuant-part-of instance-of temporal-part-of participates-in specifically-depended-on-by specifically-depends-on material-basis-of has-material-basis has-realization realizes bearer-of inheres-in)
 
   (cl:comment 'inheres-in and bearer-of are inverse relations [dzz-1]'
     (forall (a b) (iff (inheres-in a b) (bearer-of b a))))
@@ -91,12 +91,12 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (forall (t) (if (exists-at s t) (exists-at c t)))))))
 
 
-  (cl:comment 'DEFINITION: b is a relational quality = Def. b is a quality and there exists distinct c and d such that at all times t, b inheres in c if and only b specifically-depends-on. [dbp-1]'
+  (cl:comment 'b is a relational quality =Def. b is a quality and there exists c and d such that b and c are not identical, & b specifically depends on on c & b specifically depends on d [dbp-4]'
     (forall (b)
      (iff (exists (t) (instance-of b relational-quality t))
       (and
        (exists (c d)
-        (and (not (= c d)) (inheres-in b c)
+        (and (not (= c d)) (specifically-depends-on b c)
          (specifically-depends-on b d)))
        (exists (t) (instance-of b quality t))))))
 

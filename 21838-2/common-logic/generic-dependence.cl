@@ -1,12 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/generic-dependence.cl" 
   (cl:text  
-  (cl:outdiscourse exists-at occurrent-part-of specifically-depends-on participates-in inheres-in instance-of temporal-part-of is-carrier-of generically-depends-on is-concretized-by concretizes)
+   (cl:outdiscourse exists-at occurrent-part-of specifically-depends-on participates-in inheres-in instance-of temporal-part-of is-carrier-of generically-depends-on is-concretized-by concretizes)
 
   (cl:comment 'concretizes and is-concretized-by are inverse relations [zba-1]'
     (forall (t a b) (iff (concretizes a b t) (is-concretized-by b a t))))
@@ -23,7 +23,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (concretizes p q s))))
 
 
-  (cl:comment 'A generically dependent continuant is at all times at which it exists concretized by something [ibk-1]'
+  (cl:comment 'Along with qaf-1 this axiom has the consequence that a generically dependent continuant must always be concretized by something [ibk-1]'
     (forall (t g)
      (if (instance-of g generically-dependent-continuant t)
       (exists (s tp) (and (temporal-part-of tp t) (concretizes s g tp))))))

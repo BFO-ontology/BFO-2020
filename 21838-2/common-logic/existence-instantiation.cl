@@ -1,12 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/existence-instantiation.cl" 
   (cl:text  
-  (cl:outdiscourse temporal-part-of continuant-part-of instance-of universal exists-at particular)
+   (cl:outdiscourse temporal-part-of continuant-part-of instance-of universal exists-at particular)
 
   (cl:comment 'Particulars exist at some time [nmq-1]'
     (forall (p) (if (particular p) (exists (t) (exists-at p t)))))

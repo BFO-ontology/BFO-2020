@@ -1,12 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/temporal-region.cl" 
   (cl:text  
-  (cl:outdiscourse precedes has-proper-temporal-part proper-temporal-part-of instance-of occurrent-part-of has-temporal-part temporal-part-of first-instant-of has-first-instant last-instant-of has-last-instant)
+   (cl:outdiscourse precedes instance-of has-proper-temporal-part proper-temporal-part-of occurrent-part-of has-temporal-part temporal-part-of first-instant-of has-first-instant last-instant-of has-last-instant)
 
   (cl:comment 'has-last-instant and last-instant-of are inverse relations [wal-1]'
     (forall (a b) (iff (has-last-instant a b) (last-instant-of b a))))
@@ -24,11 +24,6 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
     (forall (a b) (if (temporal-part-of a b) (occurrent-part-of a b))))
 
 
-  (cl:comment 'temporal-part-of is reflexive [dbj-2]'
-    (forall (a)
-     (if (instance-of a temporal-region a) (temporal-part-of a a))))
-
-
   (cl:comment 'proper-temporal-part-of and has-proper-temporal-part are inverse relations [dbc-1]'
     (forall (a b)
      (iff (proper-temporal-part-of a b) (has-proper-temporal-part b a))))
@@ -39,7 +34,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
      (if (instance-of ti temporal-region t) (temporal-part-of t ti))))
 
 
-  (cl:comment 'temporal-part-of is reflexive [bvr-1]'
+  (cl:comment 'All occurrents are temporal parts of themselves [bvr-1]'
     (forall (a)
      (if (exists (t) (instance-of a occurrent t)) (temporal-part-of a a))))
 
@@ -204,6 +199,20 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (instance-of i one-dimensional-temporal-region t)))))
 
 
+  (cl:comment 'The last temporal instant is such that every part of the interval that doesn\'t have the last instant as part precedes it [nhd-3]'
+    (forall (i li ip)
+     (if (and (has-last-instant i li) (temporal-part-of ip i))
+      (or (precedes ip li) (temporal-part-of li ip)
+       (instance-of i temporal-instant i)))))
+
+
+  (cl:comment 'The first temporal instant is such that it precedes every part of the interval that doesn\'t have the first instant as part [ixz-2]'
+    (forall (i fi ip)
+     (if (and (has-first-instant i fi) (temporal-part-of ip i))
+      (or (precedes fi ip) (temporal-part-of fi ip)
+       (instance-of i temporal-instant i)))))
+
+
   (cl:comment 'temporal regions are instances at themselves [tvx-3]'
     (forall (a b)
      (and
@@ -257,30 +266,6 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
         (exists (part)
          (and (temporal-part-of part t1) (temporal-part-of part t2)))))
       (or (precedes t1 t2) (precedes t2 t1)))))
-
-
-  (cl:comment 'The last temporal instant is such that every part of the interval that doesn\'t have the last instant as part precedes it [nhd-2]'
-    (forall (li i)
-     (if
-      (and (instance-of li temporal-instant li)
-       (instance-of i temporal-region i)
-       (not (instance-of i temporal-instant i)))
-      (if (has-last-instant i li)
-       (forall (ip)
-        (if (and (temporal-part-of ip i) (not (temporal-part-of li ip)))
-         (precedes ip li)))))))
-
-
-  (cl:comment 'The first temporal instant is such that it precedes every part of the interval that doesn\'t have the first instant as part [ixz-1]'
-    (forall (fi i)
-     (if
-      (and (instance-of fi temporal-instant fi)
-       (instance-of i temporal-region i)
-       (not (instance-of i temporal-instant i)))
-      (if (has-first-instant i fi)
-       (forall (ip)
-        (if (and (temporal-part-of ip i) (not (temporal-part-of fi ip)))
-         (precedes fi ip)))))))
 
 
   (cl:comment 'intervals have no internal gaps [ekm-1]'

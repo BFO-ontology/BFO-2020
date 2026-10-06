@@ -1,12 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/participation.cl" 
   (cl:text  
-  (cl:outdiscourse exists-at occurrent-part-of concretizes specifically-depends-on occupies-temporal-region temporal-part-of instance-of has-participant participates-in)
+   (cl:outdiscourse exists-at occurrent-part-of concretizes specifically-depends-on occupies-temporal-region temporal-part-of instance-of has-participant participates-in)
 
   (cl:comment 'participates-in and has-participant are inverse relations [xjr-1]'
     (forall (t a b) (iff (participates-in a b t) (has-participant b a t))))

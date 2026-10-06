@@ -1,0 +1,146 @@
+Axioms whose logical form changed:
+----------------------------------
+
+Axiom continuant-part-of-is-extent-antisymmetric-for-object-aggregates has changed [glc-2]->[glc-3]
+
+(:forall (?a ?b)                                                             (:forall (?a ?b)
+ (:implies                                                                    (:implies
+  (:and                                                                        (:and
+   (:exists (?t)                                                                (:exists (?t)
+    (:and (instance-of ?a object-aggregate ?t) (continuant-part-of ?a ?b         (:and (instance-of ?a object-aggregate ?t) (continuant-part-of ?a ?b 
+     (continuant-part-of ?b ?a ?t)))                                              (continuant-part-of ?b ?a ?t)))
+   (:forall (?t) (:iff (exists-at ?a ?t) (exists-at ?b ?t)))                    (:forall (?t) (:iff (exists-at ?a ?t) (exists-at ?b ?t)))
+   (:forall (?t)                                                                (:forall (?t)
+    (:implies (exists-at ?a ?t)                                                  (:implies (exists-at ?a ?t)
+     (:and (continuant-part-of ?a ?b ?t) (continuant-part-of ?b ?a ?t)))) |       (:and (instance-of ?a object-aggregate ?t)
+                                                                          >        (instance-of ?b object-aggregate ?t) (continuant-part-of ?a ?b ?t)
+                                                                          >        (continuant-part-of ?b ?a ?t)))))
+  (:= ?a ?b)))                                                                 (:= ?a ?b)))
+
+
+Axiom spatial-region-part-of-another-forever has changed [mlb-1]->[mlb-2]
+
+(:forall (?s ?sp)                                                         |  (:forall (?sr1 ?sr2 ?t1 ?t2)
+ (:implies                                                                    (:implies
+  (:exists (?t)                                                           |    (:and (continuant-part-of ?sr1 ?sr2 ?t1)
+   (:and (instance-of ?s spatial-region ?t) (continuant-part-of ?sp ?s ?t |     (:or (exists-at ?sr2 ?t2) (exists-at ?sr1 ?t2))
+  (:forall (?t)                                                           |     (instance-of ?sr2 spatial-region ?t1))
+   (:implies (:exists (?s-prime) (continuant-part-of ?s-prime ?s ?t))     /    (continuant-part-of ?sr1 ?sr2 ?t2)))
+    (continuant-part-of ?sp ?s ?t)))))                                    <
+
+
+Axiom last-instant-for-temporal-regions-preceded-by-all-parts-of-region-other-than-self has changed [nhd-2]->[nhd-3]
+
+(:forall (?li ?i)                                                         |  (:forall (?i ?li ?ip)
+ (:implies                                                                |   (:implies (:and (has-last-instant ?i ?li) (temporal-part-of ?ip ?i))
+  (:and (instance-of ?li temporal-instant ?li)                            |    (:or (precedes ?ip ?li) (temporal-part-of ?li ?ip)
+   (instance-of ?i temporal-region ?i)                                    /     (instance-of ?i temporal-instant ?i))))
+   (:not (instance-of ?i temporal-instant ?i)))                           <
+  (:implies (has-last-instant ?i ?li)                                     <
+   (:forall (?ip)                                                         <
+    (:implies                                                             <
+     (:and (temporal-part-of ?ip ?i) (:not (temporal-part-of ?li ?ip)))   <
+     (precedes ?ip ?li))))))                                              <
+
+
+Axiom relational-quality-definition has changed [dbp-3]->[dbp-4]
+Description was: 'DEFINITION: b is a relational quality = Def. b is a quality and there exists distinct c and d such that at all times t, b inheres in c if and only b specifically-depends-on.'
+now: 'b is a relational quality =Def. b is a quality and there exists c and d such that b and c are not identical, & b specifically depends on on c & b specifically depends on d'
+
+(:forall (?b)                                                                (:forall (?b)
+ (:iff (:exists (?t) (instance-of ?b relational-quality ?t))                  (:iff (:exists (?t) (instance-of ?b relational-quality ?t))
+  (:and                                                                        (:and
+   (:exists (?c ?d)                                                             (:exists (?c ?d)
+    (:and (:not (:= ?c ?d)) (inheres-in ?b ?c)                            |      (:and (:not (:= ?c ?d)) (specifically-depends-on ?b ?c)
+     (specifically-depends-on ?b ?d)))                                            (specifically-depends-on ?b ?d)))
+   (:exists (?t) (instance-of ?b quality ?t)))))                                (:exists (?t) (instance-of ?b quality ?t)))))
+
+
+Axiom continuant-part-of-has-weak-supplementation-at-a-time has changed [fyf-1]->[fyf-2]
+Description was: 'continuant-part-of has weak supplementation'
+now: 'the continuant parthood relation satisfies weak supplementation'
+
+(:forall (?t ?x ?y)                                                          (:forall (?t ?x ?y)
+ (:implies                                                                    (:implies
+  (:and (instance-of ?x continuant ?t) (instance-of ?y continuant ?t)          (:and (instance-of ?x continuant ?t) (instance-of ?y continuant ?t)
+   (instance-of ?t temporal-region ?t))                                         (instance-of ?t temporal-region ?t))
+  (:implies (:and (continuant-part-of ?x ?y ?t) (:not (:= ?x ?y)))        |    (:implies (proper-continuant-part-of ?x ?y ?t)
+   (:exists (?z)                                                                (:exists (?z)
+    (:and (instance-of ?z continuant ?t) (continuant-part-of ?z ?y ?t)    |      (:and (instance-of ?z continuant ?t) (proper-continuant-part-of ?z ?y
+     (:not (:= ?z ?y))                                                    <
+     (:not                                                                        (:not
+      (:exists (?overlap)                                                          (:exists (?overlap)
+       (:and (instance-of ?overlap continuant ?t)                                   (:and (instance-of ?overlap continuant ?t)
+        (continuant-part-of ?overlap ?x ?t)                                          (continuant-part-of ?overlap ?x ?t)
+        (continuant-part-of ?overlap ?z ?t)))))))))                                  (continuant-part-of ?overlap ?z ?t)))))))))
+
+
+Axiom occurs-in-lower-bound-on-process has changed [czc-1]->[czc-2]
+Description was: 'occurs-in is lower bound location'
+now: 'If a process occurs in c then it occurs in any place that c is part of at least as long as p exists'
+
+(:forall (?p ?c1 ?c2)                                                        (:forall (?p ?c1 ?c2)
+ (:implies                                                                    (:implies
+  (:and (occurs-in ?p ?c1)                                                     (:and (occurs-in ?p ?c1)
+   (:forall (?t)                                                          |     (:forall (?t) (:implies (exists-at ?p ?t) (continuant-part-of ?c1 ?c2 
+    (:iff (exists-at ?p ?t)                                               <
+     (:and (exists-at ?c2 ?t) (continuant-part-of ?c1 ?c2 ?t)))))         <
+  (occurs-in ?p ?c2)))                                                         (occurs-in ?p ?c2)))
+
+
+Axiom occurs-in-is-a-lower-bound-on-second-argument-continuant has changed [yex-1]->[yex-2]
+Description was: 'occurs-in is a lower bound on second argument'
+now: 'If a process occurs in c then it occurs in any place that c is located in at least as long as p exists'
+
+(:forall (?p ?c1 ?c2)                                                        (:forall (?p ?c1 ?c2)
+ (:implies                                                                    (:implies
+  (:and (occurs-in ?p ?c1)                                                     (:and (occurs-in ?p ?c1)
+   (:forall (?t) (:iff (exists-at ?p ?t) (located-in ?c1 ?c2 ?t))))       |     (:forall (?t) (:implies (exists-at ?p ?t) (located-in ?c1 ?c2 ?t))))
+  (occurs-in ?p ?c2)))                                                         (occurs-in ?p ?c2)))
+
+
+Axiom first-instant-for-temporal-regions-precedes-all-parts-of-region-other-than-self has changed [ixz-1]->[ixz-2]
+
+(:forall (?fi ?i)                                                         |  (:forall (?i ?fi ?ip)
+ (:implies                                                                |   (:implies (:and (has-first-instant ?i ?fi) (temporal-part-of ?ip ?i))
+  (:and (instance-of ?fi temporal-instant ?fi)                            |    (:or (precedes ?fi ?ip) (temporal-part-of ?fi ?ip)
+   (instance-of ?i temporal-region ?i)                                    /     (instance-of ?i temporal-instant ?i))))
+   (:not (instance-of ?i temporal-instant ?i)))                           <
+  (:implies (has-first-instant ?i ?fi)                                    <
+   (:forall (?ip)                                                         <
+    (:implies                                                             <
+     (:and (temporal-part-of ?ip ?i) (:not (temporal-part-of ?fi ?ip)))   <
+     (precedes ?fi ?ip))))))                                              <
+
+
+Axioms whose name changed:
+--------------------------
+
+
+Axioms whose descriptions only changed:
+---------------------------------------
+
+Axiom description for temporal-part-of-is-reflexive-on-occurrent [bvr-1] has changed,
+was: 'temporal-part-of is reflexive'
+now: 'All occurrents are temporal parts of themselves'
+
+Axiom description for occurrent-part-of-is-reflexive-on-occurrent [hbj-1] has changed,
+was: 'occurrent-part-of is reflexive'
+now: 'All occurrents are occurrent-part-of themselves'
+
+Axiom description for continuant-part-of-is-reflexive-on-independent-continuant-at-a-time [mcd-1] has changed,
+was: 'continuant-part-of is reflexive at a time'
+now: 'All independent continuants are continuant part of themselves'
+
+Axiom description for g-depends-concretized-at-least-once [ibk-1] has changed,
+was: 'A generically dependent continuant is at all times at which it exists concretized by something'
+now: 'Along with qaf-1 this axiom has the consequence that a generically dependent continuant must always be concretized by something'
+
+
+Only in old theory:
+-------------------
+
+
+Only in new theory:
+-------------------
+

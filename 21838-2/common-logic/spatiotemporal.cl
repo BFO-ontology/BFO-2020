@@ -1,12 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/spatiotemporal.cl" 
   (cl:text  
-  (cl:outdiscourse occurrent-part-of instance-of occupies-spatial-region located-in occurs-in occupies-spatiotemporal-region spatially-projects-onto temporally-projects-onto temporal-part-of exists-at occupies-temporal-region)
+   (cl:outdiscourse occurrent-part-of instance-of occupies-spatial-region located-in occurs-in occupies-spatiotemporal-region spatially-projects-onto temporally-projects-onto temporal-part-of exists-at occupies-temporal-region)
 
   (cl:comment 'If something occupies a temporal region, then it exists at that region [bmc-1]'
     (forall (a t) (if (occupies-temporal-region a t) (exists-at a t))))
@@ -47,11 +47,11 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (= q r))))
 
 
-  (cl:comment 'occurs-in is a lower bound on second argument [yex-1]'
+  (cl:comment 'If a process occurs in c then it occurs in any place that c is located in at least as long as p exists [yex-2]'
     (forall (p c1 c2)
      (if
       (and (occurs-in p c1)
-       (forall (t) (iff (exists-at p t) (located-in c1 c2 t))))
+       (forall (t) (if (exists-at p t) (located-in c1 c2 t))))
       (occurs-in p c2))))
 
 

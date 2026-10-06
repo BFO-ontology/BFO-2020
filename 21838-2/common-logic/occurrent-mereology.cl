@@ -1,12 +1,12 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/occurrent-mereology.cl" 
   (cl:text  
-  (cl:outdiscourse continuant-part-of spatially-projects-onto temporally-projects-onto has-last-instant has-first-instant occupies-temporal-region temporal-part-of proper-temporal-part-of exists-at instance-of has-proper-occurrent-part proper-occurrent-part-of has-occurrent-part occurrent-part-of)
+   (cl:outdiscourse continuant-part-of spatially-projects-onto temporally-projects-onto has-last-instant has-first-instant occupies-temporal-region temporal-part-of proper-temporal-part-of exists-at instance-of has-proper-occurrent-part proper-occurrent-part-of has-occurrent-part occurrent-part-of)
 
   (cl:comment 'occurrent-part-of and has-occurrent-part are inverse relations [yvi-1]'
     (forall (a b) (iff (occurrent-part-of a b) (has-occurrent-part b a))))
@@ -17,7 +17,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
      (iff (proper-occurrent-part-of a b) (has-proper-occurrent-part b a))))
 
 
-  (cl:comment 'occurrent-part-of is reflexive [hbj-1]'
+  (cl:comment 'All occurrents are occurrent-part-of themselves [hbj-1]'
     (forall (a)
      (if (exists (t) (instance-of a occurrent t))
       (occurrent-part-of a a))))

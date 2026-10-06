@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2025/12/05
+% BFO 2020 Axiomatization, generated 2026/10/05
 % Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -19,16 +19,13 @@ all a all b  ((temporalPartOf(a,b)) <-> (hasTemporalPart(b,a))) # label("tempora
 % temporal-part-of for occurrents implies occurrent-part-of
 all a all b  ((temporalPartOf(a,b)) -> (occurrentPartOf(a,b))) # label("temporal-part-of-subproperty-of-occurrent-part-of") .
 
-% temporal-part-of is reflexive
-all a  ((instanceOf(a,temporalRegion,a)) -> (temporalPartOf(a,a))) # label("temporal-part-of-is-reflexive-on-temporal-region") .
-
 % proper-temporal-part-of and has-proper-temporal-part are inverse relations
 all a all b  ((properTemporalPartOf(a,b)) <-> (hasProperTemporalPart(b,a))) # label("proper-temporal-part-of-inverse-of-has-proper-temporal-part") .
 
 % If something is an instance of temporal region at t, then t is part of that temporal region
 all ti all t  ((instanceOf(ti,temporalRegion,t)) -> (temporalPartOf(t,ti))) # label("time-once") .
 
-% temporal-part-of is reflexive
+% All occurrents are temporal parts of themselves
 all a  ((exists t  (instanceOf(a,occurrent,t))) -> (temporalPartOf(a,a))) # label("temporal-part-of-is-reflexive-on-occurrent") .
 
 % temporal-part-of is antisymmetric
@@ -103,6 +100,12 @@ all t1 all t2  ((((instanceOf(t1,temporalInstant,t1)) & (instanceOf(t2,temporalI
 % temporal-region is the union of zero-dimensional-temporal-region and one-dimensional-temporal-region 
 all i all t  ((instanceOf(i,temporalRegion,t)) -> (((instanceOf(i,zeroDimensionalTemporalRegion,t)) | (instanceOf(i,oneDimensionalTemporalRegion,t))))) # label("temporal-region-cover") .
 
+% The last temporal instant is such that every part of the interval that doesn't have the last instant as part precedes it
+all i all li all ip  ((((hasLastInstant(i,li)) & (temporalPartOf(ip,i)))) -> (((precedes(ip,li)) | (temporalPartOf(li,ip)) | (instanceOf(i,temporalInstant,i))))) # label("last-instant-for-temporal-regions-preceded-by-all-parts-of-region-other-than-self") .
+
+% The first temporal instant is such that it precedes every part of the interval that doesn't have the first instant as part
+all i all fi all ip  ((((hasFirstInstant(i,fi)) & (temporalPartOf(ip,i)))) -> (((precedes(fi,ip)) | (temporalPartOf(fi,ip)) | (instanceOf(i,temporalInstant,i))))) # label("first-instant-for-temporal-regions-precedes-all-parts-of-region-other-than-self") .
+
 % temporal regions are instances at themselves
 all a all b  (((all c  ((((instanceOf(a,b,c)) & (instanceOf(a,temporalRegion,c)))) -> (instanceOf(a,b,a)))) & ((instanceOf(a,b,a)) -> (instanceOf(a,temporalRegion,a))))) # label("temporal-regions-instance-of-at-self") .
 
@@ -120,12 +123,6 @@ all f all i  ((((instanceOf(f,temporalInstant,f)) & (instanceOf(i,temporalRegion
 
 % If two temporal intervals do not overlap then one of them precedes the other
 all t1 all t2  ((((instanceOf(t1,temporalInterval,t1)) & (instanceOf(t2,temporalInterval,t2)) & (-(exists part  (((temporalPartOf(part,t1)) & (temporalPartOf(part,t2)))))))) -> (((precedes(t1,t2)) | (precedes(t2,t1))))) # label("temporal-intervals-dont-overlap-implies-one-precedes-the-other") .
-
-% The last temporal instant is such that every part of the interval that doesn't have the last instant as part precedes it
-all li all i  ((((instanceOf(li,temporalInstant,li)) & (instanceOf(i,temporalRegion,i)) & (-(instanceOf(i,temporalInstant,i))))) -> ((hasLastInstant(i,li)) -> (all ip  ((((temporalPartOf(ip,i)) & (-(temporalPartOf(li,ip))))) -> (precedes(ip,li)))))) # label("last-instant-for-temporal-regions-preceded-by-all-parts-of-region-other-than-self") .
-
-% The first temporal instant is such that it precedes every part of the interval that doesn't have the first instant as part
-all fi all i  ((((instanceOf(fi,temporalInstant,fi)) & (instanceOf(i,temporalRegion,i)) & (-(instanceOf(i,temporalInstant,i))))) -> ((hasFirstInstant(i,fi)) -> (all ip  ((((temporalPartOf(ip,i)) & (-(temporalPartOf(fi,ip))))) -> (precedes(fi,ip)))))) # label("first-instant-for-temporal-regions-precedes-all-parts-of-region-other-than-self") .
 
 % intervals have no internal gaps
 all i all start all end  ((((instanceOf(i,temporalInterval,i)) & (hasFirstInstant(i,start)) & (hasLastInstant(i,end)))) -> (-(exists gap exists gapStart exists gapEnd  (((hasFirstInstant(gap,gapStart)) & (hasLastInstant(gap,gapEnd)) & (precedes(gapEnd,end)) & (precedes(start,gapStart)) & (-(temporalPartOf(gap,i)))))))) # label("no-internal-gaps-in-interval") .

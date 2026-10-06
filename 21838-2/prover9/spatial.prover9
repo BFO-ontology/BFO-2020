@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2025/12/05
+% BFO 2020 Axiomatization, generated 2026/10/05
 % Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -46,11 +46,14 @@ all a all b all c all t all t2  ((((locatedIn(a,b,t)) & (locatedIn(b,c,t2)) & (t
 % If a location-of b then if a is an instance of continuant-fiat-boundary then b is an instance of continuant-fiat-boundary
 all p all q all t  ((((locationOf(p,q,t)) & (instanceOf(p,continuantFiatBoundary,t)))) -> (instanceOf(q,continuantFiatBoundary,t))) # label("location-of.continuant-fiat-boundary->continuant-fiat-boundary") .
 
+% If a process occurs in c then it occurs in any place that c is part of at least as long as p exists
+all p all c1 all c2  ((((occursIn(p,c1)) & (all t  ((existsAt(p,t)) -> (continuantPartOf(c1,c2,t)))))) -> (occursIn(p,c2))) # label("occurs-in-lower-bound-on-process") .
+
 % All spatial regions are part of a 3-dimensional spatial region
 all s all t  ((instanceOf(s,spatialRegion,t)) -> (exists s3  (((instanceOf(s3,threeDimensionalSpatialRegion,t)) & (continuantPartOf(s,s3,t)))))) # label("spatial-regions-are-part-of-3d-space") .
 
-% occurs-in is lower bound location
-all p all c1 all c2  ((((occursIn(p,c1)) & (all t  ((existsAt(p,t)) <-> (((existsAt(c2,t)) & (continuantPartOf(c1,c2,t)))))))) -> (occursIn(p,c2))) # label("occurs-in-lower-bound-on-process") .
+% spatial regions don't change what they are part of.
+all sr1 all sr2 all t1 all t2  ((((continuantPartOf(sr1,sr2,t1)) & (((existsAt(sr2,t2)) | (existsAt(sr1,t2)))) & (instanceOf(sr2,spatialRegion,t1)))) -> (continuantPartOf(sr1,sr2,t2))) # label("spatial-region-part-of-another-forever") .
 
 % Material entities occupy three dimensional spatial regions
 all m all t  ((instanceOf(m,materialEntity,t)) -> (exists t1 exists s  (((temporalPartOf(t1,t)) & (instanceOf(s,threeDimensionalSpatialRegion,t1)) & (occupiesSpatialRegion(m,s,t1)))))) # label("material-entities-always-occupy-spatial-regions") .
@@ -60,9 +63,6 @@ all a all b all t  ((locatedIn(a,b,t)) -> (exists r1 exists r2 exists t2  (((tem
 
 % occurs-in has domain process or process-boundary  and range material-entity or site 
 all a all b  ((occursIn(a,b)) -> (((exists t  (((instanceOf(a,process,t)) | (instanceOf(a,processBoundary,t))))) & (exists t  (((instanceOf(b,materialEntity,t)) | (instanceOf(b,site,t)))))))) # label("occurs-in-domain-range") .
-
-% spatial regions don't change what they are part of.
-all s all sp  ((exists t  (((instanceOf(s,spatialRegion,t)) & (continuantPartOf(sp,s,t))))) -> (all t  ((exists sPrime  (continuantPartOf(sPrime,s,t))) -> (continuantPartOf(sp,s,t))))) # label("spatial-region-part-of-another-forever") .
 
 % occupies-spatial-region is time indexed and has domain: independent-continuant but not spatial-region and range: spatial-region
 all a all b all t  ((occupiesSpatialRegion(a,b,t)) -> (((((instanceOf(a,independentContinuant,t)) & (-(instanceOf(a,spatialRegion,t))))) & (instanceOf(b,spatialRegion,t)) & (instanceOf(t,temporalRegion,t))))) # label("occupies-spatial-region-domain-range") .

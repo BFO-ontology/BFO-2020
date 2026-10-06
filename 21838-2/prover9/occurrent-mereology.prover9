@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2025/12/05
+% BFO 2020 Axiomatization, generated 2026/10/05
 % Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -13,7 +13,7 @@ all a all b  ((occurrentPartOf(a,b)) <-> (hasOccurrentPart(b,a))) # label("occur
 % proper-occurrent-part-of and has-proper-occurrent-part are inverse relations
 all a all b  ((properOccurrentPartOf(a,b)) <-> (hasProperOccurrentPart(b,a))) # label("proper-occurrent-part-of-inverse-of-has-proper-occurrent-part") .
 
-% occurrent-part-of is reflexive
+% All occurrents are occurrent-part-of themselves
 all a  ((exists t  (instanceOf(a,occurrent,t))) -> (occurrentPartOf(a,a))) # label("occurrent-part-of-is-reflexive-on-occurrent") .
 
 % occurrent-part-of is antisymmetric

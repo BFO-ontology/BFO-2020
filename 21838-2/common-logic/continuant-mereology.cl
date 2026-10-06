@@ -1,19 +1,19 @@
 (cl:comment '
-BFO 2020 Axiomatization, generated 2025/12/05
+BFO 2020 Axiomatization, generated 2026/10/06
 The most current version of this file will always be at the GitHub repository https://github.com/bfo-ontology/bfo-2020
 Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/'
 
  (cl:ttl "https://basic-formal-ontology.org/2020/formulas/clif/continuant-mereology.cl" 
   (cl:text  
-  (cl:outdiscourse occupies-spatial-region temporal-part-of exists-at has-proper-continuant-part proper-continuant-part-of instance-of has-continuant-part continuant-part-of)
+   (cl:outdiscourse occupies-spatial-region temporal-part-of exists-at has-proper-continuant-part proper-continuant-part-of instance-of has-continuant-part continuant-part-of)
 
   (cl:comment 'continuant-part-of and has-continuant-part are inverse relations [eld-1]'
     (forall (t a b)
      (iff (continuant-part-of a b t) (has-continuant-part b a t))))
 
 
-  (cl:comment 'continuant-part-of is reflexive at a time [mcd-1]'
+  (cl:comment 'All independent continuants are continuant part of themselves [mcd-1]'
     (forall (a t)
      (if (instance-of a independent-continuant t)
       (continuant-part-of a a t))))
@@ -279,7 +279,7 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
       (= a b))))
 
 
-  (cl:comment 'If at all times that two object-aggregates exist each is part of the other, then they are identical [glc-2]'
+  (cl:comment 'If at all times that two object-aggregates exist each is part of the other, then they are identical [glc-3]'
     (forall (a b)
      (if
       (and
@@ -289,19 +289,21 @@ This work is licensed under a Creative Commons "Attribution 4.0 International" l
        (forall (t) (iff (exists-at a t) (exists-at b t)))
        (forall (t)
         (if (exists-at a t)
-         (and (continuant-part-of a b t) (continuant-part-of b a t)))))
+         (and (instance-of a object-aggregate t)
+          (instance-of b object-aggregate t) (continuant-part-of a b t)
+          (continuant-part-of b a t)))))
       (= a b))))
 
 
-  (cl:comment 'continuant-part-of has weak supplementation [fyf-1]'
+  (cl:comment 'the continuant parthood relation satisfies weak supplementation [fyf-2]'
     (forall (t x y)
      (if
       (and (instance-of x continuant t) (instance-of y continuant t)
        (instance-of t temporal-region t))
-      (if (and (continuant-part-of x y t) (not (= x y)))
+      (if (proper-continuant-part-of x y t)
        (exists (z)
-        (and (instance-of z continuant t) (continuant-part-of z y t)
-         (not (= z y))
+        (and (instance-of z continuant t)
+         (proper-continuant-part-of z y t)
          (not
           (exists (overlap)
            (and (instance-of overlap continuant t)

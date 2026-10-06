@@ -1,4 +1,4 @@
-% BFO 2020 Axiomatization, generated 2025/12/05
+% BFO 2020 Axiomatization, generated 2026/10/05
 % Author: Alan Ruttenberg - alanruttenberg(at)gmail.com
 % The most recent version of this file will always be in the GitHub repository https://github.com/bfo-ontology/bfo-2020
 % This work is licensed under a Creative Commons "Attribution 4.0 International" license: https://creativecommons.org/licenses/by/4.0/
@@ -46,8 +46,8 @@ all a all b all t  ((hasMaterialBasis(a,b,t)) -> (((instanceOf(a,disposition,t))
 % If s s-depends-on c then there's at least one time when they both exist and whenever s exists, c must also exist
 all s all c  ((specificallyDependsOn(s,c)) -> (((exists t  (((existsAt(s,t)) & (existsAt(c,t))))) & (all t  ((existsAt(s,t)) -> (existsAt(c,t))))))) # label("s-depends-means-bearer-exists-when-dependent-exists") .
 
-% DEFINITION: b is a relational quality = Def. b is a quality and there exists distinct c and d such that at all times t, b inheres in c if and only b specifically-depends-on.
-all b  ((exists t  (instanceOf(b,relationalQuality,t))) <-> (((exists c exists d  (((-((c) = (d))) & (inheresIn(b,c)) & (specificallyDependsOn(b,d))))) & (exists t  (instanceOf(b,quality,t)))))) # label("relational-quality-definition") .
+% b is a relational quality =Def. b is a quality and there exists c and d such that b and c are not identical, & b specifically depends on on c & b specifically depends on d
+all b  ((exists t  (instanceOf(b,relationalQuality,t))) <-> (((exists c exists d  (((-((c) = (d))) & (specificallyDependsOn(b,c)) & (specificallyDependsOn(b,d))))) & (exists t  (instanceOf(b,quality,t)))))) # label("relational-quality-definition") .
 
 % a inheres_in b =Def. a is a specifically dependent continuant and b is an independent continuant that is not a spatial region and a s-depends_on b.
 all a all b  ((inheresIn(a,b)) <-> (((specificallyDependsOn(a,b)) & (exists t  (((instanceOf(a,specificallyDependentContinuant,t)) & (instanceOf(b,independentContinuant,t)) & (-(instanceOf(b,spatialRegion,t))))))))) # label("inheres-in-definition") .
