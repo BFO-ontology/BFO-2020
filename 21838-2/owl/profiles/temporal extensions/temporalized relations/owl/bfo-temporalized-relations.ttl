@@ -827,6 +827,7 @@ obo:BFO_0000195 rdf:type owl:ObjectProperty ;
                 dc11:identifier "012-BFO" ;
                 rdfs:label "specifically depends on"@en ;
                 skos:altLabel "s-depends on"@en ;
+                rdf:type owl:TransitiveProperty ;
                 skos:definition "(Elucidation) specifically depends on is a relation between a specifically dependent continuant b and specifically dependent continuant or independent continuant that is not a spatial region c such that b and c share no parts in common & b is of a nature such that at all times t it cannot exist unless c exists & b is not a boundary of c"@en ;
                 skos:example "A shape specifically depends on the shaped object; hue, saturation and brightness of a colour sample specifically depends on each other"@en ;
                 skos:prefLabel "specifically depends on"@en ;

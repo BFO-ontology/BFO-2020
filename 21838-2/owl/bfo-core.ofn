@@ -433,6 +433,7 @@ AnnotationAssertion(skos:definition <http://purl.obolibrary.org/obo/BFO_0000195>
 AnnotationAssertion(skos:example <http://purl.obolibrary.org/obo/BFO_0000195> "A shape specifically depends on the shaped object; hue, saturation and brightness of a colour sample specifically depends on each other"@en)
 AnnotationAssertion(skos:scopeNote <http://purl.obolibrary.org/obo/BFO_0000195> "The analogue of specifically depends on for occurrents is has participant."@en)
 ObjectPropertyDomain(<http://purl.obolibrary.org/obo/BFO_0000195> <http://purl.obolibrary.org/obo/BFO_0000020>)
+TransitiveObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000062>)
 ObjectPropertyRange(<http://purl.obolibrary.org/obo/BFO_0000195> ObjectUnionOf(<http://purl.obolibrary.org/obo/BFO_0000020> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/BFO_0000004> ObjectComplementOf(<http://purl.obolibrary.org/obo/BFO_0000006>))))
 
 # Object Property: <http://purl.obolibrary.org/obo/BFO_0000196> (bearer of)
